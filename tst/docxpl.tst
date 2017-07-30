@@ -2,8 +2,6 @@
 ##
 #W  docxpl.tst          GAP package `fplsa'                     Thomas Breuer
 ##
-#H  @(#)$Id: docxpl.hea,v 1.1 2001/05/21 15:39:45 gap Exp $
-##
 #Y  Copyright (C)  2003,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
 ##  This file contains the {\GAP} code of the examples in the

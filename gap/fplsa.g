@@ -2,8 +2,6 @@
 ##
 #W  fplsa.g                     GAP library                     Thomas Breuer
 ##
-#H  @(#)$Id: fplsa.g,v 1.6 2003/11/18 08:35:49 gap Exp $
-##
 #Y  Copyright (C)  1997,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
 ##  This file contains the interface from {\GAP} to the `fplsa4' package

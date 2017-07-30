@@ -3,8 +3,6 @@
 #W  init.g                   The FPLSA package                 Vladimir Gerdt
 #W                                                           Vladimir Kornyak
 ##
-##  @(#)$Id: init.g,v 1.5 2002/05/03 02:50:15 gap Exp $
-##
 
 DeclarePackage( "fplsa", "1.0",
   function()

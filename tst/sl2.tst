@@ -2,8 +2,6 @@
 ##
 #W  sl2.tst             GAP package `fplsa'                     Thomas Breuer
 ##
-#H  @(#)$Id: sl2.tst,v 1.2 2003/11/18 09:38:46 gap Exp $
-##
 #Y  Copyright (C)  2003,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
 ##  In order to run the tests, one starts {\GAP} from the `tst' subdirectory
