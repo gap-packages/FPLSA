@@ -15,14 +15,8 @@ CC=gcc
 ##
 ##  Targets
 ##
-targets: default
-
-# this target creates a bin-directory
-bindir:
-	if test ! -d bin;  then mkdir bin;  fi
-	if test ! -d bin/@GAPARCH@;  then mkdir bin/@GAPARCH@;  fi
-
-default: bindir src/fplsa4.c
+all: src/fplsa4.c
+	mkdir -p bin
 	$(CC) -o bin/@GAPARCH@/fplsa4 src/fplsa4.c
 
 clean:
