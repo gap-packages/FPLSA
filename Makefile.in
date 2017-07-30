@@ -27,18 +27,10 @@ clean:
           manual.ilg manual.ind manual.lab manual.log manual.pdf manual.six \
           manual.toc )
 
-manual: doc/fplsa.tex
-#../atlasrep/etc/makexpl
-	@( cd doc; \
-           tex manual; tex manual; \
-           ../../../doc/manualindex manual; \
-           tex manual; tex manual; \
-           pdftex manual; pdftex manual; \
-           ../../../etc/convert.pl -i -t -c -n FPLSA . ../htm )
-	@( grep -e "exceeded\|undefined" doc/manual.log; exit 0 )
+doc: doc/fplsa.tex doc/manual.tex
+	cd doc && ./make_doc
 
+Makefile: configure Makefile.in
+	./configure "@GAPPATH@"
 
-#############################################################################
-##
-#E
-
+.PHONY: all clean doc
