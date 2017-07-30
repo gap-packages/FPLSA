@@ -1,40 +1,19 @@
 #############################################################################
 ##  
-##  PackageInfo.g for the package `fplsa'                       Thomas Breuer
-##  (created from Frank Lübeck's PackageInfo.g template file)
+##  PackageInfo.g for the package `fplsa'
 ##  
 SetPackageInfo( rec(
-PackageName :=
-  "FPLSA",
-MyVersion :=
-  "1r1",
-MyWWWHome :=
-  "http://www.math.rwth-aachen.de/~Thomas.Breuer",
-Subtitle :=
-  "Finitely Presented Lie Algebras",
-Version :=
-  JoinStringsWithSeparator( SplitString( ~.MyVersion, "rp" ), "." ),
-Autoload :=
-  false,
-Date :=
-  # "01/07/1999" -- Version 1.0
-  "17/11/2003",
-PackageWWWHome :=
-  Concatenation( ~.MyWWWHome, "/", LowercaseString( ~.PackageName ) ),
-ArchiveURL :=
-  Concatenation( ~.PackageWWWHome, "/", LowercaseString( ~.PackageName ),
-                 ~.MyVersion ),
-ArchiveFormats :=
-  ".zoo",
+PackageName := "FPLSA",
+Subtitle := "Finitely Presented Lie Algebras",
+Version := "1.1dev",
+Date := "17/11/2003",
+
 Persons := [
   rec(
     LastName := "Gerdt",
     FirstNames := "Vladimir",
     IsAuthor := true,
     IsMaintainer := false,
-#   WWWHome := "",
-#   Place := "",
-#   Institution := "",
     Email := "gerdt@jinr.ru"
   ),
   rec(
@@ -42,22 +21,44 @@ Persons := [
     FirstNames := "Vladimir",
     IsAuthor := true,
     IsMaintainer := false,
-#   WWWHome := "",
-#   Place := "",
-#   Institution := "",
-    Email := "kornyak@jinr.dubna.su"
-  )
+    Email := "vkornyak@gmail.com"
+  ),
+  rec(
+    LastName      := "Horn",
+    FirstNames    := "Max",
+    IsAuthor      := false,
+    IsMaintainer  := true,
+    Email         := "max.horn@math.uni-giessen.de",
+    WWWHome       := "http://www.quendi.de/math",
+    PostalAddress := Concatenation(
+                       "AG Algebra\n",
+                       "Mathematisches Institut\n",
+                       "Justus-Liebig-UniversitŠt Gie§en\n",
+                       "Arndtstra§e 2\n",
+                       "35392 Gie§en\n",
+                       "Germany" ),
+    Place         := "Gie§en",
+    Institution   := "Justus-Liebig-UniversitŠt Gie§en"
+  ),
   ],
-Status :=
-  "accepted",
-CommunicatedBy :=
-  "Steve Linton (St Andrews)",
-AcceptDate :=
-  "07/1999",
-README_URL :=
-  Concatenation( ~.PackageWWWHome, "/README" ),
-PackageInfoURL :=
-  Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+
+Status := "accepted",
+CommunicatedBy := "Steve Linton (St Andrews)",
+AcceptDate := "07/1999",
+
+SourceRepository := rec(
+    Type := "git",
+    URL := Concatenation( "https://github.com/gap-packages/", ~.PackageName ),
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+PackageWWWHome  := Concatenation( "https://gap-packages.github.io/", ~.PackageName ),
+README_URL      := Concatenation( ~.PackageWWWHome, "/README" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "/PackageInfo.g" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/", ~.PackageName, "-", ~.Version ),
+ArchiveFormats := ".tar.gz",
+
 AbstractHTML :=
   "The <span class=\"pkgname\">FPLSA</span> package uses \
    the authors' C program (version 4.0) that implements \
@@ -65,34 +66,26 @@ AbstractHTML :=
    finitely presented Lie algebras into isomorphic \
    structure constant algebras. \
    This is called via the GAP function IsomorphismSCTableAlgebra.",
+
+
 PackageDoc := rec(
-  BookName :=
-    "fplsa",
-  ArchiveURLSubset :=
-    [ "doc", "htm" ],
-  HTMLStart :=
-    "htm/chapters.htm",
-  PDFFile :=
-    "doc/manual.pdf",
-  SixFile :=
-    "doc/manual.six",
-  LongTitle :=
-    "Interface to fast external Lie Todd-Coxeter Program",
-  Autoload :=
-    true
-  ),
+  BookName := "fplsa",
+  ArchiveURLSubset := [ "doc", "htm" ],
+  HTMLStart := "htm/chapters.htm",
+  PDFFile := "doc/manual.pdf",
+  SixFile := "doc/manual.six",
+  LongTitle := "Interface to fast external Lie Todd-Coxeter Program",
+  Autoload := true
+),
+
 Dependencies := rec(
-  GAP :=
-    ">= 4.4",
-  NeededOtherPackages :=
-    [],
-  SuggestedOtherPackages :=
-    [],
-  ExternalConditions :=
-    []
-  ),
-AvailabilityTest :=
-  function()
+  GAP := ">= 4.8",
+  NeededOtherPackages := [],
+  SuggestedOtherPackages := [],
+  ExternalConditions := []
+),
+
+AvailabilityTest := function()
   local path,file;
     # test for existence of the compiled binary
     path:= DirectoriesPackagePrograms( "fplsa" );
@@ -103,13 +96,13 @@ AvailabilityTest :=
     fi;
     return file <> fail;
   end,
-TestFile :=
-  "tst/testall.g",
-Keywords :=
-  ["Lie algebra", "presentation", "structure constants"]
-) );
 
-#############################################################################
-##
-#E
+Keywords := [
+  "Lie algebra",
+  "presentation",
+  "structure constants"
+],
 
+TestFile := "tst/testall.g",
+
+));
