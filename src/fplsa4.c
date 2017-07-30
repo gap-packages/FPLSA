@@ -1298,10 +1298,10 @@ enum messages
 
 #define IN_LINE_MARGIN    OutLine[++PosOutLine]=MARGIN
 
-#define INTEGER_MINUS(ia)  if(INTEGER_IS_NEGATIVE(ia))\
+#define INTEGER_MINUS(ia)  do {  if(INTEGER_IS_NEGATIVE(ia))\
                                    (ia)[0] &= INTEGER_N_LIMBS_MASK;\
                                  else\
-                                   (ia)[0] |= INTEGER_SIGN_MASK
+                                   (ia)[0] |= INTEGER_SIGN_MASK; } while(0)
 #define INTEGER_IS_NEGATIVE(ia)  (((ia)[0]&INTEGER_SIGN_MASK)!=0)
 #define INTEGER_IS_POSITIVE(ia)  (((ia)[0]&INTEGER_SIGN_MASK)==0)
 
@@ -1792,7 +1792,7 @@ V PutNodeBalance(S type, S fname, I dn);
 #if !defined(TEST_FUNCTION)
 /*=main======================================
 */
-V main(I narg, S * fin)
+int main(I narg, S * fin)
 {
   Initialization();
   GetInput(narg, fin[1]);
@@ -2215,6 +2215,7 @@ IN_REDUCE_RELATIONS  /*----------------------------------------------*/
         aj = (*SubstituteRelationInRelation)(ai, aj);
         test_substitution_result:
         if(SubstitutionIsDone)
+        {
           if(aj == NIL)                        /* Killed relation */
           {
             --RelationN;
@@ -2285,6 +2286,7 @@ IN_REDUCE_RELATIONS  /*----------------------------------------------*/
             else                  /* No change of leading ordinal */
               RELATION_LIE_SUM(j) = aj;
           }
+        }
         j++;
       }
       /* Remove consequences of leading monomial of substituted relation
@@ -4499,7 +4501,9 @@ U PolyCoeffAtMainParameter(U *pa, I mp)
       SCALAR_TERM_R(b) = ScalarTermCopy(*pa);
       b = SCALAR_TERM_R(b);
       if(isnegative)
+      {
         SCALAR_TERM_MINUS(b);
+      }
       mf = SCALAR_TERM_MONOMIAL(b);    /* Strike out main parameter */
       SCALAR_TERM_MONOMIAL(b) = SCALAR_FACTOR_R(mf);
       NODE_SF_KILL(mf);
@@ -4931,6 +4935,7 @@ U PolyTermGCD(U a, U b)
   }
   SCALAR_TERM_MONOMIAL(a) = maa;          /* Set constructed monomial */
   if(naa == NULL)
+  {
     if(maa == NIL)
     {                                                  /* Trivial GCD */
       NODE_ST_KILL(a);
@@ -4942,6 +4947,7 @@ U PolyTermGCD(U a, U b)
       na[0] = na[1] = 1;
       SCALAR_TERM_NUMERATOR(a) = na;
     }
+  }
   return a;
 }
 /*=PolyTermQuotient===================================================
@@ -7330,10 +7336,12 @@ V PutBlock(V)
     {
       OutLine[++PosOutLine] = OutLine[i];
       if(OutLine[i++] == LEVEL)
+      {
         if(OutLine[i] > MaxLevel)
           MaxLevel = OutLine[i];
         else if(OutLine[i] < MinLevel)
           MinLevel = OutLine[i];
+      }
     }
   }
 }
@@ -7605,6 +7613,7 @@ V PutDimensions(V)
   {
     pos = LIE_MONOMIAL_POSITION(ord);
     if(LIE_MONOMIAL_IS_BASIS(pos))
+    {
       if(LIE_MONOMIAL_WEIGHT(pos) != curwt)
       {
         if(dim != 0)
@@ -7626,6 +7635,7 @@ V PutDimensions(V)
       }
       else
         dim++;
+    }
   }
   if(dim != 0)   /* Print last element */
   {
