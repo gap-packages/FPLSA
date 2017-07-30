@@ -1,17 +1,8 @@
-#############################################################################
-##
-#W  testall.g              GAP 4 package `fplsa'                Thomas Breuer
-##
-#Y  Copyright (C)  2003,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
-##
-
-LoadPackage( "fplsa" );
-
-ReadTest( "docxpl.tst" );
-ReadTest( "sl2.tst" );
-
-
-#############################################################################
-##
-#E
-
+#
+# This file runs package tests. It is also referenced in the package
+# metadata in PackageInfo.g.
+#
+LoadPackage("fplsa");
+d := DirectoriesPackageLibrary("fplsa", "tst");
+TestDirectory(d[1], rec(exitGAP := true));
+FORCE_QUIT_GAP(1);
