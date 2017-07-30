@@ -1,0 +1,7 @@
+C fplsa.tex 1. The FPLSA Package
+S 1.1. Main Functions
+F 1.1. SCAlgebraInfoOfFpLieAlgebra
+F 1.1. IsomorphicSCAlgebra
+S 1.2. Auxiliary Variables of FPLSA
+F 1.2. FPLSA
+S 1.3. Installing the FPLSA Package
