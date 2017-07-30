@@ -981,7 +981,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <malloc.h>
+#include <string.h>
 #if defined(SPP_2000)
 #include <alloca.h>  /* This file the genuine SPP compiler requires */
 #endif
