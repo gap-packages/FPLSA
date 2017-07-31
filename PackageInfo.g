@@ -14,14 +14,16 @@ Persons := [
     FirstNames := "Vladimir",
     IsAuthor := true,
     IsMaintainer := false,
-    Email := "gerdt@jinr.ru"
+    Email := "gerdt@jinr.ru",
+    WWWHome  := "http://compalg.jinr.ru/CAGroup/Gerdt/",
   ),
   rec(
     LastName := "Kornyak",
     FirstNames := "Vladimir",
     IsAuthor := true,
     IsMaintainer := false,
-    Email := "vkornyak@gmail.com"
+    Email := "vkornyak@gmail.com",
+    WWWHome  := "http://compalg.jinr.ru/CAGroup/Kornyak",
   ),
   rec(
     LastName      := "Horn",
