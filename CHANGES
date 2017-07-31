@@ -3,6 +3,7 @@ This file describes changes in the FPLSA package.
 X.Y (YYYY-MM-DD)
   - Fix compilation issue on systems which don't have malloc.h
   - Move package to GitHub
+  - Clarify the package license (GPL 2 or later)
 
 1.1 (2003-11-17)
   - TODO
