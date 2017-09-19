@@ -6549,8 +6549,10 @@ V GetInteger(INT a, S *pstr)
     {
       IntegerProduct(w, a, ten);                              /* a*10 */
       i = w[0];
-      while(i >= 0)
-        a[i--] = w[i];                                 /* Copy w to a */
+      while(i >= 0) {
+        a[i] = w[i];                                 /* Copy w to a */
+        i--;
+      }
       if((digit[1] = (LIMB)(**pstr - '0')) != 0)
         IntegerSum(a, a, digit);                      /* a*10 + digit */
     }
