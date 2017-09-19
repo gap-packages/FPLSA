@@ -7,9 +7,6 @@
 ##  This file contains the interface from {\GAP} to the `fplsa4' package
 ##  by Gerdt and Kornyak.
 ##
-Revision.fplsa_g :=
-    "@(#)$Id: fplsa.g,v 1.6 2003/11/18 08:35:49 gap Exp $";
-
 
 #############################################################################
 ##
