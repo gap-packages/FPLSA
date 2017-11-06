@@ -4,9 +4,6 @@
 ##
 #Y  Copyright (C)  2003,  Lehrstuhl D fuer Mathematik,  RWTH Aachen,  Germany
 ##
-##  In order to run the tests, one starts {\GAP} from the `tst' subdirectory
-##  of the `pkg/fplsa' directory, and calls `ReadTest( "sl2.tst" );'.
-##
 gap> START_TEST( "sl2.tst" );
 
 #

@@ -7,9 +7,6 @@
 ##  This file contains the {\GAP} code of the examples in the
 ##  documentation files.
 ##
-##  In order to run the tests, one starts {\GAP} from the `tst' subdirectory
-##  of the `pkg/fplsa' directory, and calls `ReadTest( "docxpl.tst" );'.
-##
 gap> START_TEST("docxpl.tst");
 
 #
