@@ -10,18 +10,20 @@ ARCHIVE = $(PKGNAME)/$(PKGNAME)$(VERSION)
 
 CC=gcc
 
+BINDIR = bin/@GAPARCH@
+
 
 #############################################################################
 ##
 ##  Targets
 ##
 all: src/fplsa4.c
-	mkdir -p bin
-	$(CC) -o bin/@GAPARCH@/fplsa4 src/fplsa4.c
+	mkdir -p $(BINDIR)
+	$(CC) -o $(BINDIR)/fplsa4 $(CPPFLAGS) $(LDFLAGS) src/fplsa4.c
 
 clean:
 	rm -f ../$(ARCHIVE).zoo ../$(ARCHIVE).tar.gz \
-           read.co tst/docxpl.tst bin/@GAPARCH@/fplsa4
+           read.co tst/docxpl.tst $(BINDIR)/fplsa4
 	( cd doc; rm -f \
           manual.aux manual.bbl manual.blg manual.dvi manual.idl manual.idx \
           manual.ilg manual.ind manual.lab manual.log manual.pdf manual.six \
