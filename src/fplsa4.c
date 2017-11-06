@@ -1066,7 +1066,7 @@ typedef struct
   byte parameter; /* Parameter ordinal   */
   byte degree;    /* Degree of parameter */
 #else
-  byte degree;    /* Degree of parameter */  
+  byte degree;    /* Degree of parameter */
   byte parameter; /* Parameter ordinal   */
 #endif
   uint   rptr;      /* Pointer to next parametric factor */
@@ -1226,7 +1226,7 @@ enum messages
 #define MARGIN                  (LEVEL-1)
 
 #define CASE_STRING_SIZE      256    /* Size of string to match case */
-#define GAP_NAME_SIZE          64    /* Including ending '\0' */ 
+#define GAP_NAME_SIZE          64    /* Including ending '\0' */
 #define GAP_WIDTH              79    /* Width of GAP page */
 
 /*_4    Macrodefinitions==================================================*/
@@ -1658,15 +1658,15 @@ int BinaryQuestion(int i_message);
 int FindNameInTable(char * name, char * nametab, int n_nametab);
 void GetGenerator(char * str);
 void GetInput(int n, char * fin);
-void GetInteger(BIGINT a, char * *pstr);
-uint GetLieMonomial(char * *pstr);
-uint GetLieSum(char * *pstr);
-uint GetLieTerm(char * *pstr);
-uint GetUInteger(char * *pstr);
+void GetInteger(BIGINT a, char **pstr);
+uint GetLieMonomial(char **pstr);
+uint GetLieSum(char **pstr);
+uint GetLieTerm(char **pstr);
+uint GetUInteger(char **pstr);
 void GetParameter(char * str);
 void GetRelation(char * str);
-uint GetScalarSum(char * *pstr);
-uint GetScalarTerm(char * *pstr);
+uint GetScalarSum(char **pstr);
+uint GetScalarTerm(char **pstr);
 void GetWeight(char * str);
 int KeyBoardBytesToString(char * str);
 int KeyBoardStringToFile(int i_m, char * prefix, char * str, FILE *file);
@@ -1677,8 +1677,8 @@ int ReadCaseFromFile(FILE * file, char * case_str[], int n_cases);
 uint ReadDecimalFromFile(FILE *file);
 short ReadStringFromFile(char * str, FILE *file);
 short SkipCommentInFile(FILE *file);
-void SkipName(char * *pstr);
-void SkipSpaces(char * *pstr);
+void SkipName(char **pstr);
+void SkipSpaces(char **pstr);
 short SkipSpacesInFile(FILE *file);
 
 /*_6_9          Output functions========================================*/
@@ -1784,7 +1784,7 @@ void PutNodeBalance(char * type, char * fname, int dn);
 #if !defined(TEST_FUNCTION)
 /*=main======================================
 */
-int main(int narg, char * * fin)
+int main(int narg, char ** fin)
 {
   Initialization();
   GetInput(narg, fin[1]);
@@ -1828,7 +1828,7 @@ int main(int narg, char * * fin)
 /*      SessionFile = OpenFile("fplsa4.gap", "wt");                    */
 /*#endif                                                               */
 /*    }                                                                */
-    if(GAPOutputCommutators) 
+    if(GAPOutputCommutators)
       PutCommutatorsGAP();
     if(GAPOutputBasis)
       PutBasisGAP();
@@ -1863,7 +1863,7 @@ void ConstructFreeAlgebraBasis(void)
               goto incompleted;
             if(LIE_MONOMIAL_WEIGHT(moni) + LIE_MONOMIAL_WEIGHT(monj) >
                LimitingWeight) /* Out of weight for all consequent j */
-              goto next_i;  
+              goto next_i;
             AddPairToLieMonomial(moni, monj);
           }
         j++;
@@ -2043,7 +2043,7 @@ OUT_PUT_RELATIONS /*-----------------------------------------------------*/
               i >= LIE_MONOMIAL_RIGHT_ORDER(gen)))
           {
             if(LIE_MONOMIAL_WEIGHT(mon) > lim_weight_i)
-              break; /* Stop considering next right monomials */ 
+              break; /* Stop considering next right monomials */
             mon = AddPairToLieMonomial(gen, mon);
             if(LieMonomialIsNew)
             {                              /* New pairs */
@@ -3687,7 +3687,7 @@ IN_LIE_SUM_MULT_INTEGER  /*----------------------------------------------*/
         INTEGER_HEAP_NEW(da, 1+INTEGER_N_LIMBS(num)+INTEGER_N_LIMBS(nao));
         IntegerProduct(da, num, nao);
         stick_new:
-        INTEGER_KILL(nao);      
+        INTEGER_KILL(nao);
         LIE_TERM_NUMERATOR_INTEGER(a) = da;
       }
     }while(lsum != NIL);
@@ -5771,7 +5771,7 @@ uint LieTermFromMonomialInteger(int mon)
 uint LieTermFromMonomialParametric(int mon)
 {
   BIGINT num;
-  uint c = NodeSTNew(), 
+  uint c = NodeSTNew(),
     a = NodeLTNew();
 
   LIE_TERM_MONOMIAL(a) = mon;
@@ -6530,7 +6530,7 @@ void GetInput(int n, char * fin)
  Read big integer with shift in string.
  A is already allocated array of LIMBs A[].
 */
-void GetInteger(BIGINT a, char * *pstr)
+void GetInteger(BIGINT a, char **pstr)
 {
   BIGINT w;
   int i;
@@ -6562,7 +6562,7 @@ void GetInteger(BIGINT a, char * *pstr)
 /*=GetLieMonomial=========================================================
  Read monomial from string with transformations and substitutions
 */
-uint GetLieMonomial(char * *pstr)
+uint GetLieMonomial(char **pstr)
 {
   int mon;
   uint a;
@@ -6619,7 +6619,7 @@ OUT_GET_LIE_MONOMIAL  /*------------------------------------------------*/
 /*=GetLieSum=====================================================
  Read Lie expression from string and make internal representation
 */
-uint GetLieSum(char * *pstr)
+uint GetLieSum(char **pstr)
 {
   uint lsum, term;
   int sign = PLUS;
@@ -6651,7 +6651,7 @@ OUT_GET_LIE_SUM  /*--------------------------------------------*/
 }
 /*=GetLieTerm===========================================================
 */
-uint GetLieTerm(char * *pstr)
+uint GetLieTerm(char **pstr)
 {
   uint lterm;
 IN_GET_LIE_TERM   /*--------------------------------------------------*/
@@ -6701,7 +6701,7 @@ OUT_GET_LIE_TERM  /*--------------------------------------------------*/
 /*=GetUInteger====================================
  Read with shift long unsigned integer from string
 */
-uint GetUInteger(char * *pstr)
+uint GetUInteger(char **pstr)
 {
   uint i = 0;
   while(isdigit(**pstr))
@@ -6762,7 +6762,7 @@ void GetRelation(char * str)
 }
 /*=GetScalarSum==================================================
 */
-uint GetScalarSum(char * *pstr)
+uint GetScalarSum(char **pstr)
 {
   uint a, term;
   int is_par, is_negative;
@@ -7492,7 +7492,7 @@ void PutCommutators(void)
 }
 #if defined(GAP)
 /*=PutCommutatorsGAP==================================
- Transform commutators of ordinary finite-dimensional 
+ Transform commutators of ordinary finite-dimensional
  parameter-free Lie algebra to GAP input format
 */
 void PutCommutatorsGAP(void)
@@ -7514,12 +7514,12 @@ void PutCommutatorsGAP(void)
     {
       PosOutLine = -1;
       PutCharacterGAP('[');
-      for(oi = 0; oi <= otop; oi++) 
+      for(oi = 0; oi <= otop; oi++)
         if(LIE_MONOMIAL_IS_BASIS(i = LIE_MONOMIAL_POSITION(oi)))
         {
           if(oi == oj)
             rpart = NIL;
-          else if(oj < oi) 
+          else if(oj < oi)
           {
             rpart = (*PairMonomialMonomial)(i, j);
             (*LieSumMinus)(rpart);
@@ -7535,7 +7535,7 @@ void PutCommutatorsGAP(void)
               b = a;
               a = LIE_TERM_R(a);
               LIE_TERM_R(b) = rpart;
-              rpart = b; 
+              rpart = b;
             }
             PutStringGAP("[[");
             a = rpart;      /* Put indices of basis elements */
@@ -8199,7 +8199,7 @@ void PutStringGAP(char *str)
   char c = 0;
   while(*str)
   {
-     if(PosOutLine == GAP_WIDTH - 2) 
+     if(PosOutLine == GAP_WIDTH - 2)
        if(isdigit(*str))         /* Going to write in last position */
        {
          if(isdigit(c))
