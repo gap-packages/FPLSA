@@ -65,38 +65,38 @@
 
 /* Switches for debugging particular functions ?? */
 
-#define D_CHECK_EXACTNESS_OF_DIVISION      /**/
-/*#define D_ADD_PAIR_TO_LIE_MONOMIAL         /**/
-#define D_GENERATE_RELATIONS               /**/
-/*#if defined(D_GENERATE_RELATIONS)  /* Put tables ?? */
-/*#define D_PUT_RELATIONS                    /**/
-/*#define D_PUT_LIE_MONOMIAL                 /**/
-/*#define D_GET_LIE_MONOMIAL                 /**/
-/*#define D_GET_LIE_SUM                      /**/
-/*#define D_GET_LIE_TERM                     /**/
-#define D_INTEGER_CANCELLATION             /**/
-#define D_INTEGER_GCD                      /**/
-#define D_INTEGER_PRODUCT                  /**/
-#define D_INTEGER_QUOTIENT                 /**/
-#define D_INTEGER_SUM                      /**/
-#define D_LIE_SUM_ADDITION                 /**/
-#define D_LIE_SUM_DIV_INTEGER              /**/
-/*#define D_LIE_SUM_DIV_SCALAR_SUM           /**/
-#define D_LIE_SUM_MULT_INTEGER             /**/
-/*#define D_LIE_SUM_MULT_SCALAR_SUM          /**/
-#define D_MAKE_RELATION_RHS                /**/
-/*#define D_NEW_JACOBI_RELATION              /**/
-#define D_NORMALIZE_RELATION               /**/
-/*#define D_PAIR_MONOMIAL_MONOMIAL           /**/
-/*#define D_PAIR_MONOMIAL_SUM                /**/
-/*#define D_PAIR_SUM_MONOMIAL                /**/
-/*#define D_PAIR_SUM_SUM                     /**/
-/*#define D_POLY_CONTENT                     /**/
-/*#define D_POLY_GCD                         /**/
-/*#define D_POLY_QUOTIENT                    /**/
-/*#define D_POLY_PSEUDO_REMAINDER            /**/
-/*#define D_SCALAR_SUM_CANCELLATION          /**/
-#define D_SUBSTITUTE_RELATION_IN_RELATION  /**/
+#define D_CHECK_EXACTNESS_OF_DIVISION
+//#define D_ADD_PAIR_TO_LIE_MONOMIAL
+#define D_GENERATE_RELATIONS
+//#if defined(D_GENERATE_RELATIONS)  /* Put tables ?? */
+//#define D_PUT_RELATIONS
+//#define D_PUT_LIE_MONOMIAL
+//#define D_GET_LIE_MONOMIAL
+//#define D_GET_LIE_SUM
+//#define D_GET_LIE_TERM
+#define D_INTEGER_CANCELLATION
+#define D_INTEGER_GCD
+#define D_INTEGER_PRODUCT
+#define D_INTEGER_QUOTIENT
+#define D_INTEGER_SUM
+#define D_LIE_SUM_ADDITION
+#define D_LIE_SUM_DIV_INTEGER
+//#define D_LIE_SUM_DIV_SCALAR_SUM
+#define D_LIE_SUM_MULT_INTEGER
+//#define D_LIE_SUM_MULT_SCALAR_SUM
+#define D_MAKE_RELATION_RHS
+//#define D_NEW_JACOBI_RELATION
+#define D_NORMALIZE_RELATION
+//#define D_PAIR_MONOMIAL_MONOMIAL
+//#define D_PAIR_MONOMIAL_SUM
+//#define D_PAIR_SUM_MONOMIAL
+//#define D_PAIR_SUM_SUM
+//#define D_POLY_CONTENT
+//#define D_POLY_GCD
+//#define D_POLY_QUOTIENT
+//#define D_POLY_PSEUDO_REMAINDER
+//#define D_SCALAR_SUM_CANCELLATION
+#define D_SUBSTITUTE_RELATION_IN_RELATION
 #define D_IN_SET     uint debug=Debug;\
                      D_CONDITION\
                        PutDebugHeader(debug, f_name, "in"),
