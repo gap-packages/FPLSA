@@ -29,12 +29,11 @@
                             otherwise over the ring Z */
 #define ECHO_TO_SCREEN        /* Echo session to screen ?? */
 #define RELATION_N_TO_SCREEN  /* Watch increasing RelationN ?? */
-/*#define SPP_2000  /* Big ending computer ?? */
+//#define SPP_2000  /* Big ending computer ?? */
 #define SPACE_STATISTICS  /* Space statistics ?? */
-/*#define INTEGER_MAX_SIZE  /* Multiprecision number maximum size ?? */
-/*#define INTEGER_ALLOCATION_CHECK  /* Control of integer allocations ?? */
-/*#define POLY_ARRAY_ALLOCATION_CHECK /* Control of allocations of ??
-                                       polynomial arrays in stack */
+//#define INTEGER_MAX_SIZE  /* Multiprecision number maximum size ?? */
+//#define INTEGER_ALLOCATION_CHECK  /* Control of integer allocations ?? */
+//#define POLY_ARRAY_ALLOCATION_CHECK /* Control of allocations of ?? plynomial arrays in stack */
 
 /* GAP output ?? */
 /* Avoid message file, session file,                              */
@@ -43,8 +42,8 @@
 #define GAP
 /**/
 
-/*#define DEBUG /* Debugging ?? */
-/*#define MEMORY /* Check memory balance ?? */
+//#define DEBUG /* Debugging ?? */
+//#define MEMORY /* Check memory balance ?? */
 
 #if defined(DEBUG)  /* Debug definitions ===============================*/
 
@@ -972,8 +971,7 @@
 #endif
 
 /* Test of C functions ?? */
-/*#define TEST_FUNCTION
-/**/
+//#define TEST_FUNCTION
 
 /* Include files	*/
 
