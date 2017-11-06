@@ -97,7 +97,7 @@
 /*#define D_POLY_PSEUDO_REMAINDER            /**/
 /*#define D_SCALAR_SUM_CANCELLATION          /**/
 #define D_SUBSTITUTE_RELATION_IN_RELATION  /**/
-#define D_IN_SET     U debug=Debug;\
+#define D_IN_SET     uint debug=Debug;\
                      D_CONDITION\
                        PutDebugHeader(debug, f_name, "in"),
 #define D_IN_CLOSE   Debug++; D_EXIT
@@ -115,10 +115,10 @@
 /* Check memory balance definitions */
 
 #if defined(MEMORY)              /* `n_...' are unique */
-#define IN_SET_N_LT      I n_lt  = -CurrentNLT;
-#define IN_SET_N_INT     I n_int = -CurrentNINT;
-#define IN_SET_N_ST      I n_st  = -CurrentNST;
-#define IN_SET_N_SF      I n_sf  = -CurrentNSF;
+#define IN_SET_N_LT      int n_lt  = -CurrentNLT;
+#define IN_SET_N_INT     int n_int = -CurrentNINT;
+#define IN_SET_N_ST      int n_st  = -CurrentNST;
+#define IN_SET_N_SF      int n_sf  = -CurrentNSF;
 
 #define OUT_SET_N_LT     n_lt  += CurrentNLT;
 #define OUT_SET_N_INT    n_int += CurrentNINT;
@@ -281,14 +281,14 @@
     IN_SET_FUNCTION_NAME("ReduceRelations")\
     IN_SET_NS\
     {\
-      I o;\
+      int o;\
       for(o = 0; o < RelationN; o++)\
         ADD_LIE_SUM_NS(RELATION_LIE_SUM(o))\
     }
 #define OUT_REDUCE_RELATIONS  \
     OUT_SET_NS\
     {\
-      I o;\
+      int o;\
       for(o = 0; o < RelationN; o++)\
         SUBTRACT_LIE_SUM_NS(RELATION_LIE_SUM(o))\
     }\
@@ -392,7 +392,7 @@
 
 
 #if defined(DEBUG) || defined(MEMORY)             /* `f_name' is unique */
-#define IN_SET_FUNCTION_NAME(fname) S f_name = fname;
+#define IN_SET_FUNCTION_NAME(fname) char * f_name = fname;
 #else
 #define IN_SET_FUNCTION_NAME(fname)
 #endif
@@ -554,7 +554,7 @@
 #define D_IN_LIE_SUM_ADDITION  D_IN_CLOSE
 #define D_OUT_LIE_SUM_ADDITION
 #endif
-#if defined(D_LIE_SUM_DIV_INTEGER)  /*--------- U/INT ----------------*/
+#if defined(D_LIE_SUM_DIV_INTEGER)  /*--------- uint/BIGINT ----------------*/
 #define D_IN_LIE_SUM_DIV_INTEGER   D_IN_SET\
                                      PutDebugLieSum("lsum", b),\
                                      PutDebugInteger("den", den);\
@@ -565,7 +565,7 @@
 #define D_IN_LIE_SUM_DIV_INTEGER   D_IN_CLOSE
 #define D_OUT_LIE_SUM_DIV_INTEGER
 #endif
-#if defined(D_LIE_SUM_DIV_SCALAR_SUM)  /*--------- U/U --------------*/
+#if defined(D_LIE_SUM_DIV_SCALAR_SUM)  /*--------- uint/uint --------------*/
 #define D_IN_LIE_SUM_DIV_SCALAR_SUM   D_IN_SET\
                                         PutDebugLieSum("lsum", b),\
                                         PutDebugScalarSum("den", den);\
@@ -576,7 +576,7 @@
 #define D_IN_LIE_SUM_DIV_SCALAR_SUM   D_IN_CLOSE
 #define D_OUT_LIE_SUM_DIV_SCALAR_SUM
 #endif
-#if defined(D_LIE_SUM_MULT_SCALAR_SUM)  /*--------- U*U --------------*/
+#if defined(D_LIE_SUM_MULT_SCALAR_SUM)  /*--------- uint*uint --------------*/
 #define D_IN_LIE_SUM_MULT_SCALAR_SUM   D_IN_SET\
                                          PutDebugLieSum("lsum", b),\
                                          PutDebugScalarSum("num", num);\
@@ -587,7 +587,7 @@
 #define D_IN_LIE_SUM_MULT_SCALAR_SUM   D_IN_CLOSE
 #define D_OUT_LIE_SUM_MULT_SCALAR_SUM
 #endif
-#if defined(D_LIE_SUM_MULT_INTEGER)  /*------- U*INT -----------------*/
+#if defined(D_LIE_SUM_MULT_INTEGER)  /*------- uint*BIGINT -----------------*/
 #define D_IN_LIE_SUM_MULT_INTEGER   D_IN_SET\
                                       PutDebugLieSum("lsum", b),\
                                       PutDebugInteger("num", num);\
@@ -950,27 +950,27 @@
 #endif
 
 #if defined(D_LIE_SUM_DIV_INTEGER) || defined(MEMORY)
-#define LS_B_LSUM_DIV_INT  U b = lsum; /* For "LieSumDivInteger" */
+#define LS_B_LSUM_DIV_INT  uint b = lsum; /* For "LieSumDivInteger" */
 #else
 #define LS_B_LSUM_DIV_INT
 #endif
 #if defined(D_LIE_SUM_MULT_INTEGER) || defined(MEMORY)
-#define LS_B_LSUM_MULT_INT  U b = lsum; /* For "LieSumMultInteger" */
+#define LS_B_LSUM_MULT_INT  uint b = lsum; /* For "LieSumMultInteger" */
 #else
 #define LS_B_LSUM_MULT_INT
 #endif
 #if defined(D_LIE_SUM_DIV_SCALAR_SUM) || defined(MEMORY)
-#define LS_B_LSUM_DIV_SS  U b = lsum; /* For "LieSumDivScalarSum" */
+#define LS_B_LSUM_DIV_SS  uint b = lsum; /* For "LieSumDivScalarSum" */
 #else
 #define LS_B_LSUM_DIV_SS
 #endif
 #if defined(D_LIE_SUM_MULT_SCALAR_SUM) || defined(MEMORY)
-#define LS_B_LSUM_MULT_SS  U b = lsum; /* For "LieSumMultScalarSum" */
+#define LS_B_LSUM_MULT_SS  uint b = lsum; /* For "LieSumMultScalarSum" */
 #else
 #define LS_B_LSUM_MULT_SS
 #endif
 
-/* Test of C functions ?? */
+/* Test of char functions ?? */
 //#define TEST_FUNCTION
 
 /* Include files	*/
@@ -1015,34 +1015,28 @@
 
 /*_2    Type definitions================================================*/
 
-typedef void V;
-typedef char C;
-typedef unsigned char CU;
-typedef short int SHI;
-typedef unsigned short int SHU,
-  LIMB; /* Limb of big integer */
-typedef LIMB * INT;  /* (Pointer to) big integer array */
-typedef int I;
-typedef unsigned U;
-typedef char * S;
+typedef unsigned char byte;
+typedef unsigned short LIMB; /* Limb of big integer */
+typedef LIMB * BIGINT;  /* (Pointer to) big integer array */
+typedef unsigned int uint;
 
 /* Element of LieMonomial table */
 
 typedef struct
 {
-  I order;       /* Order of this position element */
-  I position;    /* Position of this order */
-  I left;        /* (Position of) left submonomial of Lie bracket */
+  int order;       /* Order of this position element */
+  int position;    /* Position of this order */
+  int left;        /* (Position of) left submonomial of Lie bracket */
                    /* or ~(index of generator) if not commutator */
-  I right;       /* (Position of) right submonomial of Lie bracket  */
+  int right;       /* (Position of) right submonomial of Lie bracket  */
                    /* or 1 for 1st generator and 0 for nexts */
   struct
   {
-    U parity : 1;
-    I index : 23;  /* Index if basis element or */
+    uint parity : 1;
+    int index : 23;  /* Index if basis element or */
                    /* ~(index of relation with leading ordinal) */
                    /* Number of relations < 4194303 */
-    U weight : 8;  /* Weight of Lie monomial < 256 */
+    uint weight : 8;  /* Weight of Lie monomial < 256 */
   } info;
 } LIE_MON;
 
@@ -1050,18 +1044,18 @@ typedef struct
 
 typedef struct
 {
-  I monomial;   /* (Position of) Lie monomial in LieMonomial table */
+  int monomial;   /* (Position of) Lie monomial in LieMonomial table */
   union
   {
-    U  scalar_sum;
-    INT integer;
+    uint  scalar_sum;
+    BIGINT integer;
   } numerator;
   union
   {
-    U  scalar_sum;
-    INT integer;
+    uint  scalar_sum;
+    BIGINT integer;
   } denominator;  /* Pointer to next Lie term */
-  U rptr;
+  uint rptr;
 } NODE_LT;
 
 /* Element of NodeSF pool for scalar factors */
@@ -1069,31 +1063,31 @@ typedef struct
 typedef struct
 {
 #if defined(SPP_2000)
-  CU parameter; /* Parameter ordinal   */
-  CU degree;    /* Degree of parameter */
+  byte parameter; /* Parameter ordinal   */
+  byte degree;    /* Degree of parameter */
 #else
-  CU degree;    /* Degree of parameter */  
-  CU parameter; /* Parameter ordinal   */
+  byte degree;    /* Degree of parameter */  
+  byte parameter; /* Parameter ordinal   */
 #endif
-  U   rptr;      /* Pointer to next parametric factor */
+  uint   rptr;      /* Pointer to next parametric factor */
 } NODE_SF;
 
 /* Element of NodeST pool for scalar terms */
 
 typedef struct
 {
-  U  monomial;  /* Scalar monomial */
-  INT numerator; /* Integer coefficient */
-  U  rptr;      /* Pointer to next parametric term */
+  uint  monomial;  /* Scalar monomial */
+  BIGINT numerator; /* Integer coefficient */
+  uint  rptr;      /* Pointer to next parametric term */
 } NODE_ST;
 
 /* Element of Relation table */
 
 typedef struct
 {
-  U    lie_sum;           /* Expression of relation (Lie sum) */
-  CU  min_generator;     /* Minimal generator for differentiation */
-  CU to_be_substituted; /* YES if relation must be substituted */
+  uint    lie_sum;           /* Expression of relation (Lie sum) */
+  byte  min_generator;     /* Minimal generator for differentiation */
+  byte to_be_substituted; /* YES if relation must be substituted */
 } REL;                     /* into higher relations */
 
 /*_3    Constants and enumerations======================================*/
@@ -1315,7 +1309,7 @@ enum messages
 #define INTEGER_SET_PLUS(ia)        (ia)[0] &= INTEGER_N_LIMBS_MASK
 #define INTEGER_SIGN(ia)            ((ia)[0]&INTEGER_SIGN_MASK)
 
-#define INTEGER_HEAP_NEW(n,i)       (n)=(INT)malloc(sizeof(LIMB)*(i))\
+#define INTEGER_HEAP_NEW(n,i)       (n)=(BIGINT)malloc(sizeof(LIMB)*(i))\
                                     INTEGER_IN_HEAP(n)
 #define INTEGER_HEAP_COPY(n,o,i)    (i)=INTEGER_N_LIMBS(o);\
                                     INTEGER_HEAP_NEW(n,++(i));\
@@ -1329,7 +1323,7 @@ enum messages
 #define INTEGER_KILL(bn)            free(bn) MM_CURRENT_N_INT
 
 
-#define INTEGER_STACK_NEW(n,i)      (n)=(INT)alloca(sizeof(LIMB)*(i))\
+#define INTEGER_STACK_NEW(n,i)      (n)=(BIGINT)alloca(sizeof(LIMB)*(i))\
                                     INTEGER_IN_STACK(n)
 
 #define INTEGER_STACK_COPY(n,o,i)   (i)=INTEGER_N_LIMBS(o);\
@@ -1413,7 +1407,7 @@ enum messages
 #define SCALAR_FACTOR_PARAMETER(a)    (NodeSF[a].parameter)
 #define SCALAR_FACTOR_IS_I_NUMBER(a)  (NodeSF[a].parameter==I_NUMBER)
 #define SCALAR_FACTOR_DEGREE(a)       (NodeSF[a].degree)
-#define SCALAR_FACTOR_WORD(a)         (*(SHU *)(NodeSF+(a)))
+#define SCALAR_FACTOR_WORD(a)         (*(unsigned short *)(NodeSF+(a)))
 #define SCALAR_FACTOR_R(a)            (NodeSF[a].rptr)
 
 #define SCALAR_TERM_MINUS(a)  INTEGER_MINUS(NodeST[a].numerator)
@@ -1425,7 +1419,7 @@ enum messages
                               SCALAR_FACTOR_DEGREE(SCALAR_TERM_MONOMIAL(a))
 #define POLY_MAIN_PARAMETER(a) ((SCALAR_TERM_MONOMIAL(a)==NIL) ? -1 :\
                           SCALAR_FACTOR_PARAMETER(SCALAR_TERM_MONOMIAL(a)))
-#define POLY_ARRAY_STACK_NEW(a,n)   (a)=(U*)alloca(sizeof(U)*(n))\
+#define POLY_ARRAY_STACK_NEW(a,n)   (a)=(uint*)alloca(sizeof(uint)*(n))\
                                     POLY_ARRAY_IN_STACK(a)
 
 #define TIME_OFF  TimeC += (CrudeTime ? time(NULL) : clock()) - TimeA
@@ -1442,113 +1436,113 @@ FILE *SessionFile;
 
 /* Single variables */
 
-I IncompletedBasis;
-I IncompletedRelations;
-I IsParametric;
-I LieMonomialIsNew;
-I SubstitutionIsDone;
-U LimitingWeight;
-I GeneratorN;
-I ParameterN;
+int IncompletedBasis;
+int IncompletedRelations;
+int IsParametric;
+int LieMonomialIsNew;
+int SubstitutionIsDone;
+uint LimitingWeight;
+int GeneratorN;
+int ParameterN;
 
 /* Arrays */
 
 LIE_MON *LieMonomial;    /* Set of Lie monomials */
-I LieMonomialSize;
-I LieMonomialN;
-I LieMonomialFreePosition; /* Start search of free position */
+int LieMonomialSize;
+int LieMonomialN;
+int LieMonomialFreePosition; /* Start search of free position */
 #if defined(SPACE_STATISTICS)
-I LieMonomialMaxN;
+int LieMonomialMaxN;
 #endif
 
 
 NODE_LT *NodeLT;         /* Pool of nodes for Lie terms */
-U NodeLTSize;
-U NodeLTTop = 1;
+uint NodeLTSize;
+uint NodeLTTop = 1;
 #if defined(SPACE_STATISTICS)
-U NodeLTTopMax;
+uint NodeLTTopMax;
 #endif
 
 NODE_SF *NodeSF;         /* Pool of nodes for scalar factors */
-U NodeSFSize;
-U NodeSFTop = 1;
+uint NodeSFSize;
+uint NodeSFTop = 1;
 #if defined(SPACE_STATISTICS)
-U NodeSFTopMax;
+uint NodeSFTopMax;
 #endif
 
 NODE_ST *NodeST;         /* Pool of nodes for scalar terms */
-U NodeSTSize;
-U NodeSTTop = 1;
+uint NodeSTSize;
+uint NodeSTTop = 1;
 #if defined(SPACE_STATISTICS)
-U NodeSTTopMax;
+uint NodeSTTopMax;
 #endif
 
 REL *Relation;           /* Ordered set of relations */
-I RelationSize;
-I RelationN;
+int RelationSize;
+int RelationN;
 #if defined(SPACE_STATISTICS)
-I MaxNRelation;
+int MaxNRelation;
 #endif
 #if defined(INTEGER_MAX_SIZE)
 LIMB IntegerMaxSize;
 #endif
 
-I CoeffSumTableSize; /* Non-zero coefficient tables variables */
-I CoeffSumTableN;
-U *CoeffSumTable;     /* Non-zero parametric sums */
-I *CoeffParamTable;   /* Table for memorizing single */
+int CoeffSumTableSize; /* Non-zero coefficient tables variables */
+int CoeffSumTableN;
+uint *CoeffSumTable;     /* Non-zero parametric sums */
+int *CoeffParamTable;   /* Table for memorizing single */
                          /* non-zero parameters */
 
 /* Input and output variables */
 
-C BasisSymbolEven;
-C BasisSymbolOdd;
-I CurrentLevel;
-S GeneratorName;     /* Input names */
-S ParameterName;
-I GeneratorMaxN;     /* Maximum number of input generators */
-U InputIntegerSize;  /* Maximum size of input integer in LIMBs */
-I InputStringSize;   /* Size of string for reading input */
-I LastItemEnd;
-I LineLength;
-I Margin;
-I MaxLevel;
-I MinLevel;
-I NameLength1;       /* Maximum length of input name (with ending '\0') */
-I NewMargin;
-I ParameterMaxN = 1; /* Maximum number of input parameters (i at least) */
-I BasisElementsPut;
-I CommutatorsPut;
-I CrudeTime;         /* Prevent time variable wrapping for large tasks */
-I EchoInput;
-I GAPOutputCommutators;
-I GAPOutputBasis;
-I GAPOutputRelations;
-C GAPAlgebraName[GAP_NAME_SIZE];
-C GAPBasisName[GAP_NAME_SIZE];
-C GAPRelationsName[GAP_NAME_SIZE];
-I HeadingPut;
-I HilbertSeriesPut;
-I InitialRelationsPut;
-I NonZeroCoefficientsPut;
-I ReducedRelationsPut;
-I StatisticsPut;
-S OutLine;           /* String for preparation of output block */
-I OutLineSize;
-I PosOutLine;
-I PreviousEnd;
-I PrintEnd;
+char BasisSymbolEven;
+char BasisSymbolOdd;
+int CurrentLevel;
+char * GeneratorName;     /* Input names */
+char * ParameterName;
+int GeneratorMaxN;     /* Maximum number of input generators */
+uint InputIntegerSize;  /* Maximum size of input integer in LIMBs */
+int InputStringSize;   /* Size of string for reading input */
+int LastItemEnd;
+int LineLength;
+int Margin;
+int MaxLevel;
+int MinLevel;
+int NameLength1;       /* Maximum length of input name (with ending '\0') */
+int NewMargin;
+int ParameterMaxN = 1; /* Maximum number of input parameters (i at least) */
+int BasisElementsPut;
+int CommutatorsPut;
+int CrudeTime;         /* Prevent time variable wrapping for large tasks */
+int EchoInput;
+int GAPOutputCommutators;
+int GAPOutputBasis;
+int GAPOutputRelations;
+char GAPAlgebraName[GAP_NAME_SIZE];
+char GAPBasisName[GAP_NAME_SIZE];
+char GAPRelationsName[GAP_NAME_SIZE];
+int HeadingPut;
+int HilbertSeriesPut;
+int InitialRelationsPut;
+int NonZeroCoefficientsPut;
+int ReducedRelationsPut;
+int StatisticsPut;
+char * OutLine;           /* String for preparation of output block */
+int OutLineSize;
+int PosOutLine;
+int PreviousEnd;
+int PrintEnd;
 
-U TimeA, TimeC;
+uint TimeA, TimeC;
 
 #if defined(DEBUG)
-U Debug;
+uint Debug;
 #endif
 #if defined(MEMORY)
-I CurrentNLT;
-I CurrentNSF;
-I CurrentNST;
-I CurrentNINT;
+int CurrentNLT;
+int CurrentNSF;
+int CurrentNST;
+int CurrentNINT;
 
 #endif
 
@@ -1556,233 +1550,233 @@ I CurrentNINT;
 
 /*_6_0          Main and top level functions============================*/
 
-V ConstructFreeAlgebraBasis(V);       /* 1 call! */
-I FindNewPositionInRelation(I lmo);
-V GenerateRelations(V);               /* 1 call! */
-U NewJacobiRelation(I l);           /* 1 call! */
-I ReduceRelations(I i);
+void ConstructFreeAlgebraBasis(void);       /* 1 call! */
+int FindNewPositionInRelation(int lmo);
+void GenerateRelations(void);               /* 1 call! */
+uint NewJacobiRelation(int l);           /* 1 call! */
+int ReduceRelations(int i);
 
 /*_6_1          Pairing functions=======================================*/
 
-I AddPairToLieMonomial(I i, I j);
-U MakeRelationRHSInteger(I i);             /* 1 call!! */
-U MakeRelationRHSParametric(I i);          /* 1 call!! */
-U PairMonomialMonomialInteger(I i, I j);
-U PairMonomialMonomialParametric(I i, I j);
-U PairMonomialSumInteger(I mon, U a);
-U PairMonomialSumParametric(I mon, U a);
-U PairSumMonomialInteger(U a, I mon);
-U PairSumMonomialParametric(U a, I mon);
-U PairSumSumInteger(U a, U b);
-U PairSumSumParametric(U a, U b);
+int AddPairToLieMonomial(int i, int j);
+uint MakeRelationRHSInteger(int i);             /* 1 call!! */
+uint MakeRelationRHSParametric(int i);          /* 1 call!! */
+uint PairMonomialMonomialInteger(int i, int j);
+uint PairMonomialMonomialParametric(int i, int j);
+uint PairMonomialSumInteger(int mon, uint a);
+uint PairMonomialSumParametric(int mon, uint a);
+uint PairSumMonomialInteger(uint a, int mon);
+uint PairSumMonomialParametric(uint a, int mon);
+uint PairSumSumInteger(uint a, uint b);
+uint PairSumSumParametric(uint a, uint b);
 
 /*_6_2          Substitution (replacing) functions======================*/
 
-I IsMonomialInMonomial(I submon, I mon);
-U SubstituteRelationInRelationInteger(U r, U a);
-U SubstituteRelationInRelationParametric(U r, U a);
-U SubstituteRHSInMonomialInteger(I mon, I lmonr, U r);
-U SubstituteRHSInMonomialParametric(I mon, I lmonr, U r);
+int IsMonomialInMonomial(int submon, int mon);
+uint SubstituteRelationInRelationInteger(uint r, uint a);
+uint SubstituteRelationInRelationParametric(uint r, uint a);
+uint SubstituteRHSInMonomialInteger(int mon, int lmonr, uint r);
+uint SubstituteRHSInMonomialParametric(int mon, int lmonr, uint r);
 
 /*_6_3          Lie and scalar algebra functions========================*/
 
-I LieLikeTermsCollectionInteger(U a, U b);
-I LieLikeTermsCollectionParametric(U a, U b);
-U LieSumAddition(U a, U b);
-V LieSumDivInteger(U lsum, INT den);
-V LieSumDivScalarSum(U lsum, U den);
-V LieSumMinusInteger(U a);
-V LieSumMinusParametric(U a);
-V LieSumMultInteger(U lsum, INT num);
+int LieLikeTermsCollectionInteger(uint a, uint b);
+int LieLikeTermsCollectionParametric(uint a, uint b);
+uint LieSumAddition(uint a, uint b);
+void LieSumDivInteger(uint lsum, BIGINT den);
+void LieSumDivScalarSum(uint lsum, uint den);
+void LieSumMinusInteger(uint a);
+void LieSumMinusParametric(uint a);
+void LieSumMultInteger(uint lsum, BIGINT num);
 #if defined(RATIONAL_FIELD)
-V LieSumMultRationalInteger(I a, INT num, INT den);
+void LieSumMultRationalInteger(int a, BIGINT num, BIGINT den);
 #endif
-V LieSumMultScalarSum(U lsum, U num);
-V NormalizeRelationInteger(U a);
-V NormalizeRelationParametric(U a);
-U ScalarMonomialMultiplication(I *pchange_sign, U ma, U mb);
-U ScalarSumAddition(U a, U b);
-V ScalarSumCancellation(U *pnum, U *pden);
-V ScalarSumMinus(U a);
-U ScalarSumMultiplication(U a, U b);
-V ScalarTermMultiplication(U a, U b);     /* 1 call! */
+void LieSumMultScalarSum(uint lsum, uint num);
+void NormalizeRelationInteger(uint a);
+void NormalizeRelationParametric(uint a);
+uint ScalarMonomialMultiplication(int *pchange_sign, uint ma, uint mb);
+uint ScalarSumAddition(uint a, uint b);
+void ScalarSumCancellation(uint *pnum, uint *pden);
+void ScalarSumMinus(uint a);
+uint ScalarSumMultiplication(uint a, uint b);
+void ScalarTermMultiplication(uint a, uint b);     /* 1 call! */
 
 /*_6_4          Scalar polynomial algebraic functions===================*/
 
-U ContentOfScalarSum(U cont, U a);
-V InCoeffParamTable(U cont);
-V InCoeffSumTable(U sum);
-V InCoeffTable(U coe);
-U PolyCoeffAtMainParameter(U *pa, I mp);
-U PolyContent(U a, I mp);
-U PolyGCD(U a, U b);
-U PolyMainParameterTerm(U *pa, I mp, I mpdeg);
-I PolynomialsAreEqual(U a, U b);
-U PolyPseudoRemainder(U a, U b, I mp);  /* 1 call! */
-U PolyTermGCD(U a, U b);
-V PolyTermQuotient(U a, U b);
-U PolyQuotient(U a, U b);
+uint ContentOfScalarSum(uint cont, uint a);
+void InCoeffParamTable(uint cont);
+void InCoeffSumTable(uint sum);
+void InCoeffTable(uint coe);
+uint PolyCoeffAtMainParameter(uint *pa, int mp);
+uint PolyContent(uint a, int mp);
+uint PolyGCD(uint a, uint b);
+uint PolyMainParameterTerm(uint *pa, int mp, int mpdeg);
+int PolynomialsAreEqual(uint a, uint b);
+uint PolyPseudoRemainder(uint a, uint b, int mp);  /* 1 call! */
+uint PolyTermGCD(uint a, uint b);
+void PolyTermQuotient(uint a, uint b);
+uint PolyQuotient(uint a, uint b);
 
 /*_6_5          Big number functions====================================*/
 
-I BigNMinusBigN(INT a, I na, INT b, I nb);
-LIMB BigNShiftLeft(INT bign, I n, I cnt);
-I BigNShiftRight(INT bign, I n, I cnt);
-I CountLeadingZeroBitsInLimb(LIMB w);
-V IntegerCancellation(INT num, INT den);
-INT IntegerGCD(INT u, INT v);
-V IntegerProduct(INT w, INT u, INT v);
-V IntegerQuotient(INT c, INT a, INT b);
-V IntegerSum(INT c, INT a, INT b);
+int BigNMinusBigN(BIGINT a, int na, BIGINT b, int nb);
+LIMB BigNShiftLeft(BIGINT bign, int n, int cnt);
+int BigNShiftRight(BIGINT bign, int n, int cnt);
+int CountLeadingZeroBitsInLimb(LIMB w);
+void IntegerCancellation(BIGINT num, BIGINT den);
+BIGINT IntegerGCD(BIGINT u, BIGINT v);
+void IntegerProduct(BIGINT w, BIGINT u, BIGINT v);
+void IntegerQuotient(BIGINT c, BIGINT a, BIGINT b);
+void IntegerSum(BIGINT c, BIGINT a, BIGINT b);
 
 /*_6_6          Copy and delete functions===============================*/
 
-U LieSumCopyInteger(U a);
-U LieSumCopyIntegerNegative(U a);
-U LieSumCopyParametric(U a);
-V LieSumKillInteger(U a);
-V LieSumKillParametric(U a);
-U LieTermFromMonomialInteger(I mon);
-U LieTermFromMonomialParametric(I mon);
-U ScalarSumCopy(U a);
-V ScalarSumKill(U a);
-U ScalarTermCopy(U a);
+uint LieSumCopyInteger(uint a);
+uint LieSumCopyIntegerNegative(uint a);
+uint LieSumCopyParametric(uint a);
+void LieSumKillInteger(uint a);
+void LieSumKillParametric(uint a);
+uint LieTermFromMonomialInteger(int mon);
+uint LieTermFromMonomialParametric(int mon);
+uint ScalarSumCopy(uint a);
+void ScalarSumKill(uint a);
+uint ScalarTermCopy(uint a);
 
 /*_6_7          Technical functions=====================================*/
 
-V Error(I i_message);
-V Initialization(V);
-V *NewArray(U n, U size, I i_message);
-U NodeLTNew(V);
-U NodeSFNew(V);
-U NodeSTNew(V);
-FILE *OpenFile(S file_name, S file_type);
+void Error(int i_message);
+void Initialization(void);
+void *NewArray(uint n, uint size, int i_message);
+uint NodeLTNew(void);
+uint NodeSFNew(void);
+uint NodeSTNew(void);
+FILE *OpenFile(char * file_name, char * file_type);
 
 /*_6_8          Input functions=========================================*/
 
-I BinaryQuestion(I i_message);
-I FindNameInTable(S name, S nametab, I n_nametab);
-V GetGenerator(S str);
-V GetInput(I n, S fin);
-V GetInteger(INT a, S *pstr);
-U GetLieMonomial(S *pstr);
-U GetLieSum(S *pstr);
-U GetLieTerm(S *pstr);
-U GetUInteger(S *pstr);
-V GetParameter(S str);
-V GetRelation(S str);
-U GetScalarSum(S *pstr);
-U GetScalarTerm(S *pstr);
-V GetWeight(S str);
-I KeyBoardBytesToString(S str);
-I KeyBoardStringToFile(I i_m, S prefix, S str, FILE *file);
-V ReadAndProcessStringsFromFile(V (*proc_func)(S str), FILE *inf,
-                                                        C sep, C end);
-I ReadBooleanFromFile(FILE *file);
-I ReadCaseFromFile(FILE * file, S case_str[], I n_cases);
-U ReadDecimalFromFile(FILE *file);
-SHI ReadStringFromFile(S str, FILE *file);
-SHI SkipCommentInFile(FILE *file);
-V SkipName(S *pstr);
-V SkipSpaces(S *pstr);
-SHI SkipSpacesInFile(FILE *file);
+int BinaryQuestion(int i_message);
+int FindNameInTable(char * name, char * nametab, int n_nametab);
+void GetGenerator(char * str);
+void GetInput(int n, char * fin);
+void GetInteger(BIGINT a, char * *pstr);
+uint GetLieMonomial(char * *pstr);
+uint GetLieSum(char * *pstr);
+uint GetLieTerm(char * *pstr);
+uint GetUInteger(char * *pstr);
+void GetParameter(char * str);
+void GetRelation(char * str);
+uint GetScalarSum(char * *pstr);
+uint GetScalarTerm(char * *pstr);
+void GetWeight(char * str);
+int KeyBoardBytesToString(char * str);
+int KeyBoardStringToFile(int i_m, char * prefix, char * str, FILE *file);
+void ReadAndProcessStringsFromFile(void (*proc_func)(char * str), FILE *inf,
+                                                        char sep, char end);
+int ReadBooleanFromFile(FILE *file);
+int ReadCaseFromFile(FILE * file, char * case_str[], int n_cases);
+uint ReadDecimalFromFile(FILE *file);
+short ReadStringFromFile(char * str, FILE *file);
+short SkipCommentInFile(FILE *file);
+void SkipName(char * *pstr);
+void SkipSpaces(char * *pstr);
+short SkipSpacesInFile(FILE *file);
 
 /*_6_9          Output functions========================================*/
 
-V AddSymbolToOutLine(C c, I position);
-V InLineLevel(I level);
-V InLineNumberInBrackets(U n);
-V InLineString(S str);
-V InLineSubscript(S s);
-V InLineSymbol(C symbol);
-V InLineTableName(S name);
-S UToString(U n);
-V PutBasis(V);
+void AddSymbolToOutLine(char c, int position);
+void InLineLevel(int level);
+void InLineNumberInBrackets(uint n);
+void InLineString(char * str);
+void InLineSubscript(char * s);
+void InLineSymbol(char symbol);
+void InLineTableName(char * name);
+char * UToString(uint n);
+void PutBasis(void);
 #if defined(GAP)
-V PutBasisGAP(V);
+void PutBasisGAP(void);
 #endif
-V PutBlock(V);
-V PutCharacter(C c);
+void PutBlock(void);
+void PutCharacter(char c);
 #if defined(GAP)
-V PutCharacterGAP(C c);
+void PutCharacterGAP(char c);
 #endif
-V PutCoefficientTable(V);
-V PutCommutators(V);
+void PutCoefficientTable(void);
+void PutCommutators(void);
 #if defined(GAP)
-V PutCommutatorsGAP(V);
+void PutCommutatorsGAP(void);
 #endif
-V PutDegree(U deg);
-V PutDimensions(V);
-V PutDots(V);
-V PutEnd(V);
-V PutFormattedU(S format, U i);
-V PutIntegerUnsigned(INT bn);
+void PutDegree(uint deg);
+void PutDimensions(void);
+void PutDots(void);
+void PutEnd(void);
+void PutFormattedU(char * format, uint i);
+void PutIntegerUnsigned(BIGINT bn);
 #if defined(GAP)
-V PutIntegerUnsignedGAP(INT bn);
+void PutIntegerUnsignedGAP(BIGINT bn);
 #endif
-V PutLieBareTerm(V (*put_lie_mon)(I a), U a);
-V PutLieBasisElement(I pos);
-V PutLieMonomialLeftNormed(I pos);
-V PutLieMonomialStandard(I pos);
+void PutLieBareTerm(void (*put_lie_mon)(int a), uint a);
+void PutLieBasisElement(int pos);
+void PutLieMonomialLeftNormed(int pos);
+void PutLieMonomialStandard(int pos);
 #if defined(GAP)
-V PutLieMonomialGAP(I pos);
+void PutLieMonomialGAP(int pos);
 #endif
-V PutLieSum(V (*put_lie_mon)(I a), U a);
-V PutMessage(I i_message);
-V PutRelations(I i);
+void PutLieSum(void (*put_lie_mon)(int a), uint a);
+void PutMessage(int i_message);
+void PutRelations(int i);
 #if defined(GAP)
-V PutRelationsGAP(V);
+void PutRelationsGAP(void);
 #endif
-V PutScalarBareTerm(U a);
-V PutScalarFactor(U a);
-V PutScalarSum(U a);
-V PutStart(V);
-V PutStatistics(V);
-V PutString(S str);
+void PutScalarBareTerm(uint a);
+void PutScalarFactor(uint a);
+void PutScalarSum(uint a);
+void PutStart(void);
+void PutStatistics(void);
+void PutString(char * str);
 #if defined(GAP)
-V PutStringGAP(S str);
+void PutStringGAP(char * str);
 #endif
-V PutStringStandard(S str);
-V PutSymbol(C c);
+void PutStringStandard(char * str);
+void PutSymbol(char c);
 
 /* Global function variables */
 
-I (*LieLikeTermsCollection)(U a, U b) = LieLikeTermsCollectionInteger;
-U (*LieSumCopy)(U a) = LieSumCopyInteger;
-V (*LieSumKill)(U a) = LieSumKillInteger;
-V (*LieSumMinus)(U a) = LieSumMinusInteger;
-U (*LieTermFromMonomial)(I mon) = LieTermFromMonomialInteger;
-V (*NormalizeRelation)(U a) = NormalizeRelationInteger;
-U (*PairMonomialMonomial)(I i, I j) = PairMonomialMonomialInteger;
-U (*PairMonomialSum)(I mon, U a) = PairMonomialSumInteger;
-U (*PairSumMonomial)(U a, I mon) = PairSumMonomialInteger;
-U (*PairSumSum)(U a, U b) = PairSumSumInteger;
-V (*PutLieMonomial)(I pos) = PutLieMonomialStandard;
-U (*SubstituteRelationInRelation)(U r, U a) =
+int (*LieLikeTermsCollection)(uint a, uint b) = LieLikeTermsCollectionInteger;
+uint (*LieSumCopy)(uint a) = LieSumCopyInteger;
+void (*LieSumKill)(uint a) = LieSumKillInteger;
+void (*LieSumMinus)(uint a) = LieSumMinusInteger;
+uint (*LieTermFromMonomial)(int mon) = LieTermFromMonomialInteger;
+void (*NormalizeRelation)(uint a) = NormalizeRelationInteger;
+uint (*PairMonomialMonomial)(int i, int j) = PairMonomialMonomialInteger;
+uint (*PairMonomialSum)(int mon, uint a) = PairMonomialSumInteger;
+uint (*PairSumMonomial)(uint a, int mon) = PairSumMonomialInteger;
+uint (*PairSumSum)(uint a, uint b) = PairSumSumInteger;
+void (*PutLieMonomial)(int pos) = PutLieMonomialStandard;
+uint (*SubstituteRelationInRelation)(uint r, uint a) =
 SubstituteRelationInRelationInteger;
 
 /*_6_10   Debugging functions===========================================*/
 
 #if defined(DEBUG)
-V PutDebugHeader(U debug, S f_name, S in_out);
-V PutDebugInteger(S name, INT u);
-V PutDebugLieMonomial(S name, I a);
-V PutDebugLieMonomialTable(I newmon);
-V PutDebugLieSum(S name, U a);
-V PutDebugLieTerm(S name, U a);
-V PutDebugU(S name, U i);
+void PutDebugHeader(uint debug, char * f_name, char * in_out);
+void PutDebugInteger(char * name, BIGINT u);
+void PutDebugLieMonomial(char * name, int a);
+void PutDebugLieMonomialTable(int newmon);
+void PutDebugLieSum(char * name, uint a);
+void PutDebugLieTerm(char * name, uint a);
+void PutDebugU(char * name, uint i);
 #if defined(D_PUT_RELATIONS)
-V PutDebugRelations(V);
+void PutDebugRelations(void);
 #endif
-V PutDebugScalarSum(S name, U a);
-V PutDebugString(S strname, S str);
+void PutDebugScalarSum(char * name, uint a);
+void PutDebugString(char * strname, char * str);
 #endif
 #if defined(MEMORY)
-V AddLieSumNs(U a, I minus_or_plus,
-              I *pn_lt, I *pn_int, I *pn_st, I *pn_sf);
-V AddScalarSumNs(U a, I minus_or_plus, I *pn_int, I *pn_st, I *pn_sf);
-V PutIntegerBalance(S fname, I dn);
-V PutNodeBalance(S type, S fname, I dn);
+void AddLieSumNs(uint a, int minus_or_plus,
+              int *pn_lt, int *pn_int, int *pn_st, int *pn_sf);
+void AddScalarSumNs(uint a, int minus_or_plus, int *pn_int, int *pn_st, int *pn_sf);
+void PutIntegerBalance(char * fname, int dn);
+void PutNodeBalance(char * type, char * fname, int dn);
 #endif
 
 /*_6_0          Main and top level functions============================*/
@@ -1790,7 +1784,7 @@ V PutNodeBalance(S type, S fname, I dn);
 #if !defined(TEST_FUNCTION)
 /*=main======================================
 */
-int main(I narg, S * fin)
+int main(int narg, char * * fin)
 {
   Initialization();
   GetInput(narg, fin[1]);
@@ -1848,9 +1842,9 @@ int main(I narg, S * fin)
 /*=ConstructFreeAlgebraBasis==========================================
  Make all regular monomials up to LimitingWeight
 */
-V ConstructFreeAlgebraBasis(V)
+void ConstructFreeAlgebraBasis(void)
 {
-  I i = 0, j, moni, monj;
+  int i = 0, j, moni, monj;
   while(YES)
   {
     moni = LIE_MONOMIAL_POSITION(i);
@@ -1895,12 +1889,12 @@ V ConstructFreeAlgebraBasis(V)
  Find position of first relation with leading monomial order > lmo
  among 0, 1,..., RelationN - 1
 */
-I FindNewPositionInRelation(I lmo)
+int FindNewPositionInRelation(int lmo)
 {
-  I left = 0;
+  int left = 0;
   if(RelationN)                                /* Binary search */
   {                           /* `right' must be of signed type */
-    I m, right = RelationN-1;
+    int m, right = RelationN-1;
     do
     {
       m = (left + right)/2;
@@ -1915,11 +1909,11 @@ I FindNewPositionInRelation(I lmo)
 /*=GenerateRelations=======================================================
  Generate and process new relations
 */
-V GenerateRelations(V)
+void GenerateRelations(void)
 {
-  I i, k, l, mon, mona,
+  int i, k, l, mon, mona,
       gen;    /* LieMonomial table position of differentiating generator */
-  U a, lim_weight_i;
+  uint a, lim_weight_i;
   i = 0;
   while(i < RelationN)                           /* Differentiation loop */
     if(RELATION_MIN_GENERATOR(i) < GeneratorN)
@@ -2079,10 +2073,10 @@ OUT_PUT_RELATIONS /*-----------------------------------------------------*/
 /*=NewJacobiRelation===================================================
   Construct independent Jacobi relation containing leading commutator L
 */
-U NewJacobiRelation(I l)
+uint NewJacobiRelation(int l)
 {
-  U a, b;
-  I x, y, z;
+  uint a, b;
+  int x, y, z;
 IN_NEW_JACOBI_RELATION /*--------------------------------------------*/
   /* Try left pair in l = [[x,y],z] to make relation:  */
   /*                             p(x)p(y)              */
@@ -2191,12 +2185,12 @@ OUT_NEW_JACOBI_RELATION /*-------------------------------------------*/
 }
 /*=ReduceRelations=====================================================
   Reduce the system of relations starting from Ith one. For further
-  differentiations returns lowest new positon (or starting one I).
+  differentiations returns lowest new positon (or starting one int).
 */
-I ReduceRelations(I i)
+int ReduceRelations(int i)
 {
-  I i_min, j, lordj, lordl, min_gen, lmoni, k, l, m;
-  U ai, aj;
+  int i_min, j, lordj, lordl, min_gen, lmoni, k, l, m;
+  uint ai, aj;
   i_min = i;
   do           /* While relations with new leading monomialsls arise */
     if(RELATION_TO_BE_SUBSTITUTED(i))
@@ -2220,7 +2214,7 @@ IN_REDUCE_RELATIONS  /*----------------------------------------------*/
             k = lordj;
             l = LIE_MONOMIAL_POSITION(k);
             LIE_MONOMIAL_INDEX(l) = 0;            /* To ban usage */
-            while(++k < LieMonomialN)   /* Shift I's of relations */
+            while(++k < LieMonomialN)   /* Shift int's of relations */
             {
               l = LIE_MONOMIAL_POSITION(k);
               if(LIE_MONOMIAL_IS_LEADING(l))       /* LieMonomial */
@@ -2271,7 +2265,7 @@ IN_REDUCE_RELATIONS  /*----------------------------------------------*/
                 LIE_MONOMIAL_IS_GENERATOR_BY_ORDER(lordl) ?
                 GeneratorN : /* Don't differentiate leading generator */
                 min_gen;   /* Avoiding redifferentiation (or set 0 ??) */
-              RELATION_TO_BE_SUBSTITUTED(l) = (CU)(l < RelationN-1);
+              RELATION_TO_BE_SUBSTITUTED(l) = (byte)(l < RelationN-1);
               RELATION_LIE_SUM(l) = aj;
               if(l <= i)
               {         /* New substituted relation with lesser ordinal */
@@ -2291,7 +2285,7 @@ IN_REDUCE_RELATIONS  /*----------------------------------------------*/
          from LieMonomial table */
       lordj = LieMonomialN-1;
       m = LIE_MONOMIAL_WEIGHT(lmoni);
-      while(LIE_MONOMIAL_WEIGHT_BY_ORDER(lordj) > (U)m)
+      while(LIE_MONOMIAL_WEIGHT_BY_ORDER(lordj) > (uint)m)
       {
         l = LIE_MONOMIAL_POSITION(lordj);
         if(IsMonomialInMonomial(lmoni, l))
@@ -2327,10 +2321,10 @@ OUT_REDUCE_RELATIONS /*----------------------------------------------*/
  LieMonomialIsNew == NO if pair exists already in table.
  Return position for [i,j]
 */
-I AddPairToLieMonomial(I i, I j)
+int AddPairToLieMonomial(int i, int j)
 {
-  U wt = LIE_MONOMIAL_WEIGHT(i) + LIE_MONOMIAL_WEIGHT(j);
-  I ijo /* left */, r /* right */, m /* middle */, ijp;
+  uint wt = LIE_MONOMIAL_WEIGHT(i) + LIE_MONOMIAL_WEIGHT(j);
+  int ijo /* left */, r /* right */, m /* middle */, ijp;
 IN_ADD_PAIR_TO_LIE_MONOMIAL  /*------------------------------------------*/
   ijo = 0;
   r = LieMonomialN - 1;
@@ -2403,16 +2397,16 @@ OUT_ADD_PAIR_TO_LIE_MONOMIAL_NEW  /*-------------------------------------*/
  Make r.h.s. of i-th relation (Integer regime)
  Relation is in normalized form (no denominators, no content)
 */
-U MakeRelationRHSInteger(I i)
+uint MakeRelationRHSInteger(int i)
 {
-  U c;
+  uint c;
   if((c = LIE_TERM_R(RELATION_LIE_SUM(i))) != NIL)
   {
-    INT n, cn;
+    BIGINT n, cn;
 #if !defined(RATIONAL_FIELD)
-    INT ln = LIE_TERM_NUMERATOR_INTEGER(RELATION_LIE_SUM(i));
+    BIGINT ln = LIE_TERM_NUMERATOR_INTEGER(RELATION_LIE_SUM(i));
 #endif
-    U a, ea;
+    uint a, ea;
 IN_MAKE_RELATION_RHS  /*-------------------------------------------*/
     /* Copy r.h.s setting negations for numerators */
     a = ea = NodeLTNew();
@@ -2462,13 +2456,13 @@ OUT_MAKE_RELATION_RHS /*-------------------------------------------*/
  Make r.h.s. of i-th relation (Parametric regime)
  Relation is in normalized form (no denominators, no content)
 */
-U MakeRelationRHSParametric(I i)
+uint MakeRelationRHSParametric(int i)
 {
-  U a;
+  uint a;
 IN_MAKE_RELATION_RHS  /*----------------------------------------------*/
   if((a = LieSumCopyParametric(LIE_TERM_R(RELATION_LIE_SUM(i)))) != NIL)
   {
-    U lc;
+    uint lc;
 
     /* Negation */
 
@@ -2490,10 +2484,10 @@ OUT_MAKE_RELATION_RHS /*----------------------------------------------*/
  Make regular expression from two monomials (Integer regime)
  Caller ensures ORDER(i) >= ORDER(j)
 */
-U PairMonomialMonomialInteger(I i, I j)
+uint PairMonomialMonomialInteger(int i, int j)
 {
-  U a;
-  I k;
+  uint a;
+  int k;
 IN_PAIR_MONOMIAL_MONOMIAL  /*-----------------------------*/
   if(LIE_MONOMIAL_IS_SQUARE(j))
   {                          /* [i,[j,j]] = 2 [[i,j],j] */
@@ -2533,14 +2527,14 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*-----------------------------*/
   else if(LIE_MONOMIAL_IS_COMMUTATOR(i) &&  /* Irregular triple */
           LIE_MONOMIAL_ORDER(j) < LIE_MONOMIAL_RIGHT_ORDER(i))
   {
-    U b;              /* i > k > j  =>  [[i,k],j]] =	*/
+    uint b;              /* i > k > j  =>  [[i,k],j]] =	*/
     k = LIE_MONOMIAL_RIGHT(i);
     i = LIE_MONOMIAL_LEFT(i);
     a = PairMonomialMonomialInteger(i, j);
     a = PairSumMonomialInteger(a, k);    /* + [[i,j],k] */
     if(LIE_MONOMIAL_IS_ODD(j) && LIE_MONOMIAL_IS_ODD(k))
     {
-      U c = a;                          /* - [[i,j],k] */
+      uint c = a;                          /* - [[i,j],k] */
       while(c != NIL)
       {
         LIE_TERM_MINUS_INTEGER(c);
@@ -2552,7 +2546,7 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*-----------------------------*/
     if(LIE_MONOMIAL_IS_EVEN(i) ||
        LIE_MONOMIAL_PARITY(j) == LIE_MONOMIAL_PARITY(k))
     {
-      U c = b;                          /* - [[k,j],i] */
+      uint c = b;                          /* - [[k,j],i] */
       while(c != NIL)
       {
         LIE_TERM_MINUS_INTEGER(c);
@@ -2570,7 +2564,7 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*-----------------------------*/
       a = MakeRelationRHSInteger(LIE_MONOMIAL_I_RELATION(k));
     else
     {
-      INT n;
+      BIGINT n;
       a = NodeLTNew();
       LIE_TERM_MONOMIAL(a) = k;
       INTEGER_HEAP_NEW(n, 2);
@@ -2586,10 +2580,10 @@ OUT_PAIR_MONOMIAL_MONOMIAL  /*----------------------------*/
  Make regular expression from two monomials (Parametric regime)
  Caller ensures i >= j by Shirshov
 */
-U PairMonomialMonomialParametric(I i, I j)
+uint PairMonomialMonomialParametric(int i, int j)
 {
-  U a;
-  I k;
+  uint a;
+  int k;
 IN_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
   if(LIE_MONOMIAL_IS_SQUARE(j))
   {                               /* [i,[j,j]] = 2 [[i,j],j] */
@@ -2598,8 +2592,8 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
     a = PairSumMonomialParametric(a, j);
     if(a != NIL)
     {
-      U two;
-      INT n2;
+      uint two;
+      BIGINT n2;
       INTEGER_HEAP_NEW(n2, 2);
       n2[0] = 1;
       n2[1] = 2;
@@ -2611,7 +2605,7 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
   }
   else if(LIE_MONOMIAL_IS_SQUARE(i))
   {
-    INT n2;
+    BIGINT n2;
     i = LIE_MONOMIAL_LEFT(i);
     if(i == j)
       a = NIL;                              /* [[i,i],i] = 0 */
@@ -2634,7 +2628,7 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
       a = PairSumMonomialParametric(a, i);
       if(a != NIL)
       {
-        U two = NodeSTNew();
+        uint two = NodeSTNew();
         SCALAR_TERM_MONOMIAL(two) = NIL;
         SCALAR_TERM_NUMERATOR(two) = n2;
         LieSumMultScalarSum(a, two);
@@ -2646,7 +2640,7 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
   else if(LIE_MONOMIAL_IS_COMMUTATOR(i) &&  /* Irregular triple */
           LIE_MONOMIAL_ORDER(j) < LIE_MONOMIAL_RIGHT_ORDER(i))
   {
-    U b;                     /* i > k > j  =>  [[i,k],j]] = */
+    uint b;                     /* i > k > j  =>  [[i,k],j]] = */
     k = LIE_MONOMIAL_RIGHT(i);
     i = LIE_MONOMIAL_LEFT(i);
     a = PairMonomialMonomialParametric(i, j);
@@ -2669,8 +2663,8 @@ IN_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
       a = MakeRelationRHSParametric(LIE_MONOMIAL_I_RELATION(k));
     else
     {
-      INT n;
-      U c;
+      BIGINT n;
+      uint c;
       a = NodeLTNew();
       LIE_TERM_MONOMIAL(a) = k;
       INTEGER_HEAP_NEW(n, 2);
@@ -2689,11 +2683,11 @@ OUT_PAIR_MONOMIAL_MONOMIAL  /*--------------------------------*/
 
  Make commutator of the form [mon, Lie_sum] (Integer regime)
 */
-U PairMonomialSumInteger(I mon, U a)
+uint PairMonomialSumInteger(int mon, uint a)
 {
-  U b, s;
-  INT nb, db;                        /* Sum has definite parity */
-  I monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
+  uint b, s;
+  BIGINT nb, db;                        /* Sum has definite parity */
+  int monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
                       LIE_MONOMIAL_IS_EVEN(LIE_TERM_MONOMIAL(a)));
 IN_PAIR_MONOMIAL_SUM  /*----------------------------------------*/
   s = NIL;
@@ -2731,10 +2725,10 @@ OUT_PAIR_MONOMIAL_SUM  /*---------------------------------------*/
 /*=PairMonomialSumParametric======================================
  Make commutator of the form [mon, Lie_sum] (Parametric regime)
 */
-U PairMonomialSumParametric(I mon, U a)
+uint PairMonomialSumParametric(int mon, uint a)
 {
-  U b, s, nb, db;                    /* Sum has definite parity */
-  I monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
+  uint b, s, nb, db;                    /* Sum has definite parity */
+  int monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
                       LIE_MONOMIAL_IS_EVEN(LIE_TERM_MONOMIAL(a)));
 IN_PAIR_MONOMIAL_SUM   /*---------------------------------------*/
   s = NIL;
@@ -2777,11 +2771,11 @@ OUT_PAIR_MONOMIAL_SUM  /*---------------------------------------*/
 
  Make commutator of the form [Lie_sum, mon] (Integer regime)
 */
-U PairSumMonomialInteger(U a, I mon)
+uint PairSumMonomialInteger(uint a, int mon)
 {
-  U b, s;
-  INT nb, db;                        /* Sum has definite parity */
-  I monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
+  uint b, s;
+  BIGINT nb, db;                        /* Sum has definite parity */
+  int monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
                       LIE_MONOMIAL_IS_EVEN(LIE_TERM_MONOMIAL(a)));
 IN_PAIR_SUM_MONOMIAL   /*---------------------------------------*/
   s = NIL;
@@ -2819,10 +2813,10 @@ OUT_PAIR_SUM_MONOMIAL  /*---------------------------------------*/
 /*=PairSumMonomialParametric======================================
  Make commutator of the form [Lie_sum, mon] (Parametric regime)
 */
-U PairSumMonomialParametric(U a, I mon)
+uint PairSumMonomialParametric(uint a, int mon)
 {
-  U b, s, nb, db;                    /* Sum has definite parity */
-  I monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
+  uint b, s, nb, db;                    /* Sum has definite parity */
+  int monb, change_sign = (LIE_MONOMIAL_IS_EVEN(mon) ||
                       LIE_MONOMIAL_IS_EVEN(LIE_TERM_MONOMIAL(a)));
 IN_PAIR_SUM_MONOMIAL   /*---------------------------------------*/
   s = NIL;
@@ -2859,7 +2853,7 @@ OUT_PAIR_SUM_MONOMIAL  /*---------------------------------------*/
 /*=PairSumSumInteger======================================
  Commutator of the form [Lie_sum,Lie_sum] (Integer regime)
 */
-U PairSumSumInteger(U a, U b)
+uint PairSumSumInteger(uint a, uint b)
 {
 IN_PAIR_SUM_SUM  /*-------------------------------------*/
   if(a == NIL)
@@ -2871,8 +2865,8 @@ IN_PAIR_SUM_SUM  /*-------------------------------------*/
   }
   else
   {
-    INT num, den;
-    U c, d, s;
+    BIGINT num, den;
+    uint c, d, s;
     s = NIL;
     do
     {
@@ -2901,7 +2895,7 @@ OUT_PAIR_SUM_SUM /*-------------------------------------*/
 /*=PairSumSumParametric======================================
  Commutator of the form [Lie_sum,Lie_sum] (Parametric regime)
 */
-U PairSumSumParametric(U a, U b)
+uint PairSumSumParametric(uint a, uint b)
 {
 IN_PAIR_SUM_SUM  /*----------------------------------------*/
   if(a == NIL)
@@ -2913,7 +2907,7 @@ IN_PAIR_SUM_SUM  /*----------------------------------------*/
   }
   else
   {
-    U num, den, c, d, s;
+    uint num, den, c, d, s;
     s = NIL;
     do
     {
@@ -2944,7 +2938,7 @@ OUT_PAIR_SUM_SUM /*----------------------------------------*/
 
  Check whether `mon' contains `submon'
 */
-I IsMonomialInMonomial(I submon, I mon)
+int IsMonomialInMonomial(int submon, int mon)
 {
   if(LIE_MONOMIAL_ORDER(submon) > LIE_MONOMIAL_ORDER(mon))
     return NO;
@@ -2958,14 +2952,14 @@ I IsMonomialInMonomial(I submon, I mon)
 /*=SubstituteRelationInRelationInteger================================
  R is donor and unchanged, A is acceptor and changed. Integer regime
 */
-U SubstituteRelationInRelationInteger(U r, U a)
+uint SubstituteRelationInRelationInteger(uint r, uint a)
 {
-  U b, bl, bf, rhs;
-  INT nb;
+  uint b, bl, bf, rhs;
+  BIGINT nb;
 #if defined(RATIONAL_FIELD)
-  INT db;
+  BIGINT db;
 #endif
-  I lmon, monb, lord;
+  int lmon, monb, lord;
 IN_SUBSTITUTE_RELATION_IN_RELATION /*-------------------------------*/
   lmon = LIE_TERM_MONOMIAL(r);
   lord = LIE_MONOMIAL_ORDER(lmon);
@@ -2995,8 +2989,8 @@ IN_SUBSTITUTE_RELATION_IN_RELATION /*-------------------------------*/
           nb = LIE_TERM_NUMERATOR_INTEGER(r);
           if(INTEGER_IS_NOT_UNIT(nb))
           {
-            INT den;
-            I i;                   /* Divide by leading coefficient */
+            BIGINT den;
+            int i;                   /* Divide by leading coefficient */
             INTEGER_STACK_COPY(den, nb, i);
             LieSumDivInteger(rhs, den);
           }
@@ -3062,10 +3056,10 @@ OUT_SUBSTITUTE_RELATION_IN_RELATION /*------------------------------*/
 /*=SubstituteRelationInRelationParametric================================
  R is donor and unchanged, A is acceptor and changed. Parametric regime
 */
-U SubstituteRelationInRelationParametric(U r, U a)
+uint SubstituteRelationInRelationParametric(uint r, uint a)
 {
-  U b, bl, bf, rhs, pb;
-  I lmon, monb, lord;
+  uint b, bl, bf, rhs, pb;
+  int lmon, monb, lord;
 IN_SUBSTITUTE_RELATION_IN_RELATION /*----------------------------------*/
   lmon = LIE_TERM_MONOMIAL(r);
   lord = LIE_MONOMIAL_ORDER(lmon);
@@ -3139,7 +3133,7 @@ OUT_SUBSTITUTE_RELATION_IN_RELATION /*---------------------------------*/
  Returned NOTHING means "no substitution", NIL means 0.
  Function saves input `r'. Integer regime.
 */
-U SubstituteRHSInMonomialInteger(I mon, I lmonr, U r)
+uint SubstituteRHSInMonomialInteger(int mon, int lmonr, uint r)
 {
   /* Single monomial matching case */
 
@@ -3151,14 +3145,14 @@ U SubstituteRHSInMonomialInteger(I mon, I lmonr, U r)
   if(LIE_MONOMIAL_ORDER(mon) > LIE_MONOMIAL_ORDER(lmonr)
      && LIE_MONOMIAL_IS_COMMUTATOR(mon))
   {
-    U res;
-    I monl = LIE_MONOMIAL_LEFT(mon);
+    uint res;
+    int monl = LIE_MONOMIAL_LEFT(mon);
     mon = LIE_MONOMIAL_RIGHT(mon);
     res = SubstituteRHSInMonomialInteger(monl, lmonr, r);
     if(res == NIL)
       return NIL;                                     /*  [0, x] -> 0 */
     {
-      U resr = SubstituteRHSInMonomialInteger(mon, lmonr, r);
+      uint resr = SubstituteRHSInMonomialInteger(mon, lmonr, r);
       if(res == NOTHING)
       {
         if(resr == NOTHING)
@@ -3185,7 +3179,7 @@ U SubstituteRHSInMonomialInteger(I mon, I lmonr, U r)
  Returned NOTHING means "no substitution", NIL means 0.
  Function saves input `r'. Parametric regime.
 */
-U SubstituteRHSInMonomialParametric(I mon, I lmonr, U r)
+uint SubstituteRHSInMonomialParametric(int mon, int lmonr, uint r)
 {
   /* Single monomial matching case */
 
@@ -3197,14 +3191,14 @@ U SubstituteRHSInMonomialParametric(I mon, I lmonr, U r)
   if(LIE_MONOMIAL_ORDER(mon) > LIE_MONOMIAL_ORDER(lmonr)
      && LIE_MONOMIAL_IS_COMMUTATOR(mon))
   {
-    U res;
-    I monl = LIE_MONOMIAL_LEFT(mon);
+    uint res;
+    int monl = LIE_MONOMIAL_LEFT(mon);
     mon = LIE_MONOMIAL_RIGHT(mon);
     res = SubstituteRHSInMonomialParametric(monl, lmonr, r);
     if(res == NIL)
       return NIL;                                        /*  [0, x] -> 0 */
     {
-      U resr = SubstituteRHSInMonomialParametric(mon, lmonr, r);
+      uint resr = SubstituteRHSInMonomialParametric(mon, lmonr, r);
       if(res == NOTHING)
       {
         if(resr == NOTHING)
@@ -3234,9 +3228,9 @@ U SubstituteRHSInMonomialParametric(I mon, I lmonr, U r)
  nonzero result, otherwise kill `a' and return NO;
  `da', `db'= NIL means 1.
 */
-I LieLikeTermsCollectionInteger(U a, U b)
+int LieLikeTermsCollectionInteger(uint a, uint b)
 {
-  INT na, da, nb, db;
+  BIGINT na, da, nb, db;
   nb = LIE_TERM_NUMERATOR_INTEGER(b);
   db = LIE_TERM_DENOMINATOR_INTEGER(b);
   NODE_LT_KILL(b);
@@ -3244,13 +3238,13 @@ I LieLikeTermsCollectionInteger(U a, U b)
   da = LIE_TERM_DENOMINATOR_INTEGER(a);
   if(da != NULL) if(db != NULL)                 /* `da' != 1, `db' != 1 */
   {
-    INT g, h;
-    I i;
+    BIGINT g, h;
+    int i;
     INTEGER_STACK_COPY(g, da, i);
     INTEGER_STACK_COPY(h, db, i);
     if((g = IntegerGCD(g, h)) != NULL)           /* g = GCD(da, db) > 1 */
     {
-      INT k, m, daa;
+      BIGINT k, m, daa;
       INTEGER_STACK_COPY(k, g, i);                 /*  k = GCD(da, db)' */
       INTEGER_STACK_NEW(m, 2+INTEGER_N_LIMBS(da)-INTEGER_N_LIMBS(k));
       INTEGER_STACK_COPY_1(daa, da, i);
@@ -3393,9 +3387,9 @@ I LieLikeTermsCollectionInteger(U a, U b)
  nonzero result, otherwise kill `a' and return NO;
  `da', `db'= NIL means 1.
 */
-I LieLikeTermsCollectionParametric(U a, U b)
+int LieLikeTermsCollectionParametric(uint a, uint b)
 {
-  U na, da, nb, db;
+  uint na, da, nb, db;
   nb = LIE_TERM_NUMERATOR_SCALAR_SUM(b);
   db = LIE_TERM_DENOMINATOR_SCALAR_SUM(b);
   NODE_LT_KILL(b);
@@ -3403,7 +3397,7 @@ I LieLikeTermsCollectionParametric(U a, U b)
   da = LIE_TERM_DENOMINATOR_SCALAR_SUM(a);
   if(da != NIL) if(db != NIL)                /* `da' != 1 and `db' != 1 */
   {
-    U g;
+    uint g;
     if((g = PolyGCD(da, db)) != NIL)            /* g = GCD(da, db) != 1 */
     {
       da = PolyQuotient(da, g);                /*  da' = da/GCD(da, db) */
@@ -3476,9 +3470,9 @@ I LieLikeTermsCollectionParametric(U a, U b)
 /*=LieSumAddition=============================================
  Sum of two Lie expressions
 */
-U LieSumAddition(U a, U b)
+uint LieSumAddition(uint a, uint b)
 {
-  U sum = NIL, last, wa, wb;
+  uint sum = NIL, last, wa, wb;
 IN_LIE_SUM_ADDITION /*---------------------------------------*/
   while(YES)
   {
@@ -3544,13 +3538,13 @@ OUT_LIE_SUM_ADDITION /*--------------------------------------*/
  Divide Lie sum by integer (of unknown nature) on spot in Integer regime
  Integer `den' is spoiled
 */
-V LieSumDivInteger(U lsum, INT den)
+void LieSumDivInteger(uint lsum, BIGINT den)
 {
   if(lsum != NIL)
   {
-    INT d, da, dao;
-    I i, n;
-    U a;
+    BIGINT d, da, dao;
+    int i, n;
+    uint a;
 IN_LIE_SUM_DIV_INTEGER  /*----------------------------------------------*/
     n = INTEGER_N_LIMBS(den);
     INTEGER_STACK_NEW(d, 1+n);          /* Space for copies input `den' */
@@ -3590,13 +3584,13 @@ OUT_LIE_SUM_DIV_INTEGER  /*---------------------------------------------*/
  Divide Lie sum by scalar sum on spot in Parametric regime
  `den' is killed
 */
-V LieSumDivScalarSum(U lsum, U den)
+void LieSumDivScalarSum(uint lsum, uint den)
 {
   if(lsum == NIL)
     ScalarSumKill(den);
   else
   {
-    U n, d, a;
+    uint n, d, a;
 IN_LIE_SUM_DIV_SCALAR_SUM /*-----------------------------*/
     do
     {
@@ -3621,7 +3615,7 @@ OUT_LIE_SUM_DIV_SCALAR_SUM /*----------------------------*/
 /*=LieSumMinusInteger====================
  Change signs in Lie sum (Integer regime)
 */
-V LieSumMinusInteger(U a)
+void LieSumMinusInteger(uint a)
 {
   while(a != NIL)
   {
@@ -3633,9 +3627,9 @@ V LieSumMinusInteger(U a)
 /*=LieSumMinusParametric====================
  Change signs in Lie sum (Parametric regime)
 */
-V LieSumMinusParametric(U a)
+void LieSumMinusParametric(uint a)
 {
-  U b;
+  uint b;
   while(a != NIL)
   {
     b = LIE_TERM_NUMERATOR_SCALAR_SUM(a);
@@ -3649,13 +3643,13 @@ V LieSumMinusParametric(U a)
  Multiply Lie sum by integer (of unknown nature) on spot in Integer regime
  Integer `num' is spoiled
 */
-V LieSumMultInteger(U lsum, INT num)
+void LieSumMultInteger(uint lsum, BIGINT num)
 {
   if(lsum != NIL)
   {
-    INT nw, nao, da;
-    I i, n;
-    U a;
+    BIGINT nw, nao, da;
+    int i, n;
+    uint a;
 IN_LIE_SUM_MULT_INTEGER  /*----------------------------------------------*/
     n = INTEGER_N_LIMBS(num);
     INTEGER_STACK_NEW(nw, 1+n);       /* Space for copies of input `num' */
@@ -3704,10 +3698,10 @@ OUT_LIE_SUM_MULT_INTEGER /*----------------------------------------------*/
 /*=LieSumMultRationalInteger=============================================
  num and den are non-NULL integers of unknown nature
 */
-V LieSumMultRationalInteger(I a, INT num, INT den)
+void LieSumMultRationalInteger(int a, BIGINT num, BIGINT den)
 {
-  INT  numc, denc, numa, dena, w;
-  I i, nn = INTEGER_N_LIMBS(num), nd = INTEGER_N_LIMBS(den);
+  BIGINT  numc, denc, numa, dena, w;
+  int i, nn = INTEGER_N_LIMBS(num), nd = INTEGER_N_LIMBS(den);
   INTEGER_STACK_NEW(numc, 1+nn);
   INTEGER_STACK_NEW(denc, 1+nd);
   while(a != NIL)
@@ -3758,13 +3752,13 @@ V LieSumMultRationalInteger(I a, INT num, INT den)
  Multiply Lie sum by scalar sum on spot in Parametric regime
  `num' is killed
 */
-V LieSumMultScalarSum(U lsum, U num)
+void LieSumMultScalarSum(uint lsum, uint num)
 {
   if(lsum == NIL)
     ScalarSumKill(num);
   else
   {
-    U n, d, a;
+    uint n, d, a;
 IN_LIE_SUM_MULT_SCALAR_SUM /*--------------------------------------*/
     do
     {
@@ -3791,10 +3785,10 @@ OUT_LIE_SUM_MULT_SCALAR_SUM /*-------------------------------------*/
  Normalize sign, remove GCD of integer numerators,
  remove denominators for non-NIL relation
 */
-V NormalizeRelationInteger(U a)
+void NormalizeRelationInteger(uint a)
 {
-  U b;
-  INT n2, n1 = LIE_TERM_NUMERATOR_INTEGER(a);
+  uint b;
+  BIGINT n2, n1 = LIE_TERM_NUMERATOR_INTEGER(a);
 IN_NORMALIZE_RELATION   /*-----------------------------------------------*/
   /* Normalize sign */
 
@@ -3833,8 +3827,8 @@ IN_NORMALIZE_RELATION   /*-----------------------------------------------*/
   }
 #else                                /* Ring Z case compiling */
   {
-    INT gcd;
-    I i;
+    BIGINT gcd;
+    int i;
 
     /* Remove GCD of numerators */
 
@@ -3863,7 +3857,7 @@ IN_NORMALIZE_RELATION   /*-----------------------------------------------*/
     do
       if(LIE_TERM_DENOMINATOR_INTEGER(b) != NULL)
       {
-        INT n3, n4, lcm;
+        BIGINT n3, n4, lcm;
 
         /* Make first LCM */
 
@@ -3921,9 +3915,9 @@ OUT_NORMALIZE_RELATION   /*----------------------------------------------*/
  Normalize sign, remove GCD of polynomial numerators, remove denominators
  for non-NIL relation, set in table common factor and leading coefficient
 */
-V NormalizeRelationParametric(U a)
+void NormalizeRelationParametric(uint a)
 {
-  U b, c = LIE_TERM_NUMERATOR_SCALAR_SUM(a), d, e;
+  uint b, c = LIE_TERM_NUMERATOR_SCALAR_SUM(a), d, e;
 IN_NORMALIZE_RELATION   /*---------------------------------------------*/
 
   /* Normalize sign */
@@ -4000,9 +3994,9 @@ OUT_NORMALIZE_RELATION   /*--------------------------------------------*/
 }
 /*=ScalarMonomialMultiplication============================================
 */
-U ScalarMonomialMultiplication(I *pchange_sign, U ma, U mb)
+uint ScalarMonomialMultiplication(int *pchange_sign, uint ma, uint mb)
 {
-  U mc, wa, wb, last;
+  uint mc, wa, wb, last;
   *pchange_sign = NO;
   mc = NIL;
   while(YES)
@@ -4073,10 +4067,10 @@ U ScalarMonomialMultiplication(I *pchange_sign, U ma, U mb)
 /*=ScalarSumAddition=====================================================
  Sum of two scalar (polynomial) expressions
 */
-U ScalarSumAddition(U a, U b)
+uint ScalarSumAddition(uint a, uint b)
 {
-  U sum = NIL, last, wa, wb, ma, mb;
-  INT na, nb, nc;
+  uint sum = NIL, last, wa, wb, ma, mb;
+  BIGINT na, nb, nc;
   while(YES)
   {
     next_pair:
@@ -4187,9 +4181,9 @@ U ScalarSumAddition(U a, U b)
 }
 /*=ScalarSumCancellation===================
 */
-V ScalarSumCancellation(U *pnum, U *pden)
+void ScalarSumCancellation(uint *pnum, uint *pden)
 {
-  U g;
+  uint g;
 IN_SCALAR_SUM_CANCELLATION /*------------*/
   if((g = PolyGCD(*pnum, *pden)) != NIL)
   {
@@ -4202,7 +4196,7 @@ OUT_SCALAR_SUM_CANCELLATION /*-----------*/
 /*=ScalarSumMinus===========================
  Change sign of scalar sum in Parametric regime
 */
-V ScalarSumMinus(U a)
+void ScalarSumMinus(uint a)
 {
   while(a != NIL)
   {
@@ -4214,9 +4208,9 @@ V ScalarSumMinus(U a)
  Expanded product of two positive nonzero general scalar expressions,
  caller ensures A != NIL and B != NIL.
 */
-U ScalarSumMultiplication(U a, U b)
+uint ScalarSumMultiplication(uint a, uint b)
 {
-  U s, aw, bcur, bw, ac, bc;
+  uint s, aw, bcur, bw, ac, bc;
   s = NIL;
   while(a != NIL)
   {
@@ -4250,10 +4244,10 @@ U ScalarSumMultiplication(U a, U b)
 /*=ScalarTermMultiplication===============================================
  Product of two scalar terms on place of A, B deleted
 */
-V ScalarTermMultiplication(U a, U b)
+void ScalarTermMultiplication(uint a, uint b)
 {
-  INT na, nb, nc;
-  U ma, mb, mc, last, aa;
+  BIGINT na, nb, nc;
+  uint ma, mb, mc, last, aa;
 
   /* Multiply integer coefficients */
 
@@ -4301,7 +4295,7 @@ V ScalarTermMultiplication(U a, U b)
     /* Reduce like factors */
 
     aa = ma;
-    b = mb;                    /* U-U mixion */
+    b = mb;                    /* uint-uint mixion */
     ma = SCALAR_FACTOR_R(ma);
     mb = SCALAR_FACTOR_R(mb);
     if(SCALAR_FACTOR_IS_I_NUMBER(aa)) /* Imaginary unit i*i --> -1 */
@@ -4341,7 +4335,7 @@ V ScalarTermMultiplication(U a, U b)
  content of scalar sum. NIL corresponds to 1.
  CONT is destroyed, A remains.
 */
-U ContentOfScalarSum(U cont, U a)
+uint ContentOfScalarSum(uint cont, uint a)
 {
   if(cont == NIL)
   {
@@ -4359,9 +4353,9 @@ U ContentOfScalarSum(U cont, U a)
 /*=InCoeffParamTable===============================================
  Set in CoeffParamTable parameters of scalar term `cont' killing it
 */
-V InCoeffParamTable(U cont)
+void InCoeffParamTable(uint cont)
 {
-  U a = SCALAR_TERM_MONOMIAL(cont);
+  uint a = SCALAR_TERM_MONOMIAL(cont);
   INTEGER_KILL(SCALAR_TERM_NUMERATOR(cont));
   NODE_ST_KILL(cont);
 
@@ -4373,7 +4367,7 @@ V InCoeffParamTable(U cont)
       return;
     }
     if(CoeffParamTable == NULL)
-      CoeffParamTable = (I*)NewArray(ParameterN, sizeof(I),
+      CoeffParamTable = (int*)NewArray(ParameterN, sizeof(int),
                                              E_A_COEFF_PARA_TABLE);
     do
     {
@@ -4387,14 +4381,14 @@ V InCoeffParamTable(U cont)
 /*=InCoeffSumTable========================================================
  Insert parametric content-free SUM in table or delete if already exists
 */
-V InCoeffSumTable(U sum)
+void InCoeffSumTable(uint sum)
 {
   if(SCALAR_FACTOR_IS_I_NUMBER(SCALAR_TERM_MONOMIAL(sum)))
     ScalarSumKill(sum);                  /* Kill complex number a*i + b */
   else
   {
-    I i;
-    U gcd, quocoe, quosum;
+    int i;
+    uint gcd, quocoe, quosum;
     for(i = 0; i < CoeffSumTableN; i++)
       if(PolynomialsAreEqual(sum, CoeffSumTable[i]))
       {
@@ -4435,7 +4429,7 @@ V InCoeffSumTable(U sum)
     if(CoeffSumTableN >= CoeffSumTableSize)
       Error(E_COEFF_SUM_TABLE_SIZE);
     if(CoeffSumTable == NULL)
-      CoeffSumTable = (U *)NewArray(CoeffSumTableSize, sizeof(U),
+      CoeffSumTable = (uint *)NewArray(CoeffSumTableSize, sizeof(uint),
                                                E_A_COEFF_SUM_TABLE);
     CoeffSumTable[CoeffSumTableN++] = sum;
   }
@@ -4443,11 +4437,11 @@ V InCoeffSumTable(U sum)
 /*=InCoeffTable===========================================
  Set in tables components of non-NIL parametric polynomial
 */
-V InCoeffTable(U coe)
+void InCoeffTable(uint coe)
 {
   if(SCALAR_TERM_R(coe) != NIL)
   {
-    U cont;
+    uint cont;
     if((cont = ContentOfScalarSum(NIL, coe)) != NIL)
     {
       coe = PolyQuotient(coe, cont);
@@ -4464,10 +4458,10 @@ V InCoeffTable(U coe)
  end of work it points to tail of list. NIL corresponds to 1.
  Initial polynomial remains.
 */
-U PolyCoeffAtMainParameter(U *pa, I mp)
+uint PolyCoeffAtMainParameter(uint *pa, int mp)
 {
-  U a;
-  I isnegative = INTEGER_IS_NEGATIVE(SCALAR_TERM_NUMERATOR(*pa));
+  uint a;
+  int isnegative = INTEGER_IS_NEGATIVE(SCALAR_TERM_NUMERATOR(*pa));
   if(POLY_MAIN_PARAMETER(*pa) < mp)
   {                                                    /* Free term */
     a = ScalarSumCopy(*pa);
@@ -4483,9 +4477,9 @@ U PolyCoeffAtMainParameter(U *pa, I mp)
   }
   else
   {
-    U b;
-    U mf;
-    I mppow = SCALAR_TERM_MAIN_DEGREE(*pa);
+    uint b;
+    uint mf;
+    int mppow = SCALAR_TERM_MAIN_DEGREE(*pa);
     a = b = ScalarTermCopy(*pa);
     if(isnegative)
       SCALAR_TERM_MINUS(a);
@@ -4519,13 +4513,13 @@ U PolyCoeffAtMainParameter(U *pa, I mp)
  Polynomial content of polynomial w.r.t. main parameter MP.
  A remains unchanged.
 */
-U PolyContent(U a, I mp)
+uint PolyContent(uint a, int mp)
 {
-  U b;
+  uint b;
 IN_POLY_CONTENT /*---------------------------------------*/
   if((b = PolyCoeffAtMainParameter(&a, mp)) != NIL)
   {
-    U c, d;
+    uint c, d;
     while(a != NIL)
     {
       if((c = PolyCoeffAtMainParameter(&a, mp)) == NIL)
@@ -4552,9 +4546,9 @@ OUT_POLY_CONTENT /*--------------------------------------*/
  A, B unchanged.
  Returned NIL means trivial GCD = 1
 */
-U PolyGCD(U a, U b)
+uint PolyGCD(uint a, uint b)
 {
-  U c;
+  uint c;
 IN_POLY_GCD /*--------------------------------------------------------*/
   if(SCALAR_TERM_R(a) == NIL || SCALAR_TERM_R(b) == NIL)
   {	              /* At least one of the polynomials is not a sum */
@@ -4570,8 +4564,8 @@ IN_POLY_GCD /*--------------------------------------------------------*/
   }
   else                                 /* Both are polynomials really */
   {
-    U conta, contb;
-    I mp, mpb;                                     /* Main parameters */
+    uint conta, contb;
+    int mp, mpb;                                     /* Main parameters */
     mp = SCALAR_FACTOR_PARAMETER(SCALAR_TERM_MONOMIAL(a));
     mpb = SCALAR_FACTOR_PARAMETER(SCALAR_TERM_MONOMIAL(b));
     if(mpb > mp ||
@@ -4615,7 +4609,7 @@ IN_POLY_GCD /*--------------------------------------------------------*/
       {                 /* Zero degree with respect to main parameter */
         ScalarSumKill(b);
         ScalarSumKill(conta);
-        b = c;          /* C is content ?? */
+        b = c;          /* char is content ?? */
         goto out;
       }
       a = b;
@@ -4658,22 +4652,22 @@ OUT_POLY_GCD /*-------------------------------------------------------*/
  This function is applied in succession starting from top degree.
  Initial expression *PA is destructed.
 */
-U PolyMainParameterTerm(U *pa, I mp, I mpdeg)
+uint PolyMainParameterTerm(uint *pa, int mp, int mpdeg)
 {
-  U a;
+  uint a;
   if(mpdeg)
   {
-    SHU w; /* Word combining degree and index of parameter (MPDEG,MP) */
+    unsigned short w; /* Word combining degree and index of parameter (MPDEG,MP) */
     w = mpdeg;
 #if defined(SPP_2000)
-    *((CU*)&w) = mp;
+    *((byte*)&w) = mp;
 #else
-    *((CU*)&w+1) = mp;
+    *((byte*)&w+1) = mp;
 #endif
     if(SCALAR_TERM_MONOMIAL(*pa) != NIL &&
        SCALAR_TERM_MAIN_PARAMETER_WORD(*pa) == w)
     {                                         /* There is such degree */
-      U b;
+      uint b;
       a = *pa;
       while(YES)
       {
@@ -4701,10 +4695,10 @@ U PolyMainParameterTerm(U *pa, I mp, I mpdeg)
 }
 /*=PolynomialsAreEqual====================================
 */
-I PolynomialsAreEqual(U a, U b)
+int PolynomialsAreEqual(uint a, uint b)
 {
-  U ma, mb;
-  INT na, nb;
+  uint ma, mb;
+  BIGINT na, nb;
   while(YES)
   {
     /* Compare monomials */
@@ -4754,7 +4748,7 @@ I PolynomialsAreEqual(U a, U b)
  Returns pseudo-remainder of two polynomials. MP is main parameter.
  main_degree(A) >= main_degree(B). A, B destructed.
 */
-U PolyPseudoRemainder(U a, U b, I mp)
+uint PolyPseudoRemainder(uint a, uint b, int mp)
 {
 IN_POLY_PSEUDO_REMAINDER /*-------------------------------------------*/
   if(SCALAR_TERM_MAIN_PARAMETER(b) != mp)
@@ -4765,8 +4759,8 @@ IN_POLY_PSEUDO_REMAINDER /*-------------------------------------------*/
   }
   else
   {
-    U *u, *v, vn, c, w;
-    I m, n, j, k;
+    uint *u, *v, vn, c, w;
+    int m, n, j, k;
     m = SCALAR_TERM_MAIN_DEGREE(a);
     n = SCALAR_TERM_MAIN_DEGREE(b);
     POLY_ARRAY_STACK_NEW(u, m+1);
@@ -4862,11 +4856,11 @@ OUT_POLY_PSEUDO_REMAINDER /*------------------------------------------*/
  GCD of two single (non-NIL) terms, A is destroyed, B remains,
  caller ensures A is positive, returned NIL corresponds to 1
 */
-U PolyTermGCD(U a, U b)
+uint PolyTermGCD(uint a, uint b)
 {
-  INT na, naa, nb, nbb;
-  I i;
-  U ma, maa;
+  BIGINT na, naa, nb, nbb;
+  int i;
+  uint ma, maa;
 
   /* Do integer coefficients */
 
@@ -4886,7 +4880,7 @@ U PolyTermGCD(U a, U b)
   maa = NIL;
   if((ma = SCALAR_TERM_MONOMIAL(a)) != NIL)
   {
-    U maw, mb, mal;
+    uint maw, mb, mal;
     mb = SCALAR_TERM_MONOMIAL(b);
     while(YES)
     {
@@ -4949,14 +4943,14 @@ U PolyTermGCD(U a, U b)
   return a;
 }
 /*=PolyTermQuotient===================================================
- Exact division of term A by term B: A = C*B on place of A, B remains.
+ Exact division of term A by term B: A = char*B on place of A, B remains.
  Parameters go in decreasing order.
 */
-V PolyTermQuotient(U a, U b)
+void PolyTermQuotient(uint a, uint b)
 {
-  INT na, nb, naa, nbb, nc;
-  I i;
-  U mb;
+  BIGINT na, nb, naa, nbb, nc;
+  int i;
+  uint mb;
 
   /* Divide integer numerator */
 
@@ -4973,7 +4967,7 @@ V PolyTermQuotient(U a, U b)
 
   if((mb = SCALAR_TERM_MONOMIAL(b)) != NIL)
   {
-    U ma, maa, mae, maw;
+    uint ma, maa, mae, maw;
     ma = SCALAR_TERM_MONOMIAL(a);
     maa = NIL;
     do
@@ -5011,13 +5005,13 @@ V PolyTermQuotient(U a, U b)
   }
 }
 /*=PolyQuotient====================================================
- Exact division of polynomial A by polynomial B: A = C*B, return C.
+ Exact division of polynomial A by polynomial B: A = char*B, return char.
  Caller ensures A, B != NIL, B is positive.
  A is destructed, B remains unchanged.
 */
-U PolyQuotient(U a, U b)
+uint PolyQuotient(uint a, uint b)
 {
-  U c;
+  uint c;
 IN_POLY_QUOTIENT /*----------------------------------------------*/
   if(SCALAR_TERM_R(b) == NIL)       /* Division by single term B */
   {
@@ -5029,8 +5023,8 @@ IN_POLY_QUOTIENT /*----------------------------------------------*/
   }
   else                               /* Division by polynomial B */
   {
-    U aw, bw, cw;
-    INT n;
+    uint aw, bw, cw;
+    BIGINT n;
     bw = SCALAR_TERM_R(b);
     c = NIL;
     do
@@ -5044,7 +5038,7 @@ IN_POLY_QUOTIENT /*----------------------------------------------*/
       INTEGER_MINUS(n);
       aw = ScalarSumMultiplication(aw, ScalarSumCopy(bw));
       a = ScalarSumAddition(a, aw);            /* Remainder of A */
-      c = ScalarSumAddition(c, cw);                /* Quotient C */
+      c = ScalarSumAddition(c, cw);                /* Quotient char */
     }while(a != NIL);
   }
 OUT_POLY_QUOTIENT /*---------------------------------------------*/
@@ -5057,20 +5051,20 @@ OUT_POLY_QUOTIENT /*---------------------------------------------*/
  Subtract two big numbers on the place of first one: `a' -= `b',
  caller provides `a' > `b', returns new size of `a'
 */
-I BigNMinusBigN(INT a, I na, INT b, I nb)
+int BigNMinusBigN(BIGINT a, int na, BIGINT b, int nb)
 {
-  U lw;
+  uint lw;
   LIMB k = 1;
-  I i = 0;
+  int i = 0;
   while(i < nb)         /* Common part */
   {
-    lw = MAX_LIMB + (U)k + (U)a[i] - (U)b[i];
+    lw = MAX_LIMB + (uint)k + (uint)a[i] - (uint)b[i];
     k = (lw > MAX_LIMB);
     a[i++] = (LIMB)lw;
   }
   while(i < na)
   {
-    lw = MAX_LIMB + (U)k + (U)a[i];
+    lw = MAX_LIMB + (uint)k + (uint)a[i];
     k = (lw > MAX_LIMB);
     a[i++] = (LIMB)lw;
   }
@@ -5084,11 +5078,11 @@ I BigNMinusBigN(INT a, I na, INT b, I nb)
  `bign' of size `n', return the bits shifted out from the most
  significant LIMB digit
 */
-LIMB BigNShiftLeft(INT bign, I n, I cnt)
+LIMB BigNShiftLeft(BIGINT bign, int n, int cnt)
 {
   if(cnt)
   {
-    I cocnt = BITS_PER_LIMB - cnt;
+    int cocnt = BITS_PER_LIMB - cnt;
     LIMB low_limb,
          high_limb = bign[--n],
          pushed_out = high_limb >> cocnt;
@@ -5107,12 +5101,12 @@ LIMB BigNShiftLeft(INT bign, I n, I cnt)
  Remove on spot 0 <= `cnt' < BITS_PER_LIMB lowest bits from
  `bign' of size `n', return size of the result
 */
-I BigNShiftRight(INT bign, I n, I cnt)
+int BigNShiftRight(BIGINT bign, int n, int cnt)
 {
   if(cnt)
   {
-    INT bigni;
-    I high_limb, low_limb, i, cocnt = BITS_PER_LIMB - cnt;
+    BIGINT bigni;
+    int high_limb, low_limb, i, cocnt = BITS_PER_LIMB - cnt;
     low_limb = *bign;
     bigni = bign;
     bigni++;
@@ -5129,7 +5123,7 @@ I BigNShiftRight(INT bign, I n, I cnt)
       n--;
 #if 0
     LIMB high_limb, low_limb;
-    I i, cocnt = BITS_PER_LIMB - cnt;
+    int i, cocnt = BITS_PER_LIMB - cnt;
     low_limb = bign[0];
     for(i = 1; i < n; i++)
     {
@@ -5149,7 +5143,7 @@ I BigNShiftRight(INT bign, I n, I cnt)
 /*=CountLeadingZeroBitsInLimb=========================
  Count number of leading zero bits in LIMB word
 */
-I CountLeadingZeroBitsInLimb(LIMB w)
+int CountLeadingZeroBitsInLimb(LIMB w)
 {
   if(w >= 0x100u) /* [0,  7] */
     if(w >= 0x1000u)    /* [0, 3] */
@@ -5204,16 +5198,16 @@ I CountLeadingZeroBitsInLimb(LIMB w)
 /*=IntegerCancellation========================================
  Results are placed in `num' and `den' arrays
 */
-V IntegerCancellation(INT num, INT den)
+void IntegerCancellation(BIGINT num, BIGINT den)
 {
-  INT n, d, g;
-  I i;
+  BIGINT n, d, g;
+  int i;
 IN_INTEGER_CANCELLATION  /*----------------------*/
   INTEGER_STACK_COPY_1(n, num, i);
   INTEGER_STACK_COPY_1(d, den, i);
   if((g = IntegerGCD(num, den)) != NULL)
   {
-    INT gg;
+    BIGINT gg;
     INTEGER_STACK_COPY(gg, g, i);  /* `g' in `num' */
 
     /* Cancel `den' */
@@ -5244,17 +5238,17 @@ OUT_INTEGER_CANCELLATION /*----------------------*/
  the function spoils both arrays `u' and `v',
  result is placed in `u' array
 */
-INT IntegerGCD(INT u, INT v)
+BIGINT IntegerGCD(BIGINT u, BIGINT v)
 {
-  I i, nu, nv, bcnt, w_bcnt;
-  INT u0;
+  int i, nu, nv, bcnt, w_bcnt;
+  BIGINT u0;
   LIMB carry_digit;
 IN_INTEGER_GCD  /*--------------------------------------------------*/
   nu = INTEGER_N_LIMBS(u);
   nv = INTEGER_N_LIMBS(v);
   u0 = ++u;       /* Skip size information limbs and memorize begin */
   ++v;
-  i = 0;                             /* Shift down U to make it odd */
+  i = 0;                             /* Shift down uint to make it odd */
   while(*u == 0)
   {                                              /* Skip zero limbs */
     ++i;
@@ -5265,7 +5259,7 @@ IN_INTEGER_GCD  /*--------------------------------------------------*/
   nu = BigNShiftRight(u, nu - i, bcnt);
   bcnt += i * BITS_PER_LIMB;
   w_bcnt = bcnt;
-  i = 0;                             /* Shift down V to make it odd */
+  i = 0;                             /* Shift down void to make it odd */
   while(*v == 0)
   {                                              /* Skip zero limbs */
     ++i;
@@ -5291,8 +5285,8 @@ IN_INTEGER_GCD  /*--------------------------------------------------*/
       if(v[i] > u[i])
         goto v_greater_u;
     }
-    break;   /* If U and V have become equal, we have found the GCD */
-    u_greater_v:  /* Replace U by (U - V) >> cnt making U odd again */
+    break;   /* If uint and void have become equal, we have found the GCD */
+    u_greater_v:  /* Replace uint by (uint - void) >> cnt making uint odd again */
     nu = BigNMinusBigN(u, nu, v, nv);
     while(*u == 0)
     {
@@ -5303,7 +5297,7 @@ IN_INTEGER_GCD  /*--------------------------------------------------*/
     bcnt = BITS_PER_LIMB - 1 - bcnt;
     nu = BigNShiftRight(u, nu, bcnt);
     continue;
-    v_greater_u:  /* Replace V by (V - U) >> cnt making V odd again */
+    v_greater_u:  /* Replace void by (void - uint) >> cnt making void odd again */
     nv = BigNMinusBigN(v, nv, u, nu);
     while(*v == 0)
     {
@@ -5314,7 +5308,7 @@ IN_INTEGER_GCD  /*--------------------------------------------------*/
     bcnt = BITS_PER_LIMB - 1 - bcnt;
     nv = BigNShiftRight(v, nv, bcnt);
   }
-  /* GCD(U_IN, V_IN) now is U * 2**W_BCNT.  */
+  /* GCD(U_IN, V_IN) now is uint * 2**W_BCNT.  */
   carry_digit = BigNShiftLeft(u, nu, w_bcnt % BITS_PER_LIMB);
   i = w_bcnt / BITS_PER_LIMB;
   u -= i;
@@ -5338,14 +5332,14 @@ OUT_INTEGER_GCD /*--------------------------------------------------*/
 }
 /*=IntegerProduct======================================
  Traditional multiplication of two signed non-zero
- big numbers U and V, result in W, W[] != U[] or V[]
+ big numbers uint and void, result in W, W[] != uint[] or void[]
 */
-V IntegerProduct(INT w, INT u, INT v)
+void IntegerProduct(BIGINT w, BIGINT u, BIGINT v)
 {
   LIMB carry;
-  U luw;
-  INT w0;
-  I set_minus, i, j, n, m;
+  uint luw;
+  BIGINT w0;
+  int set_minus, i, j, n, m;
 IN_INTEGER_PRODUCT  /*-------------------------------*/
   n = INTEGER_N_LIMBS(u);
   m = INTEGER_N_LIMBS(v);
@@ -5363,7 +5357,7 @@ IN_INTEGER_PRODUCT  /*-------------------------------*/
     i = carry = 0;
     do
     {
-      luw = (U)u[i]*(U)v[j] + (U)w[i+j] + (U)carry;
+      luw = (uint)u[i]*(uint)v[j] + (uint)w[i+j] + (uint)carry;
       w[i+j] = (LIMB)luw;
       carry = (LIMB)(luw/BASE_LIMB);
     }while(++i < n);
@@ -5381,21 +5375,21 @@ OUT_INTEGER_PRODUCT /*-------------------------------*/
 }
 /*=IntegerQuotient=====================================================
  Exact division of big numbers:
- Quotient in C[*PM - N + 1 or *PM - N stored in *PM] = A[M] / B[N],
- C != A, C != B.
+ Quotient in char[*PM - N + 1 or *PM - N stored in *PM] = A[M] / B[N],
+ char != A, char != B.
  Function is spoiling input A and B.
  Array for A should have 1 additional LIMB at the top
  for increasing A at normalizing B.
 */
-V IntegerQuotient(INT c, INT a, INT b)
+void IntegerQuotient(BIGINT c, BIGINT a, BIGINT b)
 {
-  U lw;
+  uint lw;
   LIMB q;
-  I i, n, set_minus = (INTEGER_SIGN(a) != INTEGER_SIGN(b));
+  int i, n, set_minus = (INTEGER_SIGN(a) != INTEGER_SIGN(b));
 #if defined(D_CHECK_EXACTNESS_OF_DIVISION)
-  I nr;
+  int nr;
 #endif
-  INT pm = c;
+  BIGINT pm = c;
 IN_INTEGER_QUOTIENT  /*----------------------------------------------*/
   *pm = INTEGER_N_LIMBS(a);
   n = INTEGER_N_LIMBS(b);
@@ -5410,7 +5404,7 @@ IN_INTEGER_QUOTIENT  /*----------------------------------------------*/
       --*pm;
     while(i)
     {
-      lw = (U)(q)*BASE_LIMB + (U)a[--i];
+      lw = (uint)(q)*BASE_LIMB + (uint)a[--i];
       q = (LIMB)(lw % *b);
       c[i] = (LIMB)(lw / *b);
     }
@@ -5420,8 +5414,8 @@ IN_INTEGER_QUOTIENT  /*----------------------------------------------*/
   }
   else
   {                                 /* Division by big number: n > 1 */
-    INT aw, bq;
-    I k, j, shift, n1 = n + 1;
+    BIGINT aw, bq;
+    int k, j, shift, n1 = n + 1;
     LIMB carry, aj, aj1, aj2, bn1, bn2;
     INTEGER_STACK_NEW(bq, n1);                        /* For B[] * Q */
     COUNT_LEADING_ZERO_BITS_IN_LIMB(shift, b[n-1]);
@@ -5435,22 +5429,22 @@ IN_INTEGER_QUOTIENT  /*----------------------------------------------*/
     bn1 = b[n-1];
     bn2 = b[n-2];
     j = *pm;
-    k = *pm - n;                     /* Top digit C[M-N] may be zero */
-    *pm = k + 1;                /* Number of C[K] getting iterations */
+    k = *pm - n;                     /* Top digit char[M-N] may be zero */
+    *pm = k + 1;                /* Number of char[K] getting iterations */
     aw = a + k;  /* Start of current subarray of A of the length N+1 */
     do
     {
       aj = a[j];
       aj1 = a[j-1];
       aj2 = a[j-2];
-      lw = (U)aj * BASE_LIMB + (U)aj1;
+      lw = (uint)aj * BASE_LIMB + (uint)aj1;
       q = (aj == bn1) ? MAX_LIMB : (LIMB)(lw/bn1);
-      lw -= (U)q*(U)bn1;
-      if(lw < BASE_LIMB && (U)bn2*(U)q > lw*BASE_LIMB + (U)aj2)
+      lw -= (uint)q*(uint)bn1;
+      if(lw < BASE_LIMB && (uint)bn2*(uint)q > lw*BASE_LIMB + (uint)aj2)
       {                      /* Knuth's criterion shows Q is too big */
         q--;
-        lw += (U)bn1;
-        if(lw < BASE_LIMB && (U)bn2*(U)q > lw*BASE_LIMB + (U)aj2)
+        lw += (uint)bn1;
+        if(lw < BASE_LIMB && (uint)bn2*(uint)q > lw*BASE_LIMB + (uint)aj2)
           q--;  /* Q was still too big */
       }
       if(q)
@@ -5458,7 +5452,7 @@ IN_INTEGER_QUOTIENT  /*----------------------------------------------*/
         i = carry = 0;                /* Make copy of product B by Q */
         do
         {
-          lw = (U)q * (U)b[i] + (U)carry;
+          lw = (uint)q * (uint)b[i] + (uint)carry;
           carry = (LIMB)(lw/BASE_LIMB);
           bq[i] = (LIMB)lw;
         }while(++i < n);
@@ -5502,17 +5496,17 @@ OUT_INTEGER_QUOTIENT /*----------------------------------------------*/
 #endif
 }
 /*=IntegerSum=========================================
- Sum of two signed big numbers A and B, result in C
+ Sum of two signed big numbers A and B, result in char
 */
-V IntegerSum(INT c, INT a, INT b)
+void IntegerSum(BIGINT c, BIGINT a, BIGINT b)
 {
-  I set_minus, i, na, nb;
-  U lw;
+  int set_minus, i, na, nb;
+  uint lw;
   LIMB carry;
 IN_INTEGER_SUM /*-----------------------------------*/
   if(INTEGER_N_LIMBS(a) < INTEGER_N_LIMBS(b))
   {
-    INT w = a;   /* Swap input numbers if necessary */
+    BIGINT w = a;   /* Swap input numbers if necessary */
     a = b;
     b = w;
   }
@@ -5525,13 +5519,13 @@ IN_INTEGER_SUM /*-----------------------------------*/
     carry = 0;
     while(i <= nb)                   /* Common part */
     {
-      lw = (U)carry + (U)a[i] + (U)b[i];
+      lw = (uint)carry + (uint)a[i] + (uint)b[i];
       carry = (lw > MAX_LIMB);
       c[i++] = (LIMB)lw;
     }
     while(i <= na)                          /* Tail */
     {
-      lw = (U)carry + (U)a[i];
+      lw = (uint)carry + (uint)a[i];
       carry = (lw > MAX_LIMB);
       c[i++] = (LIMB)lw;
     }
@@ -5553,7 +5547,7 @@ IN_INTEGER_SUM /*-----------------------------------*/
       {
         if(a[i] < b[i])
         {                           /* Swap numbers */
-          INT w = a;
+          BIGINT w = a;
           a = b;
           b = w;
           goto subtract;
@@ -5570,13 +5564,13 @@ IN_INTEGER_SUM /*-----------------------------------*/
     i = carry = 1;
     while(i <= nb)                   /* Common part */
     {
-      lw = MAX_LIMB + (U)carry + (U)a[i] - (U)b[i];
+      lw = MAX_LIMB + (uint)carry + (uint)a[i] - (uint)b[i];
       carry = (lw > MAX_LIMB);
       c[i++] = (LIMB)lw;
     }
     while(i <= na)
     {
-      lw = MAX_LIMB + (U)carry + (U)a[i];
+      lw = MAX_LIMB + (uint)carry + (uint)a[i];
       carry = (lw > MAX_LIMB);
       c[i++] = (LIMB)lw;
     }
@@ -5597,13 +5591,13 @@ OUT_INTEGER_SUM /*----------------------------------*/
 /*=LieSumCopyInteger===================================
   Integer regime
 */
-U LieSumCopyInteger(U a)
+uint LieSumCopyInteger(uint a)
 {
   if(a != NIL)
   {
-    U ca, eca;
-    INT n, cn;
-    I i;
+    uint ca, eca;
+    BIGINT n, cn;
+    int i;
 IN_LIE_SUM_COPY  /*----------------------------------*/
     ca = eca = NodeLTNew();
     LIE_TERM_MONOMIAL(eca) = LIE_TERM_MONOMIAL(a);
@@ -5641,13 +5635,13 @@ OUT_LIE_SUM_COPY /*----------------------------------*/
 /*=LieSumCopyIntegerNegative===================================
   Copy changing sign. Integer regime
 */
-U LieSumCopyIntegerNegative(U a)
+uint LieSumCopyIntegerNegative(uint a)
 {
   if(a != NIL)
   {
-    U ca, eca;
-    INT n, cn;
-    I i;
+    uint ca, eca;
+    BIGINT n, cn;
+    int i;
     ca = eca = NodeLTNew();
     LIE_TERM_MONOMIAL(eca) = LIE_TERM_MONOMIAL(a);
     n = LIE_TERM_NUMERATOR_INTEGER(a);
@@ -5685,11 +5679,11 @@ U LieSumCopyIntegerNegative(U a)
 /*=LieSumCopyParametric=====================================
   Parametric regime
 */
-U LieSumCopyParametric(U a)
+uint LieSumCopyParametric(uint a)
 {
   if(a != NIL)
   {
-    U ca, eca;
+    uint ca, eca;
 IN_LIE_SUM_COPY  /*---------------------------------------*/
     ca = eca = NodeLTNew();
     LIE_TERM_MONOMIAL(eca) = LIE_TERM_MONOMIAL(a);
@@ -5722,10 +5716,10 @@ OUT_LIE_SUM_COPY /*---------------------------------------*/
 /*=LieSumKillInteger================================
  a == NIL is admitted (Integer regime)
 */
-V LieSumKillInteger(U a)
+void LieSumKillInteger(uint a)
 {
-  U b;
-  INT d;
+  uint b;
+  BIGINT d;
 IN_LIE_SUM_KILL  /*-------------------------------*/
   while(a != NIL)
   {
@@ -5741,9 +5735,9 @@ OUT_LIE_SUM_KILL  /*------------------------------*/
 /*=LieSumKillParametric===============================
  a == NIL is admitted (Parametric regime)
 */
-V LieSumKillParametric(U a)
+void LieSumKillParametric(uint a)
 {
-  U b;
+  uint b;
 IN_LIE_SUM_KILL  /*---------------------------------*/
   while(a != NIL)
   {
@@ -5757,10 +5751,10 @@ OUT_LIE_SUM_KILL  /*--------------------------------*/
 }
 /*=LieTermFromMonomialInteger============
 */
-U LieTermFromMonomialInteger(I mon)
+uint LieTermFromMonomialInteger(int mon)
 {
-  INT num;
-  U a = NodeLTNew();
+  BIGINT num;
+  uint a = NodeLTNew();
 
   LIE_TERM_MONOMIAL(a) = mon;
 
@@ -5774,10 +5768,10 @@ U LieTermFromMonomialInteger(I mon)
 }
 /*=LieTermFromMonomialParametric===========
 */
-U LieTermFromMonomialParametric(I mon)
+uint LieTermFromMonomialParametric(int mon)
 {
-  INT num;
-  U c = NodeSTNew(), 
+  BIGINT num;
+  uint c = NodeSTNew(), 
     a = NodeLTNew();
 
   LIE_TERM_MONOMIAL(a) = mon;
@@ -5796,11 +5790,11 @@ U LieTermFromMonomialParametric(I mon)
 /*=ScalarSumCopy=======================================
  Caller ensures a != NIL
 */
-U ScalarSumCopy(U a)
+uint ScalarSumCopy(uint a)
 {
-  I i;
-  INT n, o;
-  U ca, bca, b, cb;
+  int i;
+  BIGINT n, o;
+  uint ca, bca, b, cb;
   bca = ca = NodeSTNew();
   while(YES)
   {
@@ -5837,9 +5831,9 @@ U ScalarSumCopy(U a)
 /*=ScalarSumKill=================================================
   Only at IsParametric == YES, a == NIL is admitted
 */
-V ScalarSumKill(U a)
+void ScalarSumKill(uint a)
 {
-  U b, c;
+  uint b, c;
   while(a != NIL)
   {
     b = a;
@@ -5847,7 +5841,7 @@ V ScalarSumKill(U a)
     INTEGER_KILL(SCALAR_TERM_NUMERATOR(b));
     c = SCALAR_TERM_MONOMIAL(b);
     NODE_ST_KILL(b);
-    while(c != NIL)   /* Scalar monomial may be NIL, U-U mix */
+    while(c != NIL)   /* Scalar monomial may be NIL, uint-uint mix */
     {
       b = c;
       c = SCALAR_FACTOR_R(c);
@@ -5858,11 +5852,11 @@ V ScalarSumKill(U a)
 /*=ScalarTermCopy====================================
  Caller ensures a != NIL
 */
-U ScalarTermCopy(U a)
+uint ScalarTermCopy(uint a)
 {
-  I i;
-  INT cn, n;
-  U m, ca = NodeSTNew();
+  int i;
+  BIGINT cn, n;
+  uint m, ca = NodeSTNew();
 
   /* Copy integer coefficient */
 
@@ -5874,7 +5868,7 @@ U ScalarTermCopy(U a)
 
   if((m = SCALAR_TERM_MONOMIAL(a)) != NIL)
   {
-    U cm;
+    uint cm;
     SCALAR_TERM_MONOMIAL(ca) = cm = NodeSFNew();
     SCALAR_FACTOR_WORD(cm) = SCALAR_FACTOR_WORD(m);
     while((m = SCALAR_FACTOR_R(m)) != NIL)
@@ -5893,7 +5887,7 @@ U ScalarTermCopy(U a)
 
 /*=Error!===============
 */
-V Error(I i_message)
+void Error(int i_message)
 {
   PutMessage(ERROR);
   PutMessage(i_message);
@@ -5901,12 +5895,12 @@ V Error(I i_message)
 }
 /*=Initialization==========================================================
 */
-V Initialization(V)
+void Initialization(void)
 {
   FILE *inif;
-  SHI c;
-  U i, j;
-  S init_case[N_INIT_CASES];
+  short c;
+  uint i, j;
+  char * init_case[N_INIT_CASES];
 
   /* Set cases strings */
 
@@ -6011,25 +6005,25 @@ V Initialization(V)
           if(c == EOF)
             goto out;
           if(!isspace(c))
-            OutLine[PosOutLine++] = (C)c;
+            OutLine[PosOutLine++] = (char)c;
         }
       break;
       case INPUT_INTEGER_SIZE:
-        InputIntegerSize =  (U)ReadDecimalFromFile(inif);
+        InputIntegerSize =  (uint)ReadDecimalFromFile(inif);
         InputIntegerSize++; /* For head */
       break;
       case INPUT_STRING_SIZE:
-        InputStringSize =  (U)ReadDecimalFromFile(inif);
+        InputStringSize =  (uint)ReadDecimalFromFile(inif);
       break;
       case LEFT_NORMED_OUTPUT:
         if(ReadBooleanFromFile(inif))
           PutLieMonomial = PutLieMonomialLeftNormed;
       break;
       case LINE_LENGTH:
-        LineLength = (U)ReadDecimalFromFile(inif);
+        LineLength = (uint)ReadDecimalFromFile(inif);
       break;
       case LIE_MONOMIAL_SIZE:
-        LieMonomialSize = (I)ReadDecimalFromFile(inif);
+        LieMonomialSize = (int)ReadDecimalFromFile(inif);
         LieMonomial = (LIE_MON*)NewArray(LieMonomialSize, sizeof(LIE_MON),
                                                          E_A_LIE_MONOMIAL);
       break;
@@ -6038,7 +6032,7 @@ V Initialization(V)
         NameLength1++;
       break;
       case NODE_LT_SIZE:
-        NodeLTSize = (U)ReadDecimalFromFile(inif);
+        NodeLTSize = (uint)ReadDecimalFromFile(inif);
         NodeLT =
           (NODE_LT*)NewArray(NodeLTSize, sizeof(NODE_LT), E_A_NODE_LT);
         i = 1;
@@ -6052,17 +6046,17 @@ V Initialization(V)
 #endif
       break;
       case NODE_SF_SIZE:
-        NodeSFSize = (U)ReadDecimalFromFile(inif);
+        NodeSFSize = (uint)ReadDecimalFromFile(inif);
       break;
       case NODE_ST_SIZE:
-        NodeSTSize = (U)ReadDecimalFromFile(inif);
+        NodeSTSize = (uint)ReadDecimalFromFile(inif);
       break;
       case ODD_BASIS_SYMBOL:
         BasisSymbolOdd = fgetc(inif);
       break;
       case OUT_LINE_SIZE:
-        OutLineSize = (U)ReadDecimalFromFile(inif);
-        OutLine = (S)NewArray(OutLineSize, 1, E_A_OUT_LINE);
+        OutLineSize = (uint)ReadDecimalFromFile(inif);
+        OutLine = (char *)NewArray(OutLineSize, 1, E_A_OUT_LINE);
       break;
       case PARAMETER_MAX_N:
         ParameterMaxN = ReadDecimalFromFile(inif);
@@ -6092,7 +6086,7 @@ V Initialization(V)
         StatisticsPut = ReadBooleanFromFile(inif);
       break;
       case RELATION_SIZE:
-        RelationSize = (I)ReadDecimalFromFile(inif);
+        RelationSize = (int)ReadDecimalFromFile(inif);
         Relation = (REL*)NewArray(RelationSize, sizeof(REL), E_A_RELATION);
       break;
       case EOF:
@@ -6104,17 +6098,17 @@ V Initialization(V)
   fclose(inif);
   if(HeadingPut)
     PutMessage(H_PROGRAM);
-  GeneratorName = (S)NewArray(GeneratorMaxN*NameLength1, sizeof(C),
+  GeneratorName = (char *)NewArray(GeneratorMaxN*NameLength1, sizeof(char),
                                                  E_A_GENERATOR_NAME);
 }
 /*=NewArray=========================================
 */
-V * NewArray(U n, U size, I i_message)
+void * NewArray(uint n, uint size, int i_message)
 {
-  V * new_pointer = (V *)calloc(n, size);
+  void * new_pointer = (void *)calloc(n, size);
   if(new_pointer == NULL && n != 0)
   {
-    S format = "%u elements of size %u\n%u bytes\n";
+    const char * format = "%u elements of size %u\n%u bytes\n";
     PutMessage(E_ALLOC);
     PutMessage(i_message);
 #if defined(ECHO_TO_SCREEN)
@@ -6130,9 +6124,9 @@ V * NewArray(U n, U size, I i_message)
 /*=NodeLTNew===================
  Get node from NodeLT pool.
 */
-U NodeLTNew(V)
+uint NodeLTNew(void)
 {
-  U a = NodeLTTop;
+  uint a = NodeLTTop;
 #if !defined(SPACE_STATISTICS)
   if(a == NIL)
   {
@@ -6161,9 +6155,9 @@ PP_CURRENT_N_LT     /* MEMORY */
 /*=NodeSFNew=====================
  Get node from NodeSF pool.
 */
-U NodeSFNew(V)
+uint NodeSFNew(void)
 {
-  U a = NodeSFTop;
+  uint a = NodeSFTop;
 #if !defined(SPACE_STATISTICS)
   if(a == NIL)
   {
@@ -6192,9 +6186,9 @@ PP_CURRENT_N_SF     /* MEMORY */
 /*=NodeSTNew===================
  Get node from NodeST pool.
 */
-U NodeSTNew(V)
+uint NodeSTNew(void)
 {
-  U a = NodeSTTop;
+  uint a = NodeSTTop;
 #if !defined(SPACE_STATISTICS)
   if(a == NIL)
   {
@@ -6222,7 +6216,7 @@ PP_CURRENT_N_ST     /* MEMORY */
 }
 /*=OpenFile================================
 */
-FILE *OpenFile(S file_name, S file_type)
+FILE *OpenFile(char * file_name, char * file_type)
 {
   FILE *file = fopen(file_name, file_type);
   if(file == NULL)
@@ -6237,9 +6231,9 @@ FILE *OpenFile(S file_name, S file_type)
 
 /*=BinaryQuestion!================
 */
-I BinaryQuestion(I i_message)
+int BinaryQuestion(int i_message)
 {
-  C c[2];
+  char c[2];
   get_symbol:
   PutMessage(i_message);
   scanf("%1s", c);
@@ -6262,10 +6256,10 @@ I BinaryQuestion(I i_message)
 /*=FindNameInTable==============================================
  Find name from string in table ...NameIn
 */
-I FindNameInTable(S name, S nametab, I n_nametab)
+int FindNameInTable(char * name, char * nametab, int n_nametab)
 {
-  S w_nametab, w_name;
-  I j = 0;
+  char *w_nametab, *w_name;
+  int j = 0;
   while(j < n_nametab)
   {
     w_nametab = nametab;
@@ -6294,9 +6288,9 @@ I FindNameInTable(S name, S nametab, I n_nametab)
 /*=GetGenerator===========================================================
  Read single generator from description string
 */
-V GetGenerator(S str)
+void GetGenerator(char * str)
 {
-  S name = GeneratorName + GeneratorN*NameLength1;
+  char * name = GeneratorName + GeneratorN*NameLength1;
   if(GeneratorN == GeneratorMaxN)
     Error(E_GENERATOR_MAX_N);
   do
@@ -6313,11 +6307,11 @@ V GetGenerator(S str)
 }
 /*=GetInput===============================================================
 */
-V GetInput(I n, S fin)
+void GetInput(int n, char * fin)
 {
-  S instr, sfname, in_case[N_INPUT_CASES];
+  char *instr, *sfname, *in_case[N_INPUT_CASES];
   FILE *inf;
-  U i, j;
+  uint i, j;
 
   in_case[GENERATORS]      = "G";
   in_case[LIMITING_WEIGHT] = "L";
@@ -6362,7 +6356,7 @@ V GetInput(I n, S fin)
   {	/* New file */
     if(!BinaryQuestion(H_CREATE_NEW_FILE))
       exit(1);
-    instr = (S)alloca(InputStringSize);
+    instr = (char *)alloca(InputStringSize);
     if(instr == NULL)
       Error(E_A_STACK_INPUT_STRING);
     fgetc(stdin);
@@ -6396,10 +6390,10 @@ V GetInput(I n, S fin)
   }
   if(EchoInput)
   {
-    SHI c;
+    short c;
     PutMessage(H_SHOW_INPUT);
     while((c = fgetc(inf)) != EOF)
-      PutCharacter((C)c);
+      PutCharacter((char)c);
   }
   rewind(inf);
   while(YES)
@@ -6407,7 +6401,7 @@ V GetInput(I n, S fin)
     {
       case GENERATORS:
         ReadAndProcessStringsFromFile(GetGenerator, inf, ' ', ';');
-        CUT_ARRAY(GeneratorName, C, NameLength1*GeneratorN);
+        CUT_ARRAY(GeneratorName, char, NameLength1*GeneratorN);
         LieMonomialFreePosition = LieMonomialN = GeneratorN;
 #if defined(SPACE_STATISTICS)
         LieMonomialMaxN = LieMonomialN;
@@ -6422,12 +6416,12 @@ V GetInput(I n, S fin)
         /* Reorder generators in accordance with new weights */
 
         i = 1;
-        while(i < (U)GeneratorN)
+        while(i < (uint)GeneratorN)
         {
           for(j = GeneratorN - 1; j >= i; j--)
             if(LIE_MONOMIAL_WEIGHT(j-1) > LIE_MONOMIAL_WEIGHT(j))
             {
-              CU wt;       /* To save swapped walues */
+              byte wt;       /* To save swapped walues */
 
               /* Swap generator names */
 
@@ -6469,12 +6463,12 @@ V GetInput(I n, S fin)
         PairSumSum = PairSumSumParametric;
         SubstituteRelationInRelation =
                             SubstituteRelationInRelationParametric;
-        ParameterName = (S)NewArray(NameLength1*ParameterMaxN,
-                                    sizeof(C), E_A_PARAMETER_NAME);
+        ParameterName = (char *)NewArray(NameLength1*ParameterMaxN,
+                                    sizeof(char), E_A_PARAMETER_NAME);
         ParameterName[0] = 'i';         /* Obligatory imaginary unit */
         ParameterN = 1;
         ReadAndProcessStringsFromFile(GetParameter, inf, ' ', ';');
-        CUT_ARRAY(ParameterName, C, NameLength1*ParameterN);
+        CUT_ARRAY(ParameterName, char, NameLength1*ParameterN);
         NodeST =
           (NODE_ST*)NewArray(NodeSTSize, sizeof(NODE_ST), E_A_NODE_ST);
         i = 1;
@@ -6529,10 +6523,10 @@ V GetInput(I n, S fin)
  Read big integer with shift in string.
  A is already allocated array of LIMBs A[].
 */
-V GetInteger(INT a, S *pstr)
+void GetInteger(BIGINT a, char * *pstr)
 {
-  INT w;
-  I i;
+  BIGINT w;
+  int i;
   LIMB digit[2], ten[2];
   digit[0] = ten[0] = 1;
   ten[1] = 10;
@@ -6561,15 +6555,15 @@ V GetInteger(INT a, S *pstr)
 /*=GetLieMonomial=========================================================
  Read monomial from string with transformations and substitutions
 */
-U GetLieMonomial(S *pstr)
+uint GetLieMonomial(char * *pstr)
 {
-  I mon;
-  U a;
+  int mon;
+  uint a;
 IN_GET_LIE_MONOMIAL   /*------------------------------------------------*/
   if(isalpha(**pstr))
     if((mon=FindNameInTable(*pstr,GeneratorName,GeneratorN)) < GeneratorN)
     {
-      INT num;
+      BIGINT num;
       SkipName(pstr);
       SkipSpaces(pstr);
       a = NodeLTNew();
@@ -6578,7 +6572,7 @@ IN_GET_LIE_MONOMIAL   /*------------------------------------------------*/
       num[0] = num[1] = 1;
       if(IsParametric)
       {
-        U st = NodeSTNew();
+        uint st = NodeSTNew();
         SCALAR_TERM_MONOMIAL(st) = NIL;
         SCALAR_TERM_NUMERATOR(st) = num;
         LIE_TERM_NUMERATOR_SCALAR_SUM(a) = st;
@@ -6594,7 +6588,7 @@ IN_GET_LIE_MONOMIAL   /*------------------------------------------------*/
       Error(E_UNDECLARED_GENERATOR);
   else if(**pstr == '[')
   {
-    U b;
+    uint b;
     SkipSpaces(pstr);
     ++*pstr;
     a = GetLieMonomial(pstr);
@@ -6618,10 +6612,10 @@ OUT_GET_LIE_MONOMIAL  /*------------------------------------------------*/
 /*=GetLieSum=====================================================
  Read Lie expression from string and make internal representation
 */
-U GetLieSum(S *pstr)
+uint GetLieSum(char * *pstr)
 {
-  U lsum, term;
-  I sign = PLUS;
+  uint lsum, term;
+  int sign = PLUS;
 IN_GET_LIE_SUM   /*--------------------------------------------*/
   SkipSpaces(pstr);
   if(**pstr == '-')
@@ -6650,13 +6644,13 @@ OUT_GET_LIE_SUM  /*--------------------------------------------*/
 }
 /*=GetLieTerm===========================================================
 */
-U GetLieTerm(S *pstr)
+uint GetLieTerm(char * *pstr)
 {
-  U lterm;
+  uint lterm;
 IN_GET_LIE_TERM   /*--------------------------------------------------*/
   if(IsParametric)
   {
-    U num = GetScalarSum(pstr),
+    uint num = GetScalarSum(pstr),
        den = NIL;
     SkipSpaces(pstr);
     if(**pstr == '/')
@@ -6673,7 +6667,7 @@ IN_GET_LIE_TERM   /*--------------------------------------------------*/
   }
   else
   {
-    INT num, den;
+    BIGINT num, den;
     INTEGER_STACK_NEW(num, InputIntegerSize);
     INTEGER_STACK_NEW(den, InputIntegerSize);
     GetInteger(num, pstr);
@@ -6700,9 +6694,9 @@ OUT_GET_LIE_TERM  /*--------------------------------------------------*/
 /*=GetUInteger====================================
  Read with shift long unsigned integer from string
 */
-U GetUInteger(S *pstr)
+uint GetUInteger(char * *pstr)
 {
-  U i = 0;
+  uint i = 0;
   while(isdigit(**pstr))
   {
     i = i*10 + **pstr - '0';
@@ -6713,11 +6707,11 @@ U GetUInteger(S *pstr)
 /*=GetParameter=====================================================
  Read single parameter from description string
 */
-V GetParameter(S str)
+void GetParameter(char * str)
 {
   if(str[0] != 'i' || str[1] != '\0') /* Skip already settled `i' */
   {
-    S name = ParameterName + ParameterN*NameLength1;
+    char * name = ParameterName + ParameterN*NameLength1;
     if(ParameterN == ParameterMaxN)
       Error(E_PARAMETER_MAX_N);
     do
@@ -6729,20 +6723,20 @@ V GetParameter(S str)
 /*=GetRelation===============================================================
  Read single relation from string, reduce and set in array
 */
-V GetRelation(S str)
+void GetRelation(char * str)
 {
-  U a;
+  uint a;
   if(str[0] != '\0' && (a = GetLieSum(&str)) != NIL)
   {
-    I lmonpos, pos, i, l;
+    int lmonpos, pos, i, l;
     if(RelationN + 1 == RelationSize)
       Error(E_RELATION_SIZE);
     (*NormalizeRelation)(a);
     lmonpos = LIE_TERM_MONOMIAL(a);
     i = LIE_MONOMIAL_ORDER(lmonpos);
     l = FindNewPositionInRelation(i);
-    LIE_MONOMIAL_INDEX(lmonpos) = ~l;  /* Set I of relation in LieMonomial */
-    while(++i < LieMonomialN)     /* Shift I's of relations in LieMonomial */
+    LIE_MONOMIAL_INDEX(lmonpos) = ~l;  /* Set int of relation in LieMonomial */
+    while(++i < LieMonomialN)     /* Shift int's of relations in LieMonomial */
       if(LIE_MONOMIAL_IS_LEADING(pos = LIE_MONOMIAL_POSITION(i)))
         --LIE_MONOMIAL_INDEX(pos);
     for(i = RelationN; i > l; i--) /* Make room moving Relation structures */
@@ -6750,7 +6744,7 @@ V GetRelation(S str)
     RELATION_MIN_GENERATOR(l) = LIE_MONOMIAL_IS_GENERATOR(lmonpos) ?
             GeneratorN /* Don't differentiate leading generator */ : 0;
     RELATION_LIE_SUM(l) = a;
-    RELATION_TO_BE_SUBSTITUTED(l) = (CU)(l < RelationN);
+    RELATION_TO_BE_SUBSTITUTED(l) = (byte)(l < RelationN);
     ++RelationN;
 #if defined(SPACE_STATISTICS)
     if(RelationN > MaxNRelation)
@@ -6761,10 +6755,10 @@ V GetRelation(S str)
 }
 /*=GetScalarSum==================================================
 */
-U GetScalarSum(S *pstr)
+uint GetScalarSum(char * *pstr)
 {
-  U a, term;
-  I is_par, is_negative;
+  uint a, term;
+  int is_par, is_negative;
   if(**pstr == '(')
   {
     is_par = YES;
@@ -6806,11 +6800,11 @@ U GetScalarSum(S *pstr)
 /*=GetScalarTerm=========================================================
  Read unsigned scalar term in Parametric regime
 */
-U GetScalarTerm(S *pstr)
+uint GetScalarTerm(char **pstr)
 {
-  INT nums, numh;
-  I i, change_sign;
-  U m, f, a = NodeSTNew();
+  BIGINT nums, numh;
+  int i, change_sign;
+  uint m, f, a = NodeSTNew();
 
   /* Read numerical coefficient */
 
@@ -6838,7 +6832,7 @@ U GetScalarTerm(S *pstr)
       SkipSpaces(pstr);
       if(isdigit(**pstr))
       {
-        i = (CU)GetUInteger(pstr);                   /* Read degree */
+        i = (byte)GetUInteger(pstr);                   /* Read degree */
         SkipSpaces(pstr);
       }
       else
@@ -6857,22 +6851,22 @@ U GetScalarTerm(S *pstr)
 /*=GetWeight=================================================
  Read single generator weight from description string
 */
-V GetWeight(S str)
+void GetWeight(char *str)
 {
   if(GeneratorN == GeneratorMaxN)
     Error(E_TOO_MUCH_INPUT_WEIGHTS);
   if(!isdigit(*str))
     Error(E_NON_NUM_INPUT_WEIGHT);
-  LIE_MONOMIAL_WEIGHT(GeneratorN++) = (CU)GetUInteger(&str);
+  LIE_MONOMIAL_WEIGHT(GeneratorN++) = (byte)GetUInteger(&str);
 }
 /*=KeyBoardBytesToString=====================
   Returns 0 for the last input (ended by '.')
   and last position otherwise
 */
-I KeyBoardBytesToString(S str)
+int KeyBoardBytesToString(char *str)
 {
-  C c;
-  I inspace = YES, i = -1;
+  char c;
+  int inspace = YES, i = -1;
   while((c = fgetc(stdin)) != '\n')
   {
     if(c == ' ')
@@ -6915,14 +6909,14 @@ I KeyBoardBytesToString(S str)
 /*=KeyBoardStringToFile==========================================
  Add string from keyboard to file between prefix and semicolon
 */
-I KeyBoardStringToFile(I i_m, S prefix, S str, FILE *file)
+int KeyBoardStringToFile(int i_m, char * prefix, char * str, FILE *file)
 {
-  SHI itop;
+  short itop;
   PutMessage(i_m);
   itop = KeyBoardBytesToString(str);
   if(itop)
   {
-    SHI i = 0;
+    short i = 0;
     while(*prefix)
       fputc(*(prefix++), file);	/* Copy prefix to file */
     while(i <= itop)
@@ -6935,14 +6929,14 @@ I KeyBoardStringToFile(I i_m, S prefix, S str, FILE *file)
  Remove comments and unnecessary spaces
  Add ending '\0'   Process strings by (*proc_func)
 */
-V ReadAndProcessStringsFromFile(V (*proc_func)(S str), FILE *inf,
-                                                     C sep, C end)
+void ReadAndProcessStringsFromFile(void (*proc_func)(char *str), FILE *inf,
+                                                     char sep, char end)
 {
-  S str, wstr;
-  C line_break;
-  SHI c;
-  I i;
-  str = (S)alloca(InputStringSize);
+  char *str, *wstr;
+  char line_break;
+  short c;
+  int i;
+  str = (char *)alloca(InputStringSize);
   if(str == NULL)
     Error(E_A_STACK_INPUT_STRING);
   line_break = (sep == ' ') ? '\n' : '\0';
@@ -6990,16 +6984,16 @@ V ReadAndProcessStringsFromFile(V (*proc_func)(S str), FILE *inf,
     }
     if(++i == InputStringSize)
       Error(E_INPUT_STRING_SIZE);
-    *(wstr++) = (C)c;
+    *(wstr++) = (char)c;
   }
 }
 /*=ReadBooleanFromFile========================
   Read boolean constant from file
 */
-I ReadBooleanFromFile(FILE *file)
+int ReadBooleanFromFile(FILE *file)
 {
-  SHI c;
-  I bool;
+  short c;
+  int bool;
   c = fgetc(file);
   switch(c)
   {
@@ -7017,12 +7011,12 @@ I ReadBooleanFromFile(FILE *file)
 }
 /*=ReadCaseFromFile=====================================
 */
-I ReadCaseFromFile(FILE * file, S case_str[], I n_cases)
+int ReadCaseFromFile(FILE * file, char * case_str[], int n_cases)
 {
-  C file_str[CASE_STRING_SIZE];
-  S w_file_str, w_case_str;
-  I i_case;
-  SHI c;
+  char file_str[CASE_STRING_SIZE];
+  char * w_file_str, *w_case_str;
+  int i_case;
+  short c;
   while(SkipSpacesInFile(file) == LEFT_COMMENT)
     SkipCommentInFile(file);
 
@@ -7038,7 +7032,7 @@ I ReadCaseFromFile(FILE * file, S case_str[], I n_cases)
     }
     if(c == ':')
       c = '\0';
-    *(w_file_str++) = (C)c;
+    *(w_file_str++) = (char)c;
   }while(c);
 
   /* Compare strings */
@@ -7066,10 +7060,10 @@ I ReadCaseFromFile(FILE * file, S case_str[], I n_cases)
 /*=ReadDecimalFromFile===================
   Read unsigned decimal integer from file
 */
-U ReadDecimalFromFile(FILE *file)
+uint ReadDecimalFromFile(FILE *file)
 {
-  SHI c;
-  U i = 0;
+  short c;
+  uint i = 0;
   while(isdigit(c = fgetc(file)))
     i = i*10 + c - '0';
   ungetc(c, file);
@@ -7077,9 +7071,9 @@ U ReadDecimalFromFile(FILE *file)
 }
 /*=ReadStringFromFile====================
 */
-SHI ReadStringFromFile(S str, FILE *file)
+short ReadStringFromFile(char * str, FILE *file)
 {
-  SHI c;
+  short c;
   while((c = fgetc(file)) != '\n')
   {
     if(c == LEFT_COMMENT)
@@ -7090,15 +7084,15 @@ SHI ReadStringFromFile(S str, FILE *file)
     if(c == EOF)
       break;
     if(!isspace(c))
-      *(str++) = (C)c;
+      *(str++) = (char)c;
   }
   return c;
 }
 /*=SkipCommentInFile=======================
 */
-SHI SkipCommentInFile(FILE *file)
+short SkipCommentInFile(FILE *file)
 {
-  SHI c;
+  short c;
   while((c = fgetc(file)) != RIGHT_COMMENT)
     if(c == EOF)
       Error(E_UNEXPECTED_EOF);
@@ -7106,7 +7100,7 @@ SHI SkipCommentInFile(FILE *file)
 }
 /*=SkipName===============================================
 */
-V SkipName(S *pstr)
+void SkipName(char **pstr)
 {
   while(isalnum(**pstr) || **pstr == SUBSCRIPT_INPUT_SIGN)
     ++*pstr;
@@ -7114,7 +7108,7 @@ V SkipName(S *pstr)
 /*=SkipSpaces==================
  Skip spaces to right in string
 */
-V SkipSpaces(S *pstr)
+void SkipSpaces(char **pstr)
 {
   while(isspace(**pstr))
     ++*pstr;
@@ -7122,9 +7116,9 @@ V SkipSpaces(S *pstr)
 /*=SkipSpacesInFile==============
   Returns first non-space symbol
 */
-SHI SkipSpacesInFile(FILE *file)
+short SkipSpacesInFile(FILE *file)
 {
-  SHI c;
+  short c;
   while(isspace(c = fgetc(file)))
     ;
   ungetc(c, file);
@@ -7136,7 +7130,7 @@ SHI SkipSpacesInFile(FILE *file)
 /*=AddSymbolToOutLine!===============
  Add symbol to output line OutLine
 */
-V AddSymbolToOutLine(C c, I position)
+void AddSymbolToOutLine(char c, int position)
 {
   if(position >= OutLineSize)
     Error(E_OUT_LINE_SIZE);
@@ -7145,12 +7139,12 @@ V AddSymbolToOutLine(C c, I position)
 /*=InLineLevel==============================
  Install level in OutLine
 */
-V InLineLevel(I level)
+void InLineLevel(int level)
 {
   if(level != CurrentLevel)
   {
     AddSymbolToOutLine(LEVEL, ++PosOutLine);
-    AddSymbolToOutLine((C)level, ++PosOutLine);
+    AddSymbolToOutLine((char)level, ++PosOutLine);
     CurrentLevel = level;
     if(level > MaxLevel)
       MaxLevel = level;
@@ -7161,7 +7155,7 @@ V InLineLevel(I level)
 /*=InLineNumberInBrackets=====
  (With 2 blanks after)
 */
-V InLineNumberInBrackets(U n)
+void InLineNumberInBrackets(uint n)
 {
   InLineSymbol('(');
   InLineString(UToString(n));
@@ -7170,7 +7164,7 @@ V InLineNumberInBrackets(U n)
 /*=InLineString!================================
  Add string to output line OutLine for 2D output
 */
-V InLineString(S str)
+void InLineString(char *str)
 {
   while(*str)
     InLineSymbol(*(str++));
@@ -7178,9 +7172,9 @@ V InLineString(S str)
 /*=InLineSubscript================
  Add symbolic subscript to OutLine
 */
-V InLineSubscript(S s)
+void InLineSubscript(char * s)
 {
-  I level = CurrentLevel;
+  int level = CurrentLevel;
   InLineLevel(level - 1);
   InLineString(s);
   InLineLevel(level);
@@ -7188,7 +7182,7 @@ V InLineSubscript(S s)
 /*=InLineSymbol!================================
  Add symbol to output line OutLine for 2D output
 */
-V InLineSymbol(C symbol)
+void InLineSymbol(char symbol)
 {
   AddSymbolToOutLine(symbol, ++PosOutLine);
   ++LastItemEnd;
@@ -7196,7 +7190,7 @@ V InLineSymbol(C symbol)
 /*=InLineTableName===================
  Possibly subscripted
 */
-V InLineTableName(S name)
+void InLineTableName(char * name)
 {
   PreviousEnd = LastItemEnd;
   while(*name)
@@ -7212,13 +7206,13 @@ V InLineTableName(S name)
 /*=UToString!====================================
  Transform unsigned long number to decimal string
 */
-S UToString(U n)
+char * UToString(uint n)
 {                            /*12345678910*/
-  static C decimal_string[] = "4294967295";
-  S first = decimal_string + 10;
+  static char decimal_string[] = "4294967295";
+  char * first = decimal_string + 10;
   do
   {
-    *--first = '0' + (C)(n % 10);
+    *--first = '0' + (char)(n % 10);
     n /= 10;
   }while(n);
   return first;
@@ -7226,10 +7220,10 @@ S UToString(U n)
 /*=PutBasis============================================
  Set index numbers and print basis elements
 */
-V PutBasis(V)
+void PutBasis(void)
 {
-  I pos, ord;
-  U  i = 0;      /* Index number of basis element */
+  int pos, ord;
+  uint  i = 0;      /* Index number of basis element */
   TIME_OFF;
   if(BasisElementsPut)
     PutMessage(H_BASIS_ELEMENTS);
@@ -7261,9 +7255,9 @@ V PutBasis(V)
 
  Print basis elements into GAP file
 */
-V PutBasisGAP(V)
+void PutBasisGAP(void)
 {
-  I pos, ord, tord;
+  int pos, ord, tord;
   tord = LieMonomialN - 1;
   while(YES)
   {
@@ -7290,13 +7284,13 @@ V PutBasisGAP(V)
 /*=PutBlock==============================================================
  Print block of 2D output
 */
-V PutBlock(V)
+void PutBlock(void)
 {
   if(!PrintEnd && (LastItemEnd > LineLength || PreviousEnd==LastItemEnd))
     PrintEnd = PreviousEnd;
   if(PrintEnd && CurrentLevel <= MAIN_LEVEL)
   {
-    I xp, yp = MaxLevel, i, prlvl;
+    int xp, yp = MaxLevel, i, prlvl;
     while(yp >= MinLevel)
     {
       for(xp = 1; xp <= Margin; xp++)
@@ -7313,7 +7307,7 @@ V PutBlock(V)
             NewMargin = xp - 1;
             break;
           default:
-            PutCharacter((C)((prlvl == yp) ? OutLine[i] : ' '));
+            PutCharacter((char)((prlvl == yp) ? OutLine[i] : ' '));
             xp++;
         }
         i++;
@@ -7348,7 +7342,7 @@ V PutBlock(V)
 /*=PutCharacter!=============
    Echoed output of character
 */
-V PutCharacter(C c)
+void PutCharacter(char c)
 {
 #if defined(ECHO_TO_SCREEN)
   putc(c, stdout);
@@ -7361,7 +7355,7 @@ V PutCharacter(C c)
 /*=PutCharacterGAP!======================
    Echoed output of character in GAP file
 */
-V PutCharacterGAP(C c)
+void PutCharacterGAP(char c)
 {
 #if defined(ECHO_TO_SCREEN)
   putc(c, stdout);
@@ -7373,9 +7367,9 @@ V PutCharacterGAP(C c)
 /*=PutCoefficientTable=================================
  Print list of non-zero coefficients
 */
-V PutCoefficientTable(V)
+void PutCoefficientTable(void)
 {
-  I i, j = 0, first = YES;
+  int i, j = 0, first = YES;
   TIME_OFF;
   if(CoeffParamTable != NULL)
   {
@@ -7417,11 +7411,11 @@ V PutCoefficientTable(V)
 /*=PutCommutators========================================================
  Compute and print commutators of basis elements [E(O),E(O)] -> E(O)
 */
-V PutCommutators(V)
+void PutCommutators(void)
 {
-  I oi, oj, i, j, was_comm, set_minus;
-  U icomm, rpart;
-  CU weight_j;
+  int oi, oj, i, j, was_comm, set_minus;
+  uint icomm, rpart;
+  byte weight_j;
   TIME_OFF;
   PutMessage(H_COMMUTATORS);
   TIME_ON;
@@ -7494,11 +7488,11 @@ V PutCommutators(V)
  Transform commutators of ordinary finite-dimensional 
  parameter-free Lie algebra to GAP input format
 */
-V PutCommutatorsGAP(V)
+void PutCommutatorsGAP(void)
 {
-  I oi, oj, otop, i, j;
-  INT num;
-  U rpart, a, b;
+  int oi, oj, otop, i, j;
+  BIGINT num;
+  uint rpart, a, b;
   otop = LieMonomialN - 1;
   while(YES)
   {
@@ -7582,13 +7576,13 @@ V PutCommutatorsGAP(V)
 /*=PutDegree==========================
  Print (positive) integer degree
 */
-V PutDegree(U deg)
+void PutDegree(uint deg)
 {
   if(deg != 1)
   {
-    I level = CurrentLevel;
+    int level = CurrentLevel;
     InLineLevel(level + 1);
-    InLineString(UToString((U)deg));
+    InLineString(UToString((uint)deg));
     InLineLevel(level);
     PutBlock();
   }
@@ -7596,11 +7590,11 @@ V PutDegree(U deg)
 /*=PutDimensions================================================
   Print dimensions of homogeneous components of algebra
 */
-V PutDimensions(V)
+void PutDimensions(void)
 {
-  I next, ord, pos;
-  CU   curwt;
-  U   dim;
+  int next, ord, pos;
+  byte   curwt;
+  uint   dim;
   TIME_OFF;
   PutMessage(H_HILBERT_SERIES);
   PutStart();
@@ -7657,7 +7651,7 @@ V PutDimensions(V)
 /*=PutDots=============================
  Print vertical dots
 */
-V PutDots(V)
+void PutDots(void)
 {
 #if defined(ECHO_TO_SCREEN)
   printf(" .\n .\n .\n");
@@ -7669,14 +7663,14 @@ V PutDots(V)
 /*=PutEnd=======================
    Print last block of 2D output
 */
-V PutEnd(V)
+void PutEnd(void)
 {
   PreviousEnd = LastItemEnd;
   PutBlock();
 }
 /*=PutFormattedU=================
 */
-V PutFormattedU(S format, U i)
+void PutFormattedU(char * format, uint i)
 {
 #if !defined(GAP)
   fprintf(SessionFile, format, i);
@@ -7689,12 +7683,12 @@ V PutFormattedU(S format, U i)
  put_lie_mon == PutLieMonomial     -> in terms of generators,
  put_lie_mon == PutLieBasisElement -> in terms of basis elements.
 */
-V PutLieBareTerm(V (*put_lie_mon)(I a), U a)
+void PutLieBareTerm(void (*put_lie_mon)(int a), uint a)
 {
-  I put_mult_sign = NO;
+  int put_mult_sign = NO;
   if(IsParametric)
   {
-    U num = LIE_TERM_NUMERATOR_SCALAR_SUM(a),
+    uint num = LIE_TERM_NUMERATOR_SCALAR_SUM(a),
       den = LIE_TERM_DENOMINATOR_SCALAR_SUM(a);
 
     /* Put numerator */
@@ -7733,7 +7727,7 @@ V PutLieBareTerm(V (*put_lie_mon)(I a), U a)
   }
   else
   {
-    INT num = LIE_TERM_NUMERATOR_INTEGER(a),
+    BIGINT num = LIE_TERM_NUMERATOR_INTEGER(a),
         den = LIE_TERM_DENOMINATOR_INTEGER(a);
     if(den != NULL)
     {
@@ -7756,9 +7750,9 @@ V PutLieBareTerm(V (*put_lie_mon)(I a), U a)
  Print Lie monomial in form E  or O
                              i     i
 */
-V PutLieBasisElement(I pos)
+void PutLieBasisElement(int pos)
 {
-  InLineSymbol((C)(LIE_MONOMIAL_PARITY(pos) ? BasisSymbolOdd :
+  InLineSymbol((char)(LIE_MONOMIAL_PARITY(pos) ? BasisSymbolOdd :
                                           BasisSymbolEven));
   InLineSubscript(UToString(LIE_MONOMIAL_INDEX(pos)));
   PutBlock();
@@ -7766,7 +7760,7 @@ V PutLieBasisElement(I pos)
 /*=PutLieMonomialLeftNormed=====================================
  Put Lie monomial in terms of generators in left normed notation
 */
-V PutLieMonomialLeftNormed(I pos)
+void PutLieMonomialLeftNormed(int pos)
 {
   if(LIE_MONOMIAL_IS_GENERATOR(pos))
   {
@@ -7775,8 +7769,8 @@ V PutLieMonomialLeftNormed(I pos)
   }
   else
   {
-    U deg = 1;
-    I posi = LIE_MONOMIAL_LEFT(pos),
+    uint deg = 1;
+    int posi = LIE_MONOMIAL_LEFT(pos),
       posj = LIE_MONOMIAL_RIGHT(pos), posw;
     while(LIE_MONOMIAL_IS_COMMUTATOR(posi))
     {
@@ -7809,7 +7803,7 @@ V PutLieMonomialLeftNormed(I pos)
 /*=PutLieMonomialStandard============================================
  Put Lie monomial in terms of generators in standard bracket notation
 */
-V PutLieMonomialStandard(I pos)
+void PutLieMonomialStandard(int pos)
 {
   if(LIE_MONOMIAL_IS_GENERATOR(pos))
   {
@@ -7829,7 +7823,7 @@ V PutLieMonomialStandard(I pos)
 /*=PutLieMonomialGAP============================================
  Put Lie monomial in terms of generators in GAP bracket notation
 */
-V PutLieMonomialGAP(I pos)
+void PutLieMonomialGAP(int pos)
 {
   if(LIE_MONOMIAL_IS_GENERATOR(pos))
     PutStringGAP(UToString(pos+1));
@@ -7847,14 +7841,14 @@ V PutLieMonomialGAP(I pos)
  put_lie_mon == PutLieMonomial     -> in terms of generators,
  put_lie_mon == PutLieBasisElement -> in terms of basis elements
 */
-V PutLieSum(V (*put_lie_mon)(I a), U a)
+void PutLieSum(void (*put_lie_mon)(int a), uint a)
 {
   if(a == NIL)
     PutSymbol('0');
   else
   {
-    U na;
-    I is_negative = NO;
+    uint na;
+    int is_negative = NO;
     if(IsParametric)
     {
       na = LIE_TERM_NUMERATOR_SCALAR_SUM(a);
@@ -7887,11 +7881,11 @@ V PutLieSum(V (*put_lie_mon)(I a), U a)
 /*=PutMessage!=========================
  Put message from MessageFile
 */
-V PutMessage(I i_message)
+void PutMessage(int i_message)
 {
 #if !defined(GAP)
-  static I current_message;
-  SHI c;
+  static int current_message;
+  short c;
   if(i_message < current_message)
   {
     rewind(MessageFile);
@@ -7910,16 +7904,16 @@ V PutMessage(I i_message)
       ++current_message;
       return;
     }
-    PutCharacter((C)c);
+    PutCharacter((char)c);
   }
 #endif
 }
 /*=PutRelations====================================
  Print list of relations
 */
-V PutRelations(I msg)
+void PutRelations(int msg)
 {
-  I i;
+  int i;
   TIME_OFF;
   PutMessage(msg);
   for(i = 0; i < RelationN; i++)
@@ -7938,11 +7932,11 @@ V PutRelations(I msg)
 #if defined(GAP)
 /*=PutRelationsGAP=================================
 */
-V PutRelationsGAP(V)
+void PutRelationsGAP(void)
 {
-  I i;
-  INT num;
-  U a;
+  int i;
+  BIGINT num;
+  uint a;
   PutStringStandard(GAPRelationsName);
   PutStringStandard(":=[\n");   /* Begin main list */
   for(i = 0; i < RelationN; i++)
@@ -7972,9 +7966,9 @@ V PutRelationsGAP(V)
 /*=PutScalarBareTerm===============================
  Intermediate print of unsigned scalar term
 */
-V PutScalarBareTerm(U a)
+void PutScalarBareTerm(uint a)
 {
-  I put_1 = YES;
+  int put_1 = YES;
 
   /* Put integer coefficient */
 
@@ -7986,7 +7980,7 @@ V PutScalarBareTerm(U a)
 
   /* Put scalar monomial */
 
-  a = SCALAR_TERM_MONOMIAL(a); /* U - U mixing */
+  a = SCALAR_TERM_MONOMIAL(a); /* uint - uint mixing */
   if(a != NIL)
   {
     if(put_1 == NO)
@@ -8005,19 +7999,19 @@ V PutScalarBareTerm(U a)
 /*=PutIntegerUnsigned=============================================
  Print big integer
 */
-V PutIntegerUnsigned(INT bn)
+void PutIntegerUnsigned(BIGINT bn)
 {
-  INT bnw;
-  S decstr;
+  BIGINT bnw;
+  char * decstr;
   LIMB res;
-  U lw;
-  I i,
+  uint lw;
+  int i,
     n = INTEGER_N_LIMBS(bn),
     nw = n;
-  bnw = (INT)alloca(sizeof(LIMB)*n);
+  bnw = (BIGINT)alloca(sizeof(LIMB)*n);
   if(bnw == NULL)
     Error(E_A_STACK_INTEGER); /* LIMB contains 5 decimal digits */
-  decstr = (S)alloca(5*n + 1);
+  decstr = (char *)alloca(5*n + 1);
   if(decstr == NULL)
     Error(E_A_STACK_INTEGER_DECIMAL_STRING);
   decstr += 5*n;            /* Go to last byte of string */
@@ -8033,7 +8027,7 @@ V PutIntegerUnsigned(INT bn)
       i = nw;
       do
       {
-        lw = (U)res * BASE_LIMB + (U)bnw[--i];
+        lw = (uint)res * BASE_LIMB + (uint)bnw[--i];
         res = (LIMB)(lw % 10);
         bnw[i] = (LIMB)(lw / 10);
       }while(i);
@@ -8053,19 +8047,19 @@ V PutIntegerUnsigned(INT bn)
 /*=PutIntegerUnsignedGAP==========================================
  Print big integer into GAP file
 */
-V PutIntegerUnsignedGAP(INT bn)
+void PutIntegerUnsignedGAP(BIGINT bn)
 {
-  INT bnw;
-  S decstr;
+  BIGINT bnw;
+  char * decstr;
   LIMB res;
-  U lw;
-  I i,
+  uint lw;
+  int i,
     n = INTEGER_N_LIMBS(bn),
     nw = n;
-  bnw = (INT)alloca(sizeof(LIMB)*n);
+  bnw = (BIGINT)alloca(sizeof(LIMB)*n);
   if(bnw == NULL)
     Error(E_A_STACK_INTEGER); /* LIMB contains 5 decimal digits */
-  decstr = (S)alloca(5*n + 1);
+  decstr = (char *)alloca(5*n + 1);
   if(decstr == NULL)
     Error(E_A_STACK_INTEGER_DECIMAL_STRING);
   decstr += 5*n;            /* Go to last byte of string */
@@ -8081,7 +8075,7 @@ V PutIntegerUnsignedGAP(INT bn)
       i = nw;
       do
       {
-        lw = (U)res * BASE_LIMB + (U)bnw[--i];
+        lw = (uint)res * BASE_LIMB + (uint)bnw[--i];
         res = (LIMB)(lw % 10);
         bnw[i] = (LIMB)(lw / 10);
       }while(i);
@@ -8095,7 +8089,7 @@ V PutIntegerUnsignedGAP(INT bn)
 #endif
 /*=PutScalarFactor========================================================
 */
-V PutScalarFactor(U a)
+void PutScalarFactor(uint a)
 {
   InLineTableName(ParameterName + SCALAR_FACTOR_PARAMETER(a)*NameLength1);
   PutDegree(SCALAR_FACTOR_DEGREE(a));
@@ -8104,7 +8098,7 @@ V PutScalarFactor(U a)
 /*=PutScalarSum================================================
  Intermediate print of scalar sum
 */
-V PutScalarSum(U a)
+void PutScalarSum(uint a)
 {
   if(a == NIL)
     PutSymbol('0');
@@ -8124,7 +8118,7 @@ V PutScalarSum(U a)
 /*=PutStart=======================================
  Start of 2dimensional output
 */
-V PutStart(V)
+void PutStart(void)
 {
   LastItemEnd = PrintEnd = Margin = NewMargin = 0;
   AddSymbolToOutLine(LEVEL, 0);
@@ -8135,19 +8129,19 @@ V PutStart(V)
 /*=PutStatistics=========================================================
  Put time and space statistics
 */
-V PutStatistics(V)
+void PutStatistics(void)
 {
-  U sec, min, sec_100,
-     time = CrudeTime ? TimeC : (U)(((double)TimeC/CLOCKS_PER_SEC)*100);
+  uint sec, min, sec_100,
+     time = CrudeTime ? TimeC : (uint)(((double)TimeC/CLOCKS_PER_SEC)*100);
   PutStringStandard("Time: ");
   if(!CrudeTime)
   {
-    sec_100 = (U)(time%100);
+    sec_100 = (uint)(time%100);
     time /= 100;                /* In seconds */
   }
-  sec = (U)(time%60);
+  sec = (uint)(time%60);
   time /= 60;                   /* In minutes */
-  min = (U)(time%60);
+  min = (uint)(time%60);
   time /= 60;                   /* In hours */
   if(time)
     PutFormattedU("%lu h ", time);
@@ -8183,7 +8177,7 @@ V PutStatistics(V)
 /*=PutString================
  2D output of string
 */
-V PutString(S str)
+void PutString(char *str)
 {
   PreviousEnd = LastItemEnd;
   InLineString(str);
@@ -8193,9 +8187,9 @@ V PutString(S str)
 /*=PutStringGAP=======================================================
  Put string in GAP file
 */
-V PutStringGAP(S str)
+void PutStringGAP(char *str)
 {
-  C c = 0;
+  char c = 0;
   while(*str)
   {
      if(PosOutLine == GAP_WIDTH - 2) 
@@ -8222,7 +8216,7 @@ V PutStringGAP(S str)
 #endif
 /*=PutStringStandard==============
 */
-V PutStringStandard(S str)
+void PutStringStandard(char *str)
 {
 #if defined(ECHO_TO_SCREEN)
   printf("%s", str);
@@ -8234,7 +8228,7 @@ V PutStringStandard(S str)
 /*=PutSymbol!===============
  2D output of symbol
 */
-V PutSymbol(C c)
+void PutSymbol(char c)
 {
   PreviousEnd = LastItemEnd;
   InLineSymbol(c);
@@ -8247,7 +8241,7 @@ V PutSymbol(C c)
 /*=PutDebugHeader====================================================
   Put header of tracing output.
 */
-V PutDebugHeader(U debug, S f_name, S in_out)
+void PutDebugHeader(uint debug, char * f_name, char * in_out)
 {
 #if !defined(GAP)
   fprintf(SessionFile,"\nDebug==%lu %s %s:\n", debug, f_name, in_out);
@@ -8257,7 +8251,7 @@ V PutDebugHeader(U debug, S f_name, S in_out)
 /*=PutDebugInteger==============
  Put name and signed big number
 */
-V PutDebugInteger(S name, INT u)
+void PutDebugInteger(char * name, BIGINT u)
 {
   PutStart();
   InLineString(name);
@@ -8270,7 +8264,7 @@ V PutDebugInteger(S name, INT u)
 /*=PutDebugLieMonomial==============
   Put name and Lie sum
 */
-V PutDebugLieMonomial(S name, I a)
+void PutDebugLieMonomial(char * name, int a)
 {
   PutStart();
   InLineString(name);
@@ -8280,9 +8274,9 @@ V PutDebugLieMonomial(S name, I a)
 }
 /*=PutDebugLieMonomialTable=================================================
 */
-V PutDebugLieMonomialTable(I newmon)
+void PutDebugLieMonomialTable(int newmon)
 {
-  I i, j, count;
+  int i, j, count;
   PutStringStandard("LieMonomial table:\n"
                "ORDER POSITION LEFT RIGHT PARITY INDEX WEIGHT MONOMIAL\n");
   i = count = 0;
@@ -8315,7 +8309,7 @@ V PutDebugLieMonomialTable(I newmon)
 /*=PutDebugLieSum==============
   Put name and Lie sum
 */
-V PutDebugLieSum(S name, U a)
+void PutDebugLieSum(char * name, uint a)
 {
   PutStart();
   InLineString(name);
@@ -8325,7 +8319,7 @@ V PutDebugLieSum(S name, U a)
 }
 /*=PutDebugLieTerm==============================================
 */
-V PutDebugLieTerm(S name, U a)
+void PutDebugLieTerm(char * name, uint a)
 {
   PutStart();
   InLineString(name);
@@ -8334,8 +8328,8 @@ V PutDebugLieTerm(S name, U a)
     PutSymbol('0');
   else
   {
-    U na;
-    I is_negative = NO;
+    uint na;
+    int is_negative = NO;
     if(IsParametric)
     {
       na = LIE_TERM_NUMERATOR_SCALAR_SUM(a);
@@ -8354,7 +8348,7 @@ V PutDebugLieTerm(S name, U a)
 /*=PutDebugU==================================
   Put name and long unsigned integer
 */
-V PutDebugU(S name, U i)
+void PutDebugU(char * name, uint i)
 {
   printf("\n%s==%lu\n", name, i);
 #if !defined(GAP)
@@ -8365,10 +8359,10 @@ V PutDebugU(S name, U i)
 /*=PutDebugRelations======================================
  Put Relation table with structure fields
 */
-V PutDebugRelations(V)
+void PutDebugRelations(void)
 {
-  I i, mg;
-  S hformat = "Relations:\n  N SUB MIN_GEN  RELATION\n";
+  int i, mg;
+  char * hformat = "Relations:\n  N SUB MIN_GEN  RELATION\n";
   printf(hformat);
 #if !defined(GAP)
   fprintf(SessionFile, hformat);
@@ -8403,7 +8397,7 @@ V PutDebugRelations(V)
 /*=PutDebugScalarSum==============
   Put name and scalar sum
 */
-V PutDebugScalarSum(S name, U a)
+void PutDebugScalarSum(char * name, uint a)
 {
   PutStart();
   InLineString(name);
@@ -8414,7 +8408,7 @@ V PutDebugScalarSum(S name, U a)
 /*=PutDebugString================================
   Put name of string and string
 */
-V PutDebugString(S strname, S str)
+void PutDebugString(char * strname, char * str)
 {
   printf("%s: %s\n", strname, str);
 #if !defined(GAP)
@@ -8426,10 +8420,10 @@ V PutDebugString(S strname, S str)
 /*=AddLieSumNs=============================================
 
 */
-V AddLieSumNs(U a, I minus_or_plus,
-              I *pn_lt, I *pn_int, I *pn_st, I *pn_sf)
+void AddLieSumNs(uint a, int minus_or_plus,
+              int *pn_lt, int *pn_int, int *pn_st, int *pn_sf)
 {
-  I dn_lt, dn_int;
+  int dn_lt, dn_int;
   dn_lt = dn_int = 0;
   while(a != NIL)
   {
@@ -8464,10 +8458,10 @@ V AddLieSumNs(U a, I minus_or_plus,
 }
 /*=AddScalarSumNs========================================================
 */
-V AddScalarSumNs(U a, I minus_or_plus, I *pn_int, I *pn_st, I *pn_sf)
+void AddScalarSumNs(uint a, int minus_or_plus, int *pn_int, int *pn_st, int *pn_sf)
 {
-  I dn_int, dn_st, dn_sf;
-  U b;
+  int dn_int, dn_st, dn_sf;
+  uint b;
   dn_int = dn_st = dn_sf = 0;
   while(a != NIL)
   {
@@ -8496,7 +8490,7 @@ V AddScalarSumNs(U a, I minus_or_plus, I *pn_int, I *pn_st, I *pn_sf)
 }
 /*=PutIntegerBalance===================================================
 */
-V PutIntegerBalance(S fname, I dn)
+void PutIntegerBalance(char * fname, int dn)
 {
   PutStringStandard("\nHeap integer balance violation in function:\n");
   PutStringStandard(fname);
@@ -8518,7 +8512,7 @@ V PutIntegerBalance(S fname, I dn)
 }
 /*=PutNodeBalance======================================================
 */
-V PutNodeBalance(S type, S fname, I dn)
+void PutNodeBalance(char * type, char * fname, int dn)
 {
   PutStringStandard(type);
   PutStringStandard(" balance violation in function:\n");
