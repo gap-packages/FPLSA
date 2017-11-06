@@ -6323,7 +6323,14 @@ void GetInput(int n, char * fin)
   if(n == 1)      /* No input file at call */
   {
     PutMessage(H_ENTER_FILE);
-    gets(sfname);
+    if (fgets(sfname, OutLineSize - PosOutLine, stdin)) {
+      // success
+      sfname[strcspn(sfname, "\n")] = '\0';
+    }
+    else {
+      // failure
+      exit(1);
+    }
   }
   else
     do
