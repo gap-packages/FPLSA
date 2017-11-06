@@ -248,7 +248,7 @@ BindGlobal( "SCAlgebraInfoOfFpLieAlgebra",
 
     # Write the file with the data.
     tmpdir:= DirectoryTemporary();
-    inputfile:= Filename( tmpdir, "input" );
+    inputfile:= Filename( tmpdir, "input.in" );
 
     PrintDataFileForFPLSA( L, relators, limitweight, inputfile );
 
@@ -263,7 +263,7 @@ BindGlobal( "SCAlgebraInfoOfFpLieAlgebra",
              progname,
              InputTextNone(),
              output,
-             [ "input" ] );
+             [ "input.in" ] );
     CloseStream( output );
 
     if proc <> 0 then
