@@ -8,7 +8,7 @@
 ##  of the `pkg/fplsa' directory, and calls `ReadTest( "sl2.tst" );'.
 ##
 
-gap> START_TEST( "$Id: sl2.tst,v 1.2 2003/11/18 09:38:46 gap Exp $" );
+gap> START_TEST( "sl2.tst" );
 
 gap> LoadPackage( "fplsa" );
 true
