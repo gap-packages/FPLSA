@@ -2,12 +2,6 @@
 ##
 ##  Global Variables
 ##
-VERSION = 1r1
-
-PKGNAME = fplsa
-
-ARCHIVE = $(PKGNAME)/$(PKGNAME)$(VERSION)
-
 CC=gcc
 
 BINDIR = bin/@GAPARCH@
@@ -23,8 +17,7 @@ all: src/fplsa4.c
 	$(CC) -o $(BINDIR)/fplsa4 $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) src/fplsa4.c
 
 clean:
-	rm -f ../$(ARCHIVE).zoo ../$(ARCHIVE).tar.gz \
-           read.co tst/docxpl.tst $(BINDIR)/fplsa4
+	rm -f $(BINDIR)/fplsa4
 	( cd doc; rm -f \
           manual.aux manual.bbl manual.blg manual.dvi manual.idl manual.idx \
           manual.ilg manual.ind manual.lab manual.log manual.pdf manual.six \
