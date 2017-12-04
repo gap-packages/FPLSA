@@ -12,6 +12,7 @@ CC=gcc
 
 BINDIR = bin/@GAPARCH@
 
+CFLAGS = -O2 -g
 
 #############################################################################
 ##
@@ -19,7 +20,7 @@ BINDIR = bin/@GAPARCH@
 ##
 all: src/fplsa4.c
 	mkdir -p $(BINDIR)
-	$(CC) -o $(BINDIR)/fplsa4 $(CPPFLAGS) $(LDFLAGS) src/fplsa4.c
+	$(CC) -o $(BINDIR)/fplsa4 $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) src/fplsa4.c
 
 clean:
 	rm -f ../$(ARCHIVE).zoo ../$(ARCHIVE).tar.gz \
