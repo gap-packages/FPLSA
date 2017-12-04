@@ -23,8 +23,10 @@ clean:
           manual.ilg manual.ind manual.lab manual.log manual.pdf manual.six \
           manual.toc )
 
-doc: doc/fplsa.tex doc/manual.tex
+doc/manual.pdf htm/CHAP001.htm: doc/fplsa.tex doc/manual.tex
 	cd doc && ./make_doc
+
+doc: doc/manual.pdf htm/CHAP001.htm
 
 Makefile: configure Makefile.in
 	./configure "@GAPPATH@"
