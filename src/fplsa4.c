@@ -23,6 +23,8 @@
 /*_6_9    Output functions                                              */
 /*_6_10   Debugging functions                                           */
 /************************************************************************/
+
+
 /*_0    Choice of compilation============================================*/
 
 #define RATIONAL_FIELD  /*  Working over the field R ??
@@ -44,6 +46,25 @@
 
 //#define DEBUG /* Debugging ?? */
 //#define MEMORY /* Check memory balance ?? */
+
+/* Include files	*/
+
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#if defined(SPP_2000)
+#include <alloca.h>  /* This file the genuine SPP compiler requires */
+#endif
+
+
+#if defined(__GNUC__) || defined(__clang__)
+#define ATTRIBUTE_NORETURN  __attribute__ ((noreturn))
+#else
+#define ATTRIBUTE_NORETURN
+#endif
+
 
 #if defined(DEBUG)  /* Debug definitions ===============================*/
 
@@ -973,17 +994,6 @@
 /* Test of char functions ?? */
 //#define TEST_FUNCTION
 
-/* Include files	*/
-
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#if defined(SPP_2000)
-#include <alloca.h>  /* This file the genuine SPP compiler requires */
-#endif
-
 #if defined(INTEGER_ALLOCATION_CHECK)
 #define INTEGER_IN_STACK(n) ;if((n)==NULL) Error(E_A_STACK_INTEGER)
 #define INTEGER_IN_HEAP(n)  ;if((n)==NULL) Error(E_A_HEAP_INTEGER) \
@@ -1286,7 +1296,7 @@ enum messages
 
 #define CUT_ARRAY(arr, type, n) (arr)=(type *)realloc(arr,sizeof(type)*(n))
 
-#define EXIT     TIME_OFF, PutStatistics(), exit(1)
+#define EXIT     do { TIME_OFF; PutStatistics(); exit(1); } while(0)
 
 #define IN_LINE_MARGIN    OutLine[++PosOutLine]=MARGIN
 
@@ -1644,7 +1654,7 @@ uint ScalarTermCopy(uint a);
 
 /*_6_7          Technical functions=====================================*/
 
-void Error(int i_message);
+void Error(int i_message) ATTRIBUTE_NORETURN;
 void Initialization(void);
 void *NewArray(uint n, uint size, int i_message);
 uint NodeLTNew(void);
