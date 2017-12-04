@@ -1,5 +1,10 @@
 This file describes changes in the FPLSA package.
 
+1.2.1 (2017-12-04)
+  - Compile with optimizations by default, for better performance
+  - Ensure build system honors CFLAGS (in addition to CPPFLAGS & LDFLAGS)
+  - Update URLs in README
+
 1.2 (2017-11-06)
   - Fix longstanding bug that made the package unusable
   - Fix compilation issue on modern systems
@@ -7,7 +12,7 @@ This file describes changes in the FPLSA package.
   - Clarify the package license (GPL 2 or later)
 
 1.1 (2003-11-17)
-  - TODO
+  - ...
 
 1.0 (1999/07/01)
   - Initial release
