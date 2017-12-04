@@ -32,7 +32,7 @@ distribution, in which case you can skip this step.
 
 Otherwise, you can download the latest version of this package from
 its homepage, which is
-  <https://gap-packages.github.io/fplsa/>
+  <https://gap-packages.github.io/FPLSA/>
 
 You will end up with a file named `fplsa-X.Y.tar.gz`, where `X.Y` is
 a version string like `1.1`.
@@ -80,14 +80,14 @@ Full information and documentation can be found in the manual, available
 as PDF `doc/manual.pdf` or as HTML `htm/chapters.htm`, or on the package
 homepage at
 
-  <http://gap-packages.github.io/fplsa/>
+  <http://gap-packages.github.io/FPLSA/>
 
 
 ### Bug reports and feature requests
 
 Please submit bug reports and feature requests via our GitHub issue tracker:
 
-  <https://github.com/gap-packages/fplsa/issues>
+  <https://github.com/gap-packages/FPLSA/issues>
 
 
 ### License
