@@ -32,15 +32,15 @@ Persons := [
     IsMaintainer  := true,
     Email         := "max.horn@math.uni-giessen.de",
     WWWHome       := "http://www.quendi.de/math",
-    PostalAddress := Concatenation(
-                       "AG Algebra\n",
-                       "Mathematisches Institut\n",
-                       "Justus-Liebig-Universität Gießen\n",
-                       "Arndtstraße 2\n",
-                       "35392 Gießen\n",
-                       "Germany" ),
-    Place         := "Gießen",
-    Institution   := "Justus-Liebig-Universität Gießen"
+#     PostalAddress := Concatenation(
+#                        "AG Algebra\n",
+#                        "Mathematisches Institut\n",
+#                        "Justus-Liebig-Universität Gießen\n",
+#                        "Arndtstraße 2\n",
+#                        "35392 Gießen\n",
+#                        "Germany" ),
+#     Place         := "Gießen",
+#     Institution   := "Justus-Liebig-Universität Gießen"
   ),
   ],
 
