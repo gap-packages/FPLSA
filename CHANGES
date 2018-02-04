@@ -1,5 +1,10 @@
 This file describes changes in the FPLSA package.
 
+1.2.2 (2018-02-04)
+  - Convert manual to GAPDoc format
+  - Convert PackageInfo.g to use UTF-8 encoding
+  - Stop using several obsolete GAP functions
+
 1.2.1 (2017-12-04)
   - Compile with optimizations by default, for better performance
   - Ensure build system honors CFLAGS (in addition to CPPFLAGS & LDFLAGS)
