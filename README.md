@@ -80,7 +80,7 @@ Full information and documentation can be found in the manual, available
 as PDF `doc/manual.pdf` or as HTML `htm/chapters.htm`, or on the package
 homepage at
 
-  <http://gap-packages.github.io/FPLSA/>
+  <https://gap-packages.github.io/FPLSA/>
 
 
 ### Bug reports and feature requests
