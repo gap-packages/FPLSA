@@ -1,0 +1,10 @@
+  
+  
+  [1XIndex[101X
+  
+  [2X IsomorphicSCAlgebra[102X 1.1-2 
+  [2XFPLSA[102X 1.2-1 
+  [2XSCAlgebraInfoOfFpLieAlgebra[102X 1.1-1 
+  
+  
+  -------------------------------------------------------

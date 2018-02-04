@@ -1,0 +1,191 @@
+  
+  [1X1 [33X[0;0YThe FPLSA Package[133X[101X
+  
+  [33X[0;0YThis  chapter  describes  the  [5XGAP[105X package [5XFPLSA[105X , an interface to the [10Xfplsa[110X
+  program  by  V. Gerdt  and  V. Kornyak  (version 4) for the computation with
+  finitely presented Lie superalgebras.[133X
+  
+  [33X[0;0YAt present [5XGAP[105X uses only the facility to compute a structure constants table
+  of  a  finite  dimensional Lie algebra over the rationals that is given by a
+  finite presentation.[133X
+  
+  [33X[0;0YThe  package  uses  an  external  binary, probably it will only work on UNIX
+  platforms.[133X
+  
+  
+  [1X1.1 [33X[0;0YMain Functions[133X[101X
+  
+  [33X[0;0YA  finitely  presented Lie algebra is a quotient of a free Lie algebra by an
+  ideal  generated  by  a finite number of elements. In [5XGAP[105X a free Lie algebra
+  can  be created by the command [10XFreeLieAlgebra[110X; we refer to the [5XGAP[105X Reference
+  Manual  for  more  details.  A  finitely  presented  Lie  algebra  [3XK[103X  can be
+  constructed by [10X[3XK[103X[10X := [3XL[103X[10X/[3Xrels[103X[10X[110X, where [3XL[103X is a free Lie algebra and [3Xrels[103X a list of
+  elements  of [3XL[103X that constitute the relations that hold in [3XK[103X. Given a finitle
+  presented  Lie  algebra  we  want  to calculate a basis and a multiplication
+  table  of  it.  The  interface  to  the [5XFPLSA[105X package comes with two related
+  functions for doing that.[133X
+  
+  [1X1.1-1 SCAlgebraInfoOfFpLieAlgebra[101X
+  
+  [33X[1;0Y[29X[2XSCAlgebraInfoOfFpLieAlgebra[102X( [3XL[103X, [3Xrels[103X, [3Xlimit[103X, [3Xwords[103X, [3Xrels[103X ) [32X function[133X
+  
+  [33X[0;0YLet  [3XL[103X  be a free Lie algebra over the rationals, [3Xrels[103X a list of elements in
+  [3XL[103X, [3Xlimit[103X a positive integer and [3Xwords[103X and [3Xrels[103X two booleans.[133X
+  
+  [33X[0;0YIf the algebra [10X[3XL[103X[10X / [3Xrels[103X[10X[110X is finite-dimensional and if a basis of this algebra
+  can  be constructed using elements in [3XL[103X that involve only words of length at
+  most [3Xlimit[103X then [10XSCAlgebraInfoOfFpLieAlgebra[110X returns a record whose component
+  [10Xsc[110X  contains  an algebra that is isomorphic with [10X[3XL[103X[10X / [3Xrels[103X[10X[110X. Otherwise [9Xfail[109X is
+  returned.[133X
+  
+  [33X[0;0YThe function calls the [10Xfplsa[110X standalone.[133X
+  
+  [33X[0;0YIf  [3Xwords[103X  is  [9Xtrue[109X then the component [10Xwords[110X of the result record contains a
+  list of elements in [3XL[103X that correspond to the basis elements.[133X
+  
+  [33X[0;0YIf [3Xrels[103X is [9Xtrue[109X then the component [10Xrels[110X of the result record contains a list
+  of  reduced  relators  in  [3XL[103X  that describes how algebra generators of [3XL[103X are
+  expressed in terms of the basis elements.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadPackage( "fplsa" );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XL:= FreeLieAlgebra( Rationals, "x", "y" );[127X[104X
+    [4X[28X<Lie algebra over Rationals, with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27Xg:= GeneratorsOfAlgebra( L );; x:= g[1];; y:= g[2];;[127X[104X
+    [4X[25Xgap>[125X [27Xrels:= [ x*(x*y) - x*y, y*(y*(x*y)) ];[127X[104X
+    [4X[28X[ (-1)*(x*y)+(1)*(x*(x*y)), (1)*(((x*y)*y)*y) ][128X[104X
+    [4X[25Xgap>[125X [27XSCAlgebraInfoOfFpLieAlgebra( L, rels, 100, true, true );[127X[104X
+    [4X[28Xrec( sc := <Lie algebra of dimension 4 over Rationals>, [128X[104X
+    [4X[28X  words := [ (1)*x, (1)*y, (1)*(y*x), (1)*((y*x)*y) ], [128X[104X
+    [4X[28X  rels := [ (1)*((y*x)*x)+(1)*(y*x), (1)*(((y*x)*y)*y), (1)*(((y*x)*y)*(y*x)) [128X[104X
+    [4X[28X     ] )[128X[104X
+  [4X[32X[104X
+  
+  [1X1.1-2  IsomorphicSCAlgebra[101X
+  
+  [33X[1;0Y[29X[2X IsomorphicSCAlgebra[102X( [3XK[103X[, [3Xbound[103X] ) [32X function[133X
+  
+  [33X[0;0Ycomputes  a  Lie  algebra  given by a multiplication table isomorphic to the
+  finitely  presented  Lie  algebra  [3XK[103X.  If  the  optional  parameter [3Xbound[103X is
+  specified  the  computation will be carried out using monomials of degree at
+  most  [3Xbound[103X.  If  [3Xbound[103X  is  not specified, then it will initially be set to
+  10000.  If  this does not suffice to calculate a multiplication tabel of the
+  algebra,  then  the  bound will be increased until a multiplication table is
+  found.  If the computation was successful then a structure constants algebra
+  will be returned isomorphic to [3XK[103X. Otherwise [9Xfail[109X will be returned.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadPackage( "fplsa" );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XL:= FreeLieAlgebra( Rationals, "x", "y" );[127X[104X
+    [4X[28X<Lie algebra over Rationals, with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27Xg:= GeneratorsOfAlgebra( L );; x:= g[1];; y:= g[2];;[127X[104X
+    [4X[25Xgap>[125X [27Xrels:= [ x*(x*y) - x*y, y*(y*(x*y)) ];[127X[104X
+    [4X[28X[ (-1)*(x*y)+(1)*(x*(x*y)), (1)*(((x*y)*y)*y) ][128X[104X
+    [4X[25Xgap>[125X [27XK:= L/rels;[127X[104X
+    [4X[28X<Lie algebra over Rationals, with 2 generators>[128X[104X
+    [4X[25Xgap>[125X [27XIsomorphicSCAlgebra( K );[127X[104X
+    [4X[28X<Lie algebra of dimension 4 over Rationals>[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X1.2 [33X[0;0YAuxiliary Variables of FPLSA[133X[101X
+  
+  [1X1.2-1 FPLSA[101X
+  
+  [33X[1;0Y[29X[2XFPLSA[102X[32X global variable[133X
+  
+  [33X[0;0Yis  the  global  record  used  by  the  functions  in  the  package. Besides
+  components  that  describe  parameters  for  the  standalone,  the following
+  components are used.[133X
+  
+  [8X[10XRelation_size[110X[8X [108X
+        [33X[0;6Yparameter that controls the memory usage by the fplsa program,[133X
+  
+  [8X[10XLie_monomial_table_size[110X[8X [108X
+        [33X[0;6Yparameter that controls the memory usage by the fplsa program,[133X
+  
+  [8X[10XNode_Lie_term_size[110X[8X [108X
+        [33X[0;6Yparameter that controls the memory usage by the fplsa program,[133X
+  
+  [8X[10XNode_scalar_factor_size[110X[8X [108X
+        [33X[0;6Yparameter that controls the memory usage by the fplsa program,[133X
+  
+  [8X[10XNode_scalar_term_size[110X[8X [108X
+        [33X[0;6Yparameter that controls the memory usage by the fplsa program,[133X
+  
+  [8X[10Xprogname[110X[8X [108X
+        [33X[0;6Ythe file name of the executable,[133X
+  
+  [8X[10XT[110X[8X [108X
+        [33X[0;6Ystructure constants table of the algebra under consideration,[133X
+  
+  [8X[10Xwords[110X[8X [108X
+        [33X[0;6Ylist  of elements in the free Lie algebra that correspond to the basis
+        elements,[133X
+  
+  [8X[10Xrels[110X[8X [108X
+        [33X[0;6Ylist  of  relators  in  the  free Lie algebra that are used to express
+        redundant algebra generators in terms of the basis.[133X
+  
+  [33X[0;0YIn  order  to  be  able  to  run the [10Xfplsa[110X program successfully, it might be
+  necessary  to  customize  the  parameters  that  control  the memory the the
+  program  uses, to suit the computer the user is working on. In particular if
+  the  program exits with an error message of the form: [10XError, the process did
+  not succeed[110X, then it may be necessary to change these parameters.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XLoadPackage( "fplsa" );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XL:= FreeLieAlgebra( Rationals, "x", "y" );;[127X[104X
+    [4X[25Xgap>[125X [27Xg:= GeneratorsOfAlgebra( L );; x:= g[1];; y:= g[2];;[127X[104X
+    [4X[25Xgap>[125X [27Xrels:= [ x*(x*y) - x*y, y*(y*(x*y)) ];;[127X[104X
+    [4X[25Xgap>[125X [27XSCAlgebraInfoOfFpLieAlgebra( L, rels, 100, true, true );;[127X[104X
+    [4X[25Xgap>[125X [27XFPLSA;[127X[104X
+    [4X[28Xrec( Relation_size := 2500000, Lie_monomial_table_size := 1000000, [128X[104X
+    [4X[28X  Node_Lie_term_size := 2000000, Node_scalar_factor_size := 2000, [128X[104X
+    [4X[28X  Node_scalar_term_size := 20000, progname := "fplsa4", [128X[104X
+    [4X[28X  T := [ [ [ [  ], [  ] ], [ [ 3 ], [ -1 ] ], [ [ 3 ], [ 1 ] ], [128X[104X
+    [4X[28X          [ [ 4 ], [ 1 ] ] ], [128X[104X
+    [4X[28X      [ [ [ 3 ], [ 1 ] ], [ [  ], [  ] ], [ [ 4 ], [ -1 ] ], [ [  ], [  ] ] ],[128X[104X
+    [4X[28X      [ [ [ 3 ], [ -1 ] ], [ [ 4 ], [ 1 ] ], [ [  ], [  ] ], [ [  ], [  ] ] ],[128X[104X
+    [4X[28X      [ [ [ 4 ], [ -1 ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ] ], [128X[104X
+    [4X[28X      -1, 0 ], words := [ 1, 2, [ 2, 1 ], [ [ 2, 1 ], 2 ] ], [128X[104X
+    [4X[28X  rels := [ [ [ [ 2, 1 ], 1 ], 1, [ 2, 1 ], 1 ], [128X[104X
+    [4X[28X      [ [ [ [ 2, 1 ], 2 ], 2 ], 1 ], [ [ [ [ 2, 1 ], 2 ], [ 2, 1 ] ], 1 ] ] )[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X1.3 [33X[0;0YInstalling the FPLSA Package[133X[101X
+  
+  [33X[0;0YTo  install  unpack  the archive file in a directory in the [10Xpkg[110X hierarchy of
+  your  version  of  [5XGAP[105X.  (This  might  be  the [10Xpkg[110X directory of the [5XGAP[105X home
+  directory;  it  is however also possible to keep an additional [10Xpkg[110X directory
+  in  your  private  directories,  see  Section [14X'Reference:  Installing  a GAP
+  Package'[114X  of  the [5XGAP[105X Reference Manual for details on how to do this.) Go to
+  the  newly  created  [10Xfplsa[110X directory and call [10X./configure [3Xpath[103X[10X[110X where [3Xpath[103X is
+  the  path  to  the  [5XGAP[105X  home  directory.  So for example if you install the
+  package in the main [10Xpkg[110X directory call[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X./configure ../..[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThis  will  fetch the architecture type for which [5XGAP[105X has been compiled last
+  and create a [10XMakefile[110X. Now simply call[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28Xmake[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0Yto compile the binary and to install it in the appropriate place.[133X
+  
+  [33X[0;0YIf you use this installation of [5XGAP[105X on different hardware platforms you will
+  have  to  compile  the  binary for each platform separately. This is done by
+  calling  [10Xconfigure[110X and [10Xmake[110X for the package anew immediately after compiling
+  [5XGAP[105X  itself  for  the  respective  architecture.  If  your version of [5XGAP[105X is
+  already  compiled  (and has last been compiled on the same architecture) you
+  do  not  need  to  compile [5XGAP[105X again, it is sufficient to call the [10Xconfigure[110X
+  script in the [5XGAP[105X home directory.[133X
+  
