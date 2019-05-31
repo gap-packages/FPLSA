@@ -1,5 +1,11 @@
 This file describes changes in the FPLSA package.
 
+1.2.3 (2019-05-31)
+  - Makefile: change `make clean` to not delete manual PDF
+  - PackageInfo.g: specify license in machine readable form
+  - PackageInfo.g: update Max Horn's address
+  - README.md: fix filename of HTML manual in
+
 1.2.2 (2018-02-04)
   - Convert manual to GAPDoc format
   - Convert PackageInfo.g to use UTF-8 encoding
