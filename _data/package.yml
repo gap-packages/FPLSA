@@ -1,6 +1,6 @@
 name: FPLSA
-version: 1.2.2
-date: 2018-02-04
+version: 1.2.3
+date: 2019-05-31
 description: |
     Finitely Presented Lie Algebras
 
@@ -12,7 +12,7 @@ authors:
 
 maintainers:
     - name: Max Horn
-      url: http://www.quendi.de/math
+      url: https://www.quendi.de/math
 
 GAP: ">= 4.8"
 
@@ -22,7 +22,7 @@ packageinfo: https://gap-packages.github.io/FPLSA/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/FPLSA/releases/download/v1.2.2/FPLSA-1.2.2.tar.gz
+      url: https://github.com/gap-packages/FPLSA/releases/download/v1.2.3/FPLSA-1.2.3.tar.gz
 
 abstract: |
     The <span class="pkgname">FPLSA</span> package uses    the authors' C program (version 4.0) that implements    a Lie Todd-Coxeter method for converting    finitely presented Lie algebras into isomorphic    structure constant algebras.    This is called via the GAP function IsomorphismSCTableAlgebra.

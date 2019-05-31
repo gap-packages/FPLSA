@@ -6,17 +6,15 @@
                        [1X Finitely Presented Lie Algebras [101X
   
   
-                                     1.2.2
+                                     1.2.3
   
   
-                                4 February 2018
+                                  31 May 2019
   
   
                                  Vladimir Gerdt
   
                                 Vladimir Kornyak
-  
-                                    Max Horn
   
   
   
@@ -26,9 +24,6 @@
   Vladimir Kornyak
       Email:    [7Xmailto:vkornyak@gmail.com[107X
       Homepage: [7Xhttp://compalg.jinr.ru/CAGroup/Kornyak[107X
-  Max Horn
-      Email:    [7Xmailto:max.horn@math.uni-giessen.de[107X
-      Homepage: [7Xhttp://www.quendi.de/math[107X
   
   -------------------------------------------------------
   
