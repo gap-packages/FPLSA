@@ -2,11 +2,11 @@
 ##
 ##  Global Variables
 ##
-CC=gcc
+CC ?= gcc
 
 BINDIR = bin/@GAPARCH@
 
-CFLAGS = -O2 -g -Wall
+CFLAGS ?= -O2 -g -Wall
 
 #############################################################################
 ##
