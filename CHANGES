@@ -1,5 +1,8 @@
 This file describes changes in the FPLSA package.
 
+1.2.4 (2019-07-07)
+  - Allow CC and CFLAGS to be overridden
+
 1.2.3 (2019-05-31)
   - Makefile: change `make clean` to not delete manual PDF
   - PackageInfo.g: specify license in machine readable form
