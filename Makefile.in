@@ -31,7 +31,7 @@ doc/manual.pdf htm/CHAP001.htm: doc/fplsa.tex doc/manual.tex
 
 doc: doc/manual.pdf htm/CHAP001.htm
 
-Makefile: configure Makefile.in
+Makefile: configure Makefile.in $(GAPPATH)/sysinfo.gap
 	./configure "@GAPPATH@"
 
 .PHONY: all clean doc
