@@ -5,6 +5,7 @@
 CC ?= gcc
 
 BINDIR = bin/@GAPARCH@
+GAPPATH = @GAPPATH@
 
 CFLAGS ?= -O2 -g -Wall
 
@@ -12,9 +13,11 @@ CFLAGS ?= -O2 -g -Wall
 ##
 ##  Targets
 ##
-all: src/fplsa4.c
+all: $(BINDIR)/fplsa4
+
+$(BINDIR)/fplsa4: src/fplsa4.c
 	mkdir -p $(BINDIR)
-	$(CC) -o $(BINDIR)/fplsa4 $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) src/fplsa4.c
+	$(CC) -o $@ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $<
 
 clean:
 	rm -f $(BINDIR)/fplsa4
@@ -32,6 +35,6 @@ doc/manual.pdf htm/CHAP001.htm: doc/fplsa.tex doc/manual.tex
 doc: doc/manual.pdf htm/CHAP001.htm
 
 Makefile: configure Makefile.in $(GAPPATH)/sysinfo.gap
-	./configure "@GAPPATH@"
+	./configure $(GAPPATH)
 
 .PHONY: all clean doc
