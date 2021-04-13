@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/gap-packages/FPLSA/workflows/CI/badge.svg?branch=master)](https://github.com/gap-packages/FPLSA/actions?query=workflow%3ACI+branch%3Amaster)
+[![Code Coverage](https://codecov.io/github/gap-packages/FPLSA/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/FPLSA)
+
 # FPLSA -- The Finitely Presented Lie Super-Algebra Package
 ## A Link to an External Lie Todd-Coxeter Program
 
