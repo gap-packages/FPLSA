@@ -69,7 +69,6 @@ PackageDoc := rec(
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
   LongTitle := "Interface to fast external Lie Todd-Coxeter Program",
-  Autoload := true
 ),
 
 Dependencies := rec(
