@@ -4,7 +4,6 @@
 ##  call this with GAP from within the package root directory 
 ##  
 LoadPackage( "AutoDoc" );
-LoadPackage( "FPLSA" ); 
 
 AutoDoc( rec( 
     scaffold := rec(
