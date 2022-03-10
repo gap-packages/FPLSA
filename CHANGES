@@ -1,5 +1,9 @@
 This file describes changes in the FPLSA package.
 
+1.2.5 (2022-03-10)
+  - Improve buildsystem
+  - PackageInfo.g: update Max Horn's address (again)
+
 1.2.4 (2019-07-07)
   - Allow CC and CFLAGS to be overridden
 
