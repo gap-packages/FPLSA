@@ -94,7 +94,7 @@
   
   [1X1.2-1 FPLSA[101X
   
-  [33X[1;0Y[29X[2XFPLSA[102X[32X global variable[133X
+  [33X[1;0Y[29X[2XFPLSA[102X [32X global variable[133X
   
   [33X[0;0Yis  the  global  record  used  by  the  functions  in  the  package. Besides
   components  that  describe  parameters  for  the  standalone,  the following

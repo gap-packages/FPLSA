@@ -5,8 +5,8 @@
 SetPackageInfo( rec(
 PackageName := "FPLSA",
 Subtitle := "Finitely Presented Lie Algebras",
-Version := "1.2.4",
-Date := "07/07/2019", # dd/mm/yyyy format
+Version := "1.2.5",
+Date := "10/03/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -31,16 +31,8 @@ Persons := [
     FirstNames    := "Max",
     IsAuthor      := false,
     IsMaintainer  := true,
-    Email         := "max.horn@uni-siegen.de",
+    Email         := "horn@mathematik.uni-kl.de",
     WWWHome       := "https://www.quendi.de/math",
-#     PostalAddress := Concatenation(
-#                        "Department Mathematik\n",
-#                        "Universität Siegen\n",
-#                        "Walter-Flex-Straße 3\n",
-#                        "57072 Siegen\n",
-#                        "Germany" ),
-#     Place         := "Siegen",
-#     Institution   := "Universität Siegen"
   ),
   ],
 
@@ -77,7 +69,6 @@ PackageDoc := rec(
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
   LongTitle := "Interface to fast external Lie Todd-Coxeter Program",
-  Autoload := true
 ),
 
 Dependencies := rec(

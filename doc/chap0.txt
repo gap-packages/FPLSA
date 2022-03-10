@@ -6,10 +6,10 @@
                        [1X Finitely Presented Lie Algebras [101X
   
   
-                                     1.2.4
+                                     1.2.5
   
   
-                                  7 July 2019
+                                 10 March 2022
   
   
                                  Vladimir Gerdt
