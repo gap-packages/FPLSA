@@ -24,7 +24,7 @@ we refer to the &GAP; Reference Manual for more details.
 A finitely presented Lie algebra
 <A>K</A> can be constructed by <C><A>K</A> := <A>L</A>/<A>rels</A></C>, where <A>L</A> is a free Lie algebra
 and <A>rels</A> a list of elements of <A>L</A> that constitute the relations 
-that hold in <A>K</A>. Given a finitle presented Lie algebra we want to calculate 
+that hold in <A>K</A>. Given a finitely presented Lie algebra we want to calculate 
 a basis and a multiplication table of it. The interface to the &FPLSA;
 package comes with two related functions for doing that. 
 <P/>
@@ -78,7 +78,7 @@ finitely presented Lie algebra <A>K</A>.
 If the optional parameter <A>bound</A> is specified the computation will
 be carried out using monomials of degree at most <A>bound</A>. 
 If <A>bound</A> is not specified, then it will initially be set to
-10000. If this does not suffice to calculate a multiplication tabel
+10000. If this does not suffice to calculate a multiplication table
 of the algebra, then the bound will be increased until a multiplication
 table is found.
   

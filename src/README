@@ -12,9 +12,9 @@ fplsa4.ses - output file containing input and results in the
 fplsa4.gap - output in the form readable by GAP
 
 The directory for input files can be set in fplsa4.ini.
-By default, the input files have extention *.in, i.e.,
-if your file has such extention you can omit the extention
-at the program run. If your file has no extention, you
+By default, the input files have extension *.in, i.e.,
+if your file has such extension you can omit the extension
+at the program run. If your file has no extension, you
 must add the dot to its name.
 
 Normally input looks like this:
@@ -34,7 +34,7 @@ you can write between X and : everything what you want
 any place (this comment you can use in fplsa4.ini also).
 You can omit any above item except of Generators, because
 without generators the task looses any sense.
-If you omit Weghts, the program sets all them = 1.
+If you omit Weights, the program sets all them = 1.
 If you omit Limiting weight, the program asks for it.
 If you omit relations, the program computes free algebra
 (infinite-dimensional in most cases).
@@ -47,8 +47,8 @@ standard bracket notation. As a multiplication sign the blank " "
 (parametric) polynomials the sign "^" is used before degree.
 You can use in input relations fractions as coefficients 
 (The program removes denominators  itself)   
-If you type the name of inexisting file, the program can
-constract it in the process of dialogue.BTW, to compute
+If you type the name of a nonexistent file, the program can
+construct it in the process of dialogue. BTW, to compute
 algebras with parameters remains still too dangerous,          !!!
 because work with them uses some rather complicated functions
 (such as multivariate polynomial GCD), which were not yet
@@ -77,7 +77,7 @@ if they are there) the following constants (I'll omit #define before them):
 GNU - 32bit compiler if set on, otherwise 16bit. You have to keep
     it on all the time
 SPACE_STATISTICS - computes and prints the maximum space used.
-    This computation does not take too much time, so it can be on everytime.
+    This computation does not take too much time, so it can be on every time.
 INTEGER_ALLOCATION_CHECK - controls allocation of heap memory for big 
     integers. You have to set it on in the case of unclear program crash.
 POLY_ARRAY_ALLOCATION_CHECK - controls allocation in stack of working arrays
@@ -91,7 +91,7 @@ ECHO_TO_SCREEN - prints to the screen everything the program writes
           program requests for name of file and limiting weight,
           so you have to set file name in command line and limiting
           weight in input file (or guess when to type them). 
-DEBUG, MEMORY, D_* - set on debugging and checking possible memory losts,
+DEBUG, MEMORY, D_* - set on debugging and checking possible memory lost,
     too difficult to explain how to use these abilities. They are useful
     rather for me. 
 LEFT_COMMENT, RIGHT_COMMENT, SUBSCRIPT_INPUT_SIGN, ODD_GENERATOR_INPUT_SIGN
@@ -104,7 +104,7 @@ GAP_NAME_SIZE - maximum length of GAP variable (like FPLSA.algebra etc.)
     i.e., maximum name length should be 63.
 GAP_WIDTH - width of page in the *.gap file. Currently it is 79 to
     keep right margin visible.
-There are also other constants and macrodefinitions, but they are useful for 
+There are also other constants and macro definitions, but they are useful for 
 me only.
 Of course, you can organize the control of compilation via UNIX "make" file,
 but I don't know how to "make" such files. As to me, they only muddle
@@ -120,7 +120,7 @@ Determining text: value
 Value can be either Boolean constant (Yes, No), or decimal number
 or text string.
 Determining text has essential initial part sufficient to separate
-alternatives. Within this part you have to remain everithing including
+alternatives. Within this part you have to remain everything including
 blanks as it is.
  
 Crude time: - The GNU C uses one 32bit word to count clock ticks.

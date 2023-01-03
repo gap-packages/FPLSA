@@ -308,11 +308,11 @@ BindGlobal( "SCAlgebraInfoOfFpLieAlgebra",
 ##  If the optional parameter <bound> is specified the computation will
 ##  be carried out using monomials of degree at most <bound>.
 ##  If <bound> is not specified, then it will initially be set to
-##  10000. If this does not suffice to calculate a multiplication tabel
+##  10000. If this does not suffice to calculate a multiplication table
 ##  of the algebra, then the bound will be increased until a multiplication
 ##  table is found.
 ##
-##  If the computation was succesful a structure constants algebra
+##  If the computation was successful a structure constants algebra
 ##  will be returned isomorphic to <K>. Otherwise `fail'
 ##  will be returned.
 ##

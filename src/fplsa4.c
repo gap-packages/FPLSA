@@ -35,7 +35,7 @@
 #define SPACE_STATISTICS  /* Space statistics ?? */
 //#define INTEGER_MAX_SIZE  /* Multiprecision number maximum size ?? */
 //#define INTEGER_ALLOCATION_CHECK  /* Control of integer allocations ?? */
-//#define POLY_ARRAY_ALLOCATION_CHECK /* Control of allocations of ?? plynomial arrays in stack */
+//#define POLY_ARRAY_ALLOCATION_CHECK /* Control of allocations of ?? polynomial arrays in stack */
 
 /* GAP output ?? */
 /* Avoid message file, session file,                              */
@@ -2195,14 +2195,14 @@ OUT_NEW_JACOBI_RELATION /*-------------------------------------------*/
 }
 /*=ReduceRelations=====================================================
   Reduce the system of relations starting from Ith one. For further
-  differentiations returns lowest new positon (or starting one int).
+  differentiations returns lowest new position (or starting one int).
 */
 int ReduceRelations(int i)
 {
   int i_min, j, lordj, lordl, min_gen, lmoni, k, l, m;
   uint ai, aj;
   i_min = i;
-  do           /* While relations with new leading monomialsls arise */
+  do           /* While relations with new leading monomials arise */
     if(RELATION_TO_BE_SUBSTITUTED(i))
     {
 IN_REDUCE_RELATIONS  /*----------------------------------------------*/
