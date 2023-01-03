@@ -54,7 +54,7 @@ subdirectory.
 #### Configuring and Compiling the C part
 
 You have to change your current working directory to the subdirectory
-FPLSA lives in. Starting from the `pkg` dirctory of your GAP
+FPLSA lives in. Starting from the `pkg` directory of your GAP
 installation, you can do this via this command (replace `X.Y` with
 the actual version):
 

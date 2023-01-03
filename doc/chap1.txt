@@ -20,7 +20,7 @@
   can  be created by the command [10XFreeLieAlgebra[110X; we refer to the [5XGAP[105X Reference
   Manual  for  more  details.  A  finitely  presented  Lie  algebra  [3XK[103X  can be
   constructed by [10X[3XK[103X[10X := [3XL[103X[10X/[3Xrels[103X[10X[110X, where [3XL[103X is a free Lie algebra and [3Xrels[103X a list of
-  elements  of [3XL[103X that constitute the relations that hold in [3XK[103X. Given a finitle
+  elements of [3XL[103X that constitute the relations that hold in [3XK[103X. Given a finitely
   presented  Lie  algebra  we  want  to calculate a basis and a multiplication
   table  of  it.  The  interface  to  the [5XFPLSA[105X package comes with two related
   functions for doing that.[133X
@@ -70,7 +70,7 @@
   finitely  presented  Lie  algebra  [3XK[103X.  If  the  optional  parameter [3Xbound[103X is
   specified  the  computation will be carried out using monomials of degree at
   most  [3Xbound[103X.  If  [3Xbound[103X  is  not specified, then it will initially be set to
-  10000.  If  this does not suffice to calculate a multiplication tabel of the
+  10000.  If  this does not suffice to calculate a multiplication table of the
   algebra,  then  the  bound will be increased until a multiplication table is
   found.  If the computation was successful then a structure constants algebra
   will be returned isomorphic to [3XK[103X. Otherwise [9Xfail[109X will be returned.[133X

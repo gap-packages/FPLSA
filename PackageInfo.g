@@ -5,8 +5,8 @@
 SetPackageInfo( rec(
 PackageName := "FPLSA",
 Subtitle := "Finitely Presented Lie Algebras",
-Version := "1.2.5",
-Date := "10/03/2022", # dd/mm/yyyy format
+Version := "1.2.6",
+Date := "03/01/2023", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -65,7 +65,7 @@ AbstractHTML :=
 PackageDoc := rec(
   BookName := "fplsa",
   ArchiveURLSubset := [ "doc" ],
-  HTMLStart := "doc/chap0.html",
+  HTMLStart := "doc/chap0_mj.html",
   PDFFile := "doc/manual.pdf",
   SixFile := "doc/manual.six",
   LongTitle := "Interface to fast external Lie Todd-Coxeter Program",
