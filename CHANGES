@@ -1,5 +1,9 @@
 This file describes changes in the FPLSA package.
 
+1.2.6 (2023-01-03)
+  - Enhance the `configure` script to accept `--with-gaproot=PATH`
+  - Minor janitorial changes
+
 1.2.5 (2022-03-10)
   - Improve buildsystem
   - PackageInfo.g: update Max Horn's address (again)
