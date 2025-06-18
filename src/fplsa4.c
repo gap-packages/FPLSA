@@ -7010,21 +7010,21 @@ void ReadAndProcessStringsFromFile(void (*proc_func)(char *str), FILE *inf,
 int ReadBooleanFromFile(FILE *file)
 {
   short c;
-  int bool;
+  int b = NO;
   c = fgetc(file);
   switch(c)
   {
     case 'Y': case 'y':
-    bool = YES;
+    b = YES;
     break;
     case 'N': case 'n':
-    bool = NO;
+    b = NO;
     break;
   }
   while(!isspace(c = fgetc(file)) && c != EOF)
     ;
   ungetc(c, file);
-  return bool;
+  return b;
 }
 /*=ReadCaseFromFile=====================================
 */
