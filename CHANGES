@@ -1,5 +1,9 @@
 This file describes changes in the FPLSA package.
 
+1.2.7 (2025-08-29)
+  - Fix compatibility with GCC 15 (which breaks compatibility with old C code)
+  - Minor janitorial changes
+
 1.2.6 (2023-01-03)
   - Enhance the `configure` script to accept `--with-gaproot=PATH`
   - Minor janitorial changes

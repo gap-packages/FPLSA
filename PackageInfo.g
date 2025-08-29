@@ -5,8 +5,8 @@
 SetPackageInfo( rec(
 PackageName := "FPLSA",
 Subtitle := "Finitely Presented Lie Algebras",
-Version := "1.2.6",
-Date := "03/01/2023", # dd/mm/yyyy format
+Version := "1.2.7",
+Date := "29/08/2025", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
