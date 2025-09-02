@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/gap-packages/FPLSA/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/FPLSA/actions/workflows/CI.yml)
+[![CI](https://github.com/gap-packages/FPLSA/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/FPLSA/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/FPLSA/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/FPLSA)
 
 # FPLSA -- The Finitely Presented Lie Super-Algebra Package
