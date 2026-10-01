@@ -1,48 +1,59 @@
 This file describes changes in the FPLSA package.
 
-1.2.8 (2025-12-26)
-  - Identical to previous release, except the manual was rebuilt to fix
-    broken links (caused by a tooling error)
+## 1.2.8 (2025-12-26)
 
-1.2.7 (2025-08-29)
-  - Fix compatibility with GCC 15 (which breaks compatibility with old C code)
-  - Minor janitorial changes
+- Identical to previous release, except the manual was rebuilt to fix
+  broken links (caused by a tooling error)
 
-1.2.6 (2023-01-03)
-  - Enhance the `configure` script to accept `--with-gaproot=PATH`
-  - Minor janitorial changes
+## 1.2.7 (2025-08-29)
 
-1.2.5 (2022-03-10)
-  - Improve buildsystem
-  - PackageInfo.g: update Max Horn's address (again)
+- Fix compatibility with GCC 15 (which breaks compatibility with old C code)
+- Minor janitorial changes
 
-1.2.4 (2019-07-07)
-  - Allow CC and CFLAGS to be overridden
+## 1.2.6 (2023-01-03)
 
-1.2.3 (2019-05-31)
-  - Makefile: change `make clean` to not delete manual PDF
-  - PackageInfo.g: specify license in machine readable form
-  - PackageInfo.g: update Max Horn's address
-  - README.md: fix filename of HTML manual in
+- Enhance the `configure` script to accept `--with-gaproot=PATH`
+- Minor janitorial changes
 
-1.2.2 (2018-02-04)
-  - Convert manual to GAPDoc format
-  - Convert PackageInfo.g to use UTF-8 encoding
-  - Stop using several obsolete GAP functions
+## 1.2.5 (2022-03-10)
 
-1.2.1 (2017-12-04)
-  - Compile with optimizations by default, for better performance
-  - Ensure build system honors CFLAGS (in addition to CPPFLAGS & LDFLAGS)
-  - Update URLs in README
+- Improve buildsystem
+- PackageInfo.g: update Max Horn's address (again)
 
-1.2 (2017-11-06)
-  - Fix longstanding bug that made the package unusable
-  - Fix compilation issue on modern systems
-  - Move package to GitHub
-  - Clarify the package license (GPL 2 or later)
+## 1.2.4 (2019-07-07)
 
-1.1 (2003-11-17)
-  - ...
+- Allow CC and CFLAGS to be overridden
 
-1.0 (1999/07/01)
-  - Initial release
+## 1.2.3 (2019-05-31)
+
+- Makefile: change `make clean` to not delete manual PDF
+- PackageInfo.g: specify license in machine readable form
+- PackageInfo.g: update Max Horn's address
+- README.md: fix filename of HTML manual in
+
+## 1.2.2 (2018-02-04)
+
+- Convert manual to GAPDoc format
+- Convert PackageInfo.g to use UTF-8 encoding
+- Stop using several obsolete GAP functions
+
+## 1.2.1 (2017-12-04)
+
+- Compile with optimizations by default, for better performance
+- Ensure build system honors CFLAGS (in addition to CPPFLAGS & LDFLAGS)
+- Update URLs in README
+
+## 1.2 (2017-11-06)
+
+- Fix longstanding bug that made the package unusable
+- Fix compilation issue on modern systems
+- Move package to GitHub
+- Clarify the package license (GPL 2 or later)
+
+## 1.1 (2003-11-17)
+
+- ...
+
+## 1.0 (1999/07/01)
+
+- Initial release
