@@ -54,6 +54,6 @@ This file describes changes in the FPLSA package.
 
 - ...
 
-## 1.0 (1999/07/01)
+## 1.0 (1999-07-01)
 
 - Initial release
